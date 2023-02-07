@@ -1,0 +1,64 @@
+.loginleftbar {
+  background: linear-gradient(180deg, #ff527b, rgba(254, 44, 85, 0.94));
+}
+.loginleftbar.col-lg-4 {
+  justify-content: center;
+}
+
+.loginRightbar.col-lg-8 {
+  display: flex;
+  justify-content: center;
+}
+.loginlefttext.row {
+  padding: 12%;
+  color: white;
+}
+img.imagelogo {
+  margin: 38px 24px;
+  width: 206px !important;
+}
+.loginleftbar {
+  text-align: center !important;
+}
+.learnmore.row {
+  display: flex;
+
+  justify-content: center;
+}
+h6.learnmoretext {
+  color: white;
+  margin-top: -21px;
+  margin-bottom: 68px;
+}
+h2.sidebar-title {
+  margin-top: 98px;
+  color: #edededb8;
+  font-size: 23px;
+  font-weight: 800;
+  margin-bottom: 82px;
+}
+/* .loginRightbar.col-lg-8 {
+  background: linear-gradient(180deg, #f5f5f5, rgba(245, 245, 245, 1));
+} */
+
+/* .login-component .sidebar-title,
+.recover-password .sidebar-title,
+.register-component .sidebar-title,
+.register-guest .sidebar-title,
+.reset-password .sidebar-title {
+  display: grid;
+  grid-row: 2;
+  max-width: 85%;
+  opacity: 0.5;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-bottom: 0;
+} */
+
+.imageleft {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

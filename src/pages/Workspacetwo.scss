@@ -1,0 +1,382 @@
+.dashboard-sectionss {
+  padding-top: 1px;
+  max-width: 830px;
+  margin: 0 auto;
+}
+.centrr {
+  justify-content: center;
+
+  padding: 0px 6%;
+}
+span.worktwobtngo1 {
+  color: black;
+}
+option.valuesofsle {
+  font-size: 13px;
+}
+.facebookmaincard {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #0000ffa6;
+}
+.Twittorcard {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #1da1f2;
+}
+
+.btnnextform {
+  /* align-items: center; */
+  justify-content: center;
+  display: flex;
+}
+.workspace {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+p.parawork {
+  margin-bottom: 19px;
+  font-size: 11px;
+  padding: 0px 13%;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+[dir] p.parawork {
+  padding: 0px 13% !important;
+  margin-bottom: 17px;
+}
+
+.inputcoc {
+  padding-top: 36px;
+}
+label.labelnew.form-label {
+  font-size: 10px;
+  margin-bottom: 1px;
+}
+button.worktwobtngo.btn.btn-secondary {
+  margin-right: 14px;
+  color: black;
+  /* background: none; */
+  /* background-color: blue; */
+}
+button.worktwobtngo.btn.btn-secondary {
+  background-color: white !important;
+  border: 1px solid;
+  padding: 11px 33px;
+}
+/* .btnnext {
+  color: #100d0d45;
+  background-color: #6c757d12;
+  border-color: #6c757d;
+} */
+button.btnnext.btn.btn-secondary:hover {
+  background: #0f69f6a6;
+  color: #000000;
+}
+button.btnnext.btn.btn-secondary {
+  border: none;
+  color: white;
+  background: #1890ff;
+  padding: 7px 37%;
+}
+.row.cancelbtn {
+  margin-right: 75px;
+  display: flex;
+
+  justify-content: right;
+  margin-top: 12px;
+}
+.row.cancelbtn:hover {
+  color: #0d37bfc5;
+}
+.facebookname {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+.facebookpage {
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+  font-size: 10px;
+
+  color: #0000008f;
+  margin-bottom: 33px;
+}
+.maincont {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.cardmainwork.card:hover {
+  color: white !important;
+  background: #1877f2;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  [dir] .facebookpage {
+    margin-top: 2px;
+    margin-bottom: 35px;
+  }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+.Twittorcard {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #1da1f2;
+}
+.cardmainworktwitor.card:hover {
+  color: white !important;
+  background: #1da1f2;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  [dir] .facebookpage {
+    margin-top: 2px;
+    margin-bottom: 35px;
+  }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+.facebookmaincardinsta {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #e1306c;
+}
+.cardmainworkinsta.card:hover {
+  color: white !important;
+  background: #e1306c;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  [dir] .facebookpage {
+    margin-top: 2px;
+    margin-bottom: 35px;
+  }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+.facebookmaincardgoogle {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #4758b8;
+}
+.cardmainworkgoogle.card:hover {
+  color: white !important;
+  background: #4758b8;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  [dir] .facebookpage {
+    margin-top: 2px;
+    margin-bottom: 35px;
+  }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+.facebookmaincardlink {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #0966c1;
+}
+.cardmainworklink.card:hover {
+  color: white !important;
+  background: #0966c1;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  // [dir] .facebookpage {
+  //   margin-top: 2px;
+  //   margin-bottom: 35px;
+  // }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+.facebookmaincardyou {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #e32e2e;
+}
+.cardmainworkyou.card:hover {
+  color: white !important;
+  background: #e32e2e;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  // [dir] .facebookpage {
+  //   margin-top: 2px;
+  //   margin-bottom: 35px;
+  // }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
+
+[dir] .facebookpage {
+  margin-top: 2px;
+  margin-bottom: 49px;
+}
+[dir] .twittorpage {
+  margin-top: 2px;
+  margin-bottom: 47px !important;
+}
+.connect {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+  display: none;
+}
+button.worktwobtngo.btn.btn-secondary:hover {
+  border: 1px solid blue !important;
+
+  color: blue !important;
+}
+.modal-header {
+  display: block;
+}
+p.modaltexthead {
+  font-size: 14px;
+  // margin-left: 7px;
+  margin-top: 2px;
+  font-weight: 700;
+}
+h2.modaltextheads {
+  font-size: 11px;
+  // margin-left: 8px;
+  margin-top: -14px;
+}
+button.close {
+  display: none;
+}
+.modal-dialog {
+  max-width: 730px;
+}
+.aifilsclosemodal:hover {
+  color: coral;
+}
+.madalbodymain {
+  background: #e0e0e08c;
+  padding: 96px 68px;
+}
+.facebookname.modalfacebookname {
+  line-height: 5.6rem;
+}
+.addpagemainhead {
+  padding: 1px 126px;
+}
+svg.aioutlinecmera {
+  margin-right: 4px;
+  padding: 3px;
+  border: 1px dotted;
+  color: #094f7c;
+  margin-bottom: 0px;
+}
+span.addprofilepic {
+  font-size: 12px;
+}
+.prodileupload {
+  margin-bottom: 18px;
+}
+.prodileupload:hover {
+  color: #6304ff;
+  svg.aioutlinecmera {
+    margin-right: 4px;
+    padding: 3px;
+    border: 1px dotted #6304ff;
+    color: #6304ff;
+    margin-bottom: 0px;
+  }
+}
+.prodileupload {
+  display: flex;
+}
+.createbtn.row {
+  display: flex;
+  justify-content: centet;
+  justify-content: center;
+  margin-top: 38px;
+}
+span.addprofilepic {
+  margin-top: 7px;
+}

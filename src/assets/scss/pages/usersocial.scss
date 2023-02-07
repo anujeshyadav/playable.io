@@ -1,0 +1,152 @@
+.mt-10.col-md-12 {
+  margin-top: 25px;
+}
+button.btn.btn-success.ft-1.btn.btn-secondary {
+  font-size: 14px;
+}
+[dir] button.btn.btn-success.ft-1.btn.btn-secondary {
+  padding: 10px 10px;
+  float: right;
+}
+svg.mr-i {
+  margin-right: 3px;
+  margin-top: -3px;
+}
+
+.imgbox .title {
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.contentimg {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 10px !important;
+}
+
+.contentimg .content-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  height: 99%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.contentimg:hover .content-overlay {
+  opacity: 1;
+}
+
+.content-image {
+  width: 100%;
+}
+
+.content-details {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.contentimg:hover .content-details {
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.content-details h3 {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.content-details p {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.fadeIn-bottom {
+  top: 80%;
+}
+
+.fadeIn-top {
+  top: 20%;
+}
+
+.fadeIn-left {
+  left: 20%;
+}
+
+.fadeIn-right {
+  left: 80%;
+}
+[dir] .content-details.fadeIn-bottom {
+  background: #00000096;
+  height: 100% !important;
+  padding: 5px;
+}
+img.img-round {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+svg.gt-1 {
+  margin-right: 4px;
+  color: #fff;
+}
+
+// profile header css
+
+img.img-fluid.img-border.rounded-circle.box-shadow-1.ht-1 {
+  width: 150px !important;
+  height: 150px !important;
+}
+textarea.textaeraofcompose {
+  border: none;
+  background-color: #fcfcfc;
+}
+textarea.textaeraofcompose:hover {
+  border: none;
+  background-color: #fcfcfc;
+}
+.urlimpu {
+  margin-left: 15px;
+  margin-top: 13px;
+}
+label.labelurl {
+  margin-bottom: 3px;
+  margin-right: 12px;
+}
+
+.btncssadd {
+  margin-top: 8px;
+  padding: 1px 45px;
+}
+button.linksubmitbtn.btn.btn-success {
+  width: 20%;
+  line-height: 0px;
+  display: flex;
+  justify-content: center;
+}

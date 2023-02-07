@@ -1,0 +1,245 @@
+.dashboard-section {
+  max-width: 1368px;
+  margin: 0 auto;
+}
+
+.dashboard-section section {
+  margin-bottom: 60px;
+}
+
+.dashboard-section section .section-header {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.company-header-container {
+  margin: -4px;
+}
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.flex-center,
+.items-center {
+  align-items: center;
+}
+.flex {
+  display: flex !important;
+}
+
+.company-header-container .company-header-left .custom-dropdown-button {
+  margin-right: 20px;
+}
+.custom-dropdown-button.rounded-large {
+  color: rgba(0, 0, 0, 0.6);
+}
+.custom-dropdown-button {
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+  height: auto;
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+.relative {
+  position: relative;
+}
+.flex-center,
+.items-center {
+  align-items: center;
+}
+
+h6.comapanyname {
+  font-size: 16px;
+  line-height: 0.4;
+}
+h6.totalpage {
+  font-size: 13px;
+  color: #332f2f4d;
+}
+img.comapnyimng {
+  border-radius: 2px;
+}
+.row.hourtaken {
+  margin-left: 0px;
+}
+.margin {
+  padding-top: 66px;
+}
+p.totalhour {
+  font-size: 11px;
+}
+.card.main {
+  box-shadow: 2px 3px 2px;
+}
+.row.justify-content-center.workspace {
+  font-weight: 600;
+  font-weight: bold;
+}
+.row.justify-content-center.workspace {
+  line-height: 6.6rem;
+}
+.maincolor {
+  background: #f7f7f7;
+}
+p.comapanynames {
+  margin-bottom: 0px;
+  font-size: 13px;
+  margin-left: 0px;
+  padding-left: -4px;
+  margin-top: -6px;
+}
+
+.row.justify-content-center.plusfign {
+  padding-top: 43px;
+  /* padding-top: 44px; */
+}
+.componlogo {
+  margin-left: 13px;
+  line-height: 6.5rem;
+}
+p.totalhour {
+  margin-bottom: -5px;
+  font-size: 11px;
+}
+button.upgradebutton.btn.btn-secondary {
+  padding: 5px 20px;
+  color: #36842fc9;
+  border: 1px solid #5dff0069;
+  background: #5dff0014;
+  font-size: 12px;
+  margin-top: 4px;
+}
+span.workspacenew:hover {
+  /* font-size: 11px; */
+  color: #49cc5b8a;
+  /* color: #999; */
+}
+.card.main:hover {
+  cursor: pointer;
+  /* color: red; */
+  box-shadow: 2px 2px 3px 1px;
+}
+span.workspacenew {
+  font-size: 11px;
+
+  color: #999;
+}
+
+.col-lg-6.NEWSPACE {
+  display: flex;
+  justify-content: right;
+}
+button#react-aria9990438537-1 {
+  background-color: white !important;
+  color: black;
+}
+.card.main:hover {
+  background: #ffffff1c;
+}
+span.mx-1.testingheading {
+  font-size: 14px;
+  font-weight: 800;
+}
+[dir] .btn-success {
+  border-color: #fdfdfd !important;
+  background-color: #efefef00 !important;
+  color: black !important;
+}
+/* button#dropdown-basic {
+  color: black;
+  background: none;
+  border: none;
+} */
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 50%);
+}
+.button#dropdown-basic:hover {
+  color: rgb(106, 20, 20);
+  background-color: #8fb42b1c;
+  /* border-color: #1e7e34; */
+}
+
+img.comapnyimngsts {
+  border-radius: 10%;
+}
+span.\35 {
+  padding-right: 10px;
+}
+img.comapnyimngsts {
+  margin-right: 12px;
+}
+
+button.upgradebuttosnww.btn.btn-secondary {
+  background: none;
+  font-size: 10px;
+  color: #000;
+  border-color: #ffffff5e;
+  padding: 3px 13px;
+  border: 1px solid;
+}
+.row.companytitle {
+  margin-top: 6px;
+  margin-left: 1px;
+}
+button.upgradebuttosnww.btn.btn-secondary:hover {
+  color: blue;
+}
+.col-lg-2.comtt {
+  margin-top: 4px;
+}
+a.dropmenuitemss.dropdown-item {
+  font-size: 11px;
+}
+.people {
+  margin-left: 17px;
+}
+h6.peopletext {
+  font-size: 11px;
+  color: #0000004f;
+}
+.col-lg-3.col-md-3.col-sm-4.col-xs-4 {
+  margin-bottom: 14px;
+}
+svg.redfah {
+  margin-right: 5px;
+}
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+.myDIV:not + .hide {
+  display: none;
+  /* color: red; */
+}
+.hide {
+  display: none;
+}
+.dt12 {
+  display: flex;
+  justify-content: right;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: none !important;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+.card.main.workspace:hover {
+  background: rgb(246, 231, 209);
+}
+.card.main.workspace {
+  background: #eee9e942;
+}
+.ml-2.uncontrolledimages {
+  margin-top: 28px;
+  margin-bottom: 35px;
+}
