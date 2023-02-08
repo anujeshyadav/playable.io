@@ -14,7 +14,7 @@ import Workflowthird from "./pages/Workflowthird";
 const Registration = lazy(() => import("./planable.io/Registration"));
 const login = lazy(() => import("./planable.io/login"));
 const dashboard = lazy(() => import("./pages/dashboard"));
-const workspace = lazy(() => import("./pages/workspace"));
+const Workspace = lazy(() => import("./pages/Workspace"));
 const UserSocialList = lazy(() =>
   import("./views/apps/usermanage/UserSocialList")
 );
@@ -288,7 +288,7 @@ class AppRouter extends React.Component {
           />
           <AppRoute path="/todo/:filter" component={todo} />
           <AppRoute path="/dashboard" component={dashboard} />
-          <AppRoute path="/workspace" component={workspace} />
+          <AppRoute path="/workspace" component={Workspace} />
           <AppRoute path="/workspaceone" component={Workspacetwo} />
           <AppRoute path="/workspacetwo" component={Workflowthird} />
           <AppRoute

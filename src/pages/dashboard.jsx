@@ -395,7 +395,7 @@ function dashboard() {
                 </div>
 
                 <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                  <Link to="/workspace">
+                  <Link to="/Workspace">
                     <div className="card main workspace">
                       <div className="card-body">
                         <div className="row justify-content-center plusfign stttt ">

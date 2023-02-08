@@ -1,5 +1,20 @@
 import React from "react";
-import { Card, CardBody, Input, Label } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  Input,
+  Label,
+  CardHeader,
+  CardTitle,
+} from "reactstrap";
+import Dropdown from "react-bootstrap/Dropdown";
+
+import { BsStopwatch } from "react-icons/bs";
+
+import { BiBarChart } from "react-icons/bi";
+import { SlCalender } from "react-icons/sl";
+
+import { BsPeople } from "react-icons/bs";
 
 import { Edit } from "react-feather";
 import {
@@ -19,11 +34,26 @@ import { CgCarousel } from "react-icons/cg";
 import avatar from "../../images/avatar.jpg";
 import Dropzonecompose from "./Dropzonecompose";
 import url from "availity-reactstrap-validation/lib/AvValidator/url";
+import "../../../assets/scss/pages/usersocial.scss";
+const collapseItems = [
+  {
+    id: 1,
+    title: "Accordion Item 1",
+    content:
+      "Pie dragée muffin. Donut cake liquorice marzipan carrot cake topping powder candy. Sugar plum brownie brownie cotton candy.",
+  },
+];
 
 class ComposeModalGrid extends React.Component {
   state = {
     modal: false,
     addURl: "",
+    collapseID: "",
+  };
+  toggleCollapse = (collapseID) => {
+    this.setState((prevState) => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : "",
+    }));
   };
 
   toggleModal = () => {
@@ -67,22 +97,17 @@ class ComposeModalGrid extends React.Component {
             </Row>
             <Row className="iconuploads">
               <Col className="colicon">
-                {/* <AiOutlineFileGif
-                  color="green"
-                  className="aioutline mx-1"
-                  size={30}
-                /> */}
                 <span>
                   <Dropzonecompose />
                 </span>
                 <AiFillFolderAdd
                   data-placement="top"
-                  title="  Add GIF"
+                  title=" Add From Media Library"
                   color="#878721d9"
                   className="aifillfolderas mx-1"
                   size={35}
                 >
-                  Add GIF
+                  Add From Media Library
                 </AiFillFolderAdd>
 
                 <CgCarousel
@@ -98,56 +123,131 @@ class ComposeModalGrid extends React.Component {
                 </CgCarousel>
               </Col>
             </Row>
-            <Row>
+            <Row className="d-flex ">
               {this.state.addURl == "url" ? (
                 <>
-                  <div className="urlimpu">
+                  <div className="urlimpu d-flex">
                     <div className="controlinput">
-                      <Label className="labelurl">Enter URL here</Label>
-                      <input
-                        placeholder="https://www.myweb.com"
-                        type="url"
-                        className="inputurlinput form-control"
-                      />
-                      <div className="btncssadd">
-                        <Button className="linksubmitbtn" color="success">
-                          Ok
-                        </Button>
-                        <Button
-                          onClick={() => this.setState({ addURl: "" })}
-                          className="linksubmitbtn btnsdanger"
-                          color="danger"
-                        >
-                          cancel
-                        </Button>
-                      </div>
+                      <Row>
+                        <Col lg="3">
+                          <Label className="labelurl">Enter URL here</Label>
+                        </Col>
+                        <Col lg="4">
+                          {" "}
+                          <input
+                            placeholder="https://www.myweb.com"
+                            type="url"
+                            className="inputurlinput form-control"
+                          />
+                        </Col>
+                        <Col lg="2">
+                          <div className="btncssadd dfdf">
+                            <Button
+                              size="sm"
+                              className="linksubmitbtn"
+                              color="success"
+                            >
+                              Ok
+                            </Button>
+                          </div>
+                        </Col>
+                        <Col lg="2">
+                          {" "}
+                          <span className="cancelbtnmargin">
+                            <Button
+                              size="sm"
+                              onClick={() => this.setState({ addURl: "" })}
+                              className="linksubmitbtn btnsdanger"
+                              color="danger"
+                            >
+                              cancel
+                            </Button>
+                          </span>
+                        </Col>
+                      </Row>
                     </div>
                   </div>
                 </>
               ) : null}
             </Row>
-            {/* <Row>
-              <Button
-                style={{ position: "absolute" }}
-                color="primary"
-                id="UncontrolledExample"
-              >
-                Controlled
-              </Button>
-              <UncontrolledTooltip
-                style={{ position: "relative" }}
-                placement="top"
-                target="UncontrolledExample"
-              >
-                Hello Worldddddddddddd !
-              </UncontrolledTooltip>
-            </Row> */}
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>
-              Accept
-            </Button>{" "}
-          </ModalFooter>
+
+          <hr />
+          <div className="modalfootercompse">
+            <Row className="rowofmodalfooter">
+              <Col lg="6">
+                <select className="custom-select ">
+                  <option className="firstitme mt-2 mb-2">
+                    Select Date and time
+                  </option>
+
+                  <option value="fa fa-bell" class="fa">
+                    &#xf0f3; bell
+                  </option>
+                  <option value="fa fa-bookmark" class="fa">
+                    &#xf02e; bookmark
+                  </option>
+                  <option value="fa fa-building" class="fa">
+                    &#xf1ad; building
+                  </option>
+                </select>
+
+                <span>
+                  <div className="dt12">
+                    <Dropdown className="dropdownbtn">
+                      <Dropdown.Toggle
+                        variant="success"
+                        className="combtn dropdown-basic"
+                      >
+                        <BsStopwatch size={25} />
+                        <span className="mx-1">Select Date and time</span>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="dropmenitms">
+                        <Dropdown.Item className="dropmenuitemss">
+                          <BsStopwatch size={25} />
+                          <span className="mx-1">Tomorrow</span>
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropmenuitemss">
+                          <BsStopwatch size={25} />
+                          <span className="mx-1">Monday</span>
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropmenuitemss">
+                          <BsStopwatch size={20} />
+                          <span className="mx-1">Day after Tomarrow</span>
+                        </Dropdown.Item>
+                        <hr />
+                        <Dropdown.Item className="dropmenuitemss">
+                          <SlCalender size={25} />
+                          <span className="mx-1">
+                            Select a Custom -Date
+                          </span>{" "}
+                        </Dropdown.Item>
+                        <Dropdown.Item className="dropmenuitemss">
+                          <BiBarChart size={20} /> Set a Preffered Time
+                        </Dropdown.Item>
+
+                        <Dropdown.Item className="dropmenuitemss">
+                          <BsPeople size={20} />
+                          Change Workspace time Zone
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                </span>
+              </Col>
+              <Col lg="2">
+                <Button color="primary" onClick={this.toggleModal}>
+                  Accept
+                </Button>{" "}
+              </Col>
+              <Col lg="2">
+                <Button color="primary" onClick={this.toggleModal}>
+                  close
+                </Button>
+              </Col>{" "}
+            </Row>
+          </div>
         </Modal>
       </>
     );

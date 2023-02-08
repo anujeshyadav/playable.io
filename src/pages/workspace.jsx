@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Label } from "reactstrap";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiFillCloseCircle } from "react-icons/ai";
-
+import TimezoneSelect from "react-timezone-select";
 import "./workshpace.css";
 import { Link } from "react-router-dom";
 
-function workspace() {
+function Workspace() {
+  const [selectedTimezone, setSelectedTimezone] = useState({});
+  // console.log(selectedTimezone);
   return (
     <div>
       <div className="row cancelbtn">
@@ -40,32 +42,10 @@ function workspace() {
           <div className="inputcoc">
             <Label className="labelnew">Workspace timezone (optional)</Label>
             <p>
-              <select className="wide form-control">
-                <option className="valuesofsle" value="india">
-                  India
-                </option>
-                <option className="valuesofsle" value="italy">
-                  Italy
-                </option>
-                <option className="valuesofsle" value="spain">
-                  Spain
-                </option>
-                <option className="valuesofsle" value="france">
-                  France
-                </option>
-                <option className="valuesofsle" value="brazil">
-                  Brazil
-                </option>
-                <option className="valuesofsle" value="india">
-                  India
-                </option>
-                <option className="valuesofsle" value="italy">
-                  Italy
-                </option>
-                <option className="valuesofsle" value="spain">
-                  Spain
-                </option>
-              </select>
+              <TimezoneSelect
+                value={selectedTimezone}
+                onChange={setSelectedTimezone}
+              />
             </p>
           </div>
           <div className="inputcoc intutbtn">
@@ -85,4 +65,4 @@ function workspace() {
   );
 }
 
-export default workspace;
+export default Workspace;

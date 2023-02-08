@@ -261,6 +261,37 @@ button.btnnext.btn.btn-secondary {
     margin-top: -34px;
   }
 }
+.facebookmaincardlink {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  color: #0966c1;
+}
+.cardmainwork.tiktok.card:hover {
+  color: white !important;
+  background: #3f4042;
+
+  svg.bsfacebook {
+    color: white !important;
+  }
+  .facebookpage {
+    color: white;
+  }
+  // [dir] .facebookpage {
+  //   margin-top: 2px;
+  //   margin-bottom: 35px;
+  // }
+  .connect {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 2px;
+    display: block;
+  }
+  span.connectin {
+    margin-bottom: 11px;
+    margin-top: -34px;
+  }
+}
 .facebookmaincardyou {
   display: flex;
   justify-content: center;
@@ -379,4 +410,12 @@ span.addprofilepic {
 }
 span.addprofilepic {
   margin-top: 7px;
+}
+button.my-facebook-button-class.favebook.metro {
+  border: none;
+  background: none;
+}
+button.my-facebook-button-class.favebook.instalogin {
+  border: none;
+  background: none;
 }

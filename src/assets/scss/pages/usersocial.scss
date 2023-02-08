@@ -141,12 +141,40 @@ label.labelurl {
 }
 
 .btncssadd {
-  margin-top: 8px;
-  padding: 1px 45px;
+  margin-top: 4px;
+  padding: 1px 25px;
 }
-button.linksubmitbtn.btn.btn-success {
-  width: 20%;
-  line-height: 0px;
-  display: flex;
-  justify-content: center;
+[dir="ltr"] label.labelurl {
+  margin-top: 11px;
+  margin-right: 12px;
+}
+span.cancelbtnmargin {
+  margin-left: 0px;
+}
+button.linksubmitbtn.btnsdanger.btn.btn-danger.btn-sm {
+  margin-top: 5px;
+  /* display: flex; */
+  float: 6px;
+  /* float: left; */
+}
+.modalfootercompse {
+  margin-top: 6px;
+  margin-bottom: 17px;
+  margin-left: 25px;
+}
+
+.select-box {
+  padding: 3rem;
+  display: inline-block;
+  background-color: #3a9c7d;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 3px 2px 5px #3a9c7d;
+}
+
+.fa {
+  font-family: "Lato", "Font Awesome 5 Free", "Font Awesome 5 Brands";
+  font-weight: 900;
+  padding: 1rem 2rem;
+  color: #3a9c7d;
 }

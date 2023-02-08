@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, CardTitle, Button } from "reactstrap";
-import "../../../assets/scss/plugins/extensions/dropzone.scss";
+import "../../src/assets/scss/plugins/extensions/dropzone.scss";
+
 import { BsUpload } from "react-icons/bs";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineFileGif } from "react-icons/ai";
@@ -9,7 +10,7 @@ import { FcAddImage } from "react-icons/fc";
 function ProgrammaticallyDropzone(props) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps, open } = useDropzone({
-    accept: "audio/*,video/*,image/*",
+    accept: "image/*",
 
     noClick: true,
     noKeyboard: true,
@@ -42,31 +43,10 @@ function ProgrammaticallyDropzone(props) {
 
   return (
     <span>
-      <FcAddImage
-        data-placement="top"
-        title="Add images,GIF & video"
-        onClick={open}
-        color="green"
-        id="fcadd"
-        size={30}
-      >
-        {" "}
-        Add Images & video
-      </FcAddImage>
+      <FcAddImage onClick={open} color="green" id="fcadd" size={30} />
 
-      {/* <Button.Ripple color="primary" outline className="my-1 mb-2">
-        Images
-      </Button.Ripple> */}
-      {/* <div {...getRootProps({ className: "dropzone" })}> */}
       <input {...getInputProps()} />
       {console.log(files)}
-      {/* <div className="imageupload">
-          <p className="mx-1">
-            <BsUpload size={25} /> Drop files here Upload videos, images or GIFs
-            for later use in your posts
-          </p>
-        </div> */}
-      {/* </div> */}
 
       {/* <aside  size="25px" className="thumb-container">
         {thumbs}

@@ -8,38 +8,48 @@ import {
   AiOutlineAppstoreAdd,
   AiOutlineCamera,
 } from "react-icons/ai";
+// import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import FacebookLogin from "react-facebook-login";
+
 import { CiFlag1 } from "react-icons/ci";
 import { TbPlugConnected } from "react-icons/tb";
 import { FaTiktok, FaDiaspora } from "react-icons/fa";
-
+import DropZoneImage from "./DropZoneImage";
 import {
   AiFillCloseCircle,
   AiFillTwitterCircle,
   AiFillGoogleCircle,
 } from "react-icons/ai";
+// import InstagramLogin from "react-instagram-login";
+import { InstagramLogin } from "@amraneze/react-instagram-login";
 import { BsFacebook, BsInstagram, BsLinkedin, BsYoutube } from "react-icons/bs";
 
 import "./Workspacetwo.scss";
 import { Link } from "react-router-dom";
 import { CloudLightning } from "react-feather";
 import axios from "axios";
+// import TwitterLogin from "react-twitter-login";
+import TwitterLogin from "react-twitter-auth/lib/react-twitter-auth-component.js";
+import LinkedInPage from "./LinkedInPage";
+// import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 function Workspacetwo(args) {
-  const HandleFaceLogin = () => {
-    axios
-      .get(`http://13.127.168.84:3000/login/fb`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const componentClicked = (e) => {
+    console.log(e);
   };
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const [modalli, setModalli] = useState(false);
+  const toggleli = () => setModalli(!modalli);
+  const [modaltw, setModaltw] = useState(false);
+  const toggletw = () => setModaltw(!modaltw);
+  const [modalin, setModalin] = useState(false);
+  const togglein = () => setModalin(!modalin);
 
   const [modalone, setModalone] = useState(false);
   const toggleone = () => setModalone(!modalone);
+  const [modalyt, setModalyt] = useState(false);
+  const toggleyt = () => setModalyt(!modalyt);
 
   const [first, setfirst] = useState("");
 
@@ -49,8 +59,27 @@ function Workspacetwo(args) {
     console.log(hiddenFileInput);
     hiddenFileInput.current.click();
   };
+  const onSuccess = (response) => {
+    console.log(response);
+  };
+
+  const onFailed = (error) => {
+    console.log(error);
+  };
+
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
+  };
+  const responseInstagram = (response) => {
+    console.log(response);
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
+
+  const authHandler = (err, data) => {
+    console.log(err, data);
   };
 
   return (
@@ -75,6 +104,7 @@ function Workspacetwo(args) {
         </div>
         <div className="centrrs">
           <Row>
+            {/* facebook card and modal */}
             <Col lg="3">
               <Card onClick={toggle} className="cardmainwork">
                 <Modal isOpen={modal} toggle={toggle} {...args}>
@@ -89,7 +119,7 @@ function Workspacetwo(args) {
                           />
                         </Col>
                         <Col lg="10">
-                          <p className="modaltexthead">Connect pages</p>
+                          <p className="modaltexthead">Connect Facebook Page</p>
                           <h2 className="modaltextheads">
                             Select what type of pages you want to connect
                           </h2>
@@ -131,14 +161,207 @@ function Workspacetwo(args) {
                               // onClick={HandleFaceLogin}
                               className="cardmainworktwitor"
                             >
-                              <a href="http://13.127.168.84:3000/login/fb">
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
                                 <div className="maincont">
                                   <div className="Twittorcard">
                                     <CiFlag1 className="bsfacebook" size={35} />
                                   </div>
                                   <div className="facebookname modalfacebookname">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
-                                    <span>Add page</span>
+                                    <span className="facebooklogin">
+                                      <FacebookLogin
+                                        returnScopes="true"
+                                        appId="2149160251958615"
+                                        fields="name,email,picture"
+                                        scope="public_profile,user_friends,user_actions.books"
+                                        onClick={componentClicked}
+                                        cssClass="my-facebook-button-class favebook"
+                                        callback={responseFacebook}
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                  {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                  <div className="connect">
+                                    {/* <span className="connectin">Connect</span> */}
+                                  </div>
+                                </div>
+                              </a>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <AiOutlineUsergroupAdd
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname modalfacebookname">
+                                  {/* <span>Add groups</span> */}
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin fblogiigroup">
+                                      <FacebookLogin
+                                        returnScopes="true"
+                                        appId="2149160251958615"
+                                        fields="name,email,picture"
+                                        scope="public_profile,user_friends,user_actions.books"
+                                        onClick={componentClicked}
+                                        cssClass="my-facebook-button-class favebook sosst"
+                                        callback={responseFacebook}
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <FaDiaspora
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      // onClick={toggle}
+                    >
+                      Connect Pages
+                    </Button>{" "}
+                  </ModalFooter>
+                </Modal>
+                <div className="maincont">
+                  <div className="facebookmaincard">
+                    <BsFacebook className="bsfacebook" size={35} />
+                  </div>
+                  <div className="facebookname">
+                    <span>Facebook</span>
+                  </div>
+                  <div className="facebookpage">
+                    <span>Page or Group</span>
+                  </div>
+                  <div className="connect">
+                    <span className="connectin">Connect</span>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+            {/* twittor card and modal */}
+            <Col lg="3">
+              <Card onClick={toggletw} className="cardmainworktwitor">
+                <Modal isOpen={modaltw} toggle={toggletw} {...args}>
+                  <ModalHeader toggle={toggletw}>
+                    <div className="modalheader">
+                      <Row>
+                        <Col lg="1">
+                          <TbPlugConnected
+                            className="bsfacebook mt-1"
+                            color="blue"
+                            size={35}
+                          />
+                        </Col>
+                        <Col lg="10">
+                          <p className="modaltexthead">Connect Twittor pages</p>
+                          <h2 className="modaltextheads">
+                            Select what type of pages you want to connect
+                          </h2>
+                        </Col>
+                        <Col lg="1">
+                          <AiFillCloseCircle
+                            className="aifilsclosemodal"
+                            onClick={toggletw}
+                            size={35}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="madalbodymain">
+                      <div className="contenthead">
+                        <Row>
+                          {/* <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  <span className="connectin">Connect</span>
+                                </div>
+                              </div>
+                            </Card>
+                          </Col> */}
+                          <Col lg="4">
+                            <Card
+                              // onClick={HandleFaceLogin}
+                              className="cardmainworktwitor"
+                            >
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
+                                <div className="maincont">
+                                  <div className="Twittorcard">
+                                    <CiFlag1 className="bsfacebook" size={35} />
+                                  </div>
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin">
+                                      {/* <TwitterLogin
+                                        authCallback={authHandler}
+                                        consumerKey="PyHxgJuyORZqhDiuKAne8LcxT"
+                                        consumerSecret="RBqOgWJfflgk2GLGmKtHFnHituqvf3vROPfAqzOPpfKficIrI9f"
+                                      /> */}
+                                      <TwitterLogin
+                                        loginUrl="https://twitter.com/home?lang=en"
+                                        onFailure={onFailed}
+                                        onSuccess={onSuccess}
+                                        // requestTokenUrl="http://localhost:3000/api/v1/auth/twitter/reverse"
+                                        showIcon={true}
+                                        // customHeaders={customHeader}
+                                      >
+                                        Twitter <i>Login</i>
+                                      </TwitterLogin>
+                                    </span>
                                     {/* </a> */}
                                   </div>
                                   {/* <div className="facebookpage twittorpage">
@@ -207,24 +430,6 @@ function Workspacetwo(args) {
                   </ModalFooter>
                 </Modal>
                 <div className="maincont">
-                  <div className="facebookmaincard">
-                    <BsFacebook className="bsfacebook" size={35} />
-                  </div>
-                  <div className="facebookname">
-                    <span>Facebook</span>
-                  </div>
-                  <div className="facebookpage">
-                    <span>Page or Group</span>
-                  </div>
-                  <div className="connect">
-                    <span className="connectin">Connect</span>
-                  </div>
-                </div>
-              </Card>
-            </Col>
-            <Col lg="3">
-              <Card onClick={toggle} className="cardmainworktwitor">
-                <div className="maincont">
                   <div className="Twittorcard">
                     <AiFillTwitterCircle className="bsfacebook" size={40} />
                   </div>
@@ -240,8 +445,175 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* instagram card and modal */}
             <Col lg="3">
-              <Card onClick={toggle} className="cardmainworkinsta">
+              {/* instagram model */}
+              <Card onClick={togglein} className="cardmainworkinsta">
+                <Modal isOpen={modalin} toggle={togglein} {...args}>
+                  <ModalHeader toggle={togglein}>
+                    <div className="modalheader">
+                      <Row>
+                        <Col lg="1">
+                          <TbPlugConnected
+                            className="bsfacebook mt-1"
+                            color="blue"
+                            size={35}
+                          />
+                        </Col>
+                        <Col lg="10">
+                          <p className="modaltexthead">
+                            Connect instagram pages
+                          </p>
+                          <h2 className="modaltextheads">
+                            Select what type of pages you want to connect
+                          </h2>
+                        </Col>
+                        <Col lg="1">
+                          <AiFillCloseCircle
+                            className="aifilsclosemodal"
+                            onClick={togglein}
+                            size={35}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="madalbodymain">
+                      <div className="contenthead">
+                        <Row>
+                          {/* <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  <span className="connectin">Connect</span>
+                                </div>
+                              </div>
+                            </Card>
+                          </Col> */}
+                          <Col lg="4">
+                            <Card
+                              // onClick={HandleFaceLogin}
+                              className="cardmainworktwitor"
+                            >
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
+                                <div className="maincont">
+                                  <div className="Twittorcard">
+                                    <CiFlag1 className="bsfacebook" size={35} />
+                                  </div>
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin instalogin">
+                                      {/* <FacebookLogin
+                                        returnScopes="true"
+                                        appId="2149160251958615"
+                                        fields="name,email,picture"
+                                        scope="public_profile,user_friends,user_actions.books"
+                                        onClick={componentClicked}
+                                        cssClass="my-facebook-button-class favebook"
+                                        callback={responseFacebook}
+                                      /> */}
+                                      <InstagramLogin
+                                        clientId="5fd2f11482844c5eba963747a5f34556"
+                                        buttonText="Insta-Login"
+                                        cssClass="my-facebook-button-class favebook instalogin"
+                                        onSuccess={responseInstagram}
+                                        onFailure={responseInstagram}
+                                        redirectUri="REDIRECT_URL"
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                  {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                  <div className="connect">
+                                    {/* <span className="connectin">Connect</span> */}
+                                  </div>
+                                </div>
+                              </a>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <AiOutlineUsergroupAdd
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname modalfacebookname">
+                                  {/* <span>Add groups</span> */}
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin fblogiigroup">
+                                      <InstagramLogin
+                                        clientId="5fd2f11482844c5eba963747a5f34556"
+                                        buttonText="Add Pages"
+                                        cssClass="my-facebook-button-class favebook instalogin"
+                                        onSuccess={responseInstagram}
+                                        onFailure={responseInstagram}
+                                        redirectUri="REDIRECT_URL"
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <FaDiaspora
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      // onClick={toggle}
+                    >
+                      Connect Pages
+                    </Button>{" "}
+                  </ModalFooter>
+                </Modal>
                 <div className="maincont">
                   <div className="facebookmaincardinsta">
                     <BsInstagram className="bsfacebook" size={35} />
@@ -258,8 +630,158 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* Linkedin card and modal */}
             <Col lg="3">
-              <Card onClick={toggle} className="cardmainworklink">
+              <Card onClick={toggleli} className="cardmainworklink">
+                <Modal isOpen={modalli} toggle={toggleli} {...args}>
+                  <ModalHeader toggle={toggleli}>
+                    <div className="modalheader">
+                      <Row>
+                        <Col lg="1">
+                          <TbPlugConnected
+                            className="bsfacebook mt-1"
+                            color="blue"
+                            size={35}
+                          />
+                        </Col>
+                        <Col lg="10">
+                          <p className="modaltexthead">Connect Linkedin page</p>
+                          <h2 className="modaltextheads">
+                            Select what type of pages you want to connect
+                          </h2>
+                        </Col>
+                        <Col lg="1">
+                          <AiFillCloseCircle
+                            className="aifilsclosemodal"
+                            onClick={toggleli}
+                            size={35}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="madalbodymain">
+                      <div className="contenthead">
+                        <Row>
+                          {/* <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  <span className="connectin">Connect</span>
+                                </div>
+                              </div>
+                            </Card>
+                          </Col> */}
+                          <Col lg="4">
+                            <Card
+                              // onClick={HandleFaceLogin}
+                              className="cardmainworktwitor"
+                            >
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
+                                <div className="maincont">
+                                  <div className="Twittorcard">
+                                    <CiFlag1 className="bsfacebook" size={35} />
+                                  </div>
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin instalogin">
+                                      {/* <FacebookLogin
+                                        returnScopes="true"
+                                        appId="2149160251958615"
+                                        fields="name,email,picture"
+                                        scope="public_profile,user_friends,user_actions.books"
+                                        onClick={componentClicked}
+                                        cssClass="my-facebook-button-class favebook"
+                                        callback={responseFacebook}
+                                      /> */}
+                                      <LinkedInPage className="linkedinpage" />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                  {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                  <div className="connect">
+                                    {/* <span className="connectin">Connect</span> */}
+                                  </div>
+                                </div>
+                              </a>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <AiOutlineUsergroupAdd
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname modalfacebookname">
+                                  {/* <span>Add groups</span> */}
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin fblogiigroup">
+                                      <LinkedInPage className="linkedinpage" />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <FaDiaspora
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      // onClick={toggle}
+                    >
+                      Connect Pages
+                    </Button>{" "}
+                  </ModalFooter>
+                </Modal>
                 <div className="maincont">
                   <div className="facebookmaincardlink">
                     <BsLinkedin className="bsfacebook" size={35} />
@@ -276,11 +798,12 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* google card and modal */}
             <Col lg="3">
               <Card onClick={toggle} className="cardmainworkgoogle">
                 <div className="maincont">
                   <div className="facebookmaincardgoogle">
-                    <AiFillGoogleCircle className="bsfacebook" size={35} />
+                    <AiFillGoogleCircle className="bsfacebook" size={40} />
                   </div>
                   <div className="facebookname">
                     <span>Google Business Profile</span>
@@ -294,8 +817,150 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* youtube card and modal */}
             <Col lg="3">
-              <Card onClick={toggle} className="cardmainworkyou">
+              <Card onClick={toggleyt} className="cardmainworkyou">
+                <Modal isOpen={modalyt} toggle={toggleyt} {...args}>
+                  <ModalHeader toggle={toggleyt}>
+                    <div className="modalheader">
+                      <Row>
+                        <Col lg="1">
+                          <TbPlugConnected
+                            className="bsfacebook mt-1"
+                            color="blue"
+                            size={35}
+                          />
+                        </Col>
+                        <Col lg="10">
+                          <p className="modaltexthead">Connect pages</p>
+                          <h2 className="modaltextheads">
+                            Select what type of pages you want to connect
+                          </h2>
+                        </Col>
+                        <Col lg="1">
+                          <AiFillCloseCircle
+                            className="aifilsclosemodal"
+                            onClick={toggleyt}
+                            size={35}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="madalbodymain">
+                      <div className="contenthead">
+                        <Row>
+                          {/* <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  <span className="connectin">Connect</span>
+                                </div>
+                              </div>
+                            </Card>
+                          </Col> */}
+                          <Col lg="4">
+                            <Card
+                              // onClick={HandleFaceLogin}
+                              className="cardmainworktwitor"
+                            >
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
+                                <div className="maincont">
+                                  <div className="Twittorcard">
+                                    <CiFlag1 className="bsfacebook" size={35} />
+                                  </div>
+                                  <div className="facebookname modalfacebookname">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin">
+                                      <FacebookLogin
+                                        returnScopes="true"
+                                        appId="2149160251958615"
+                                        fields="name,email,picture"
+                                        scope="public_profile,user_friends,user_actions.books"
+                                        onClick={componentClicked}
+                                        cssClass="my-facebook-button-class favebook"
+                                        callback={responseFacebook}
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                  {/* <div className="facebookpage twittorpage">
+                                    <span>Profile</span>
+                                  </div> */}
+                                  <div className="connect">
+                                    {/* <span className="connectin">Connect</span> */}
+                                  </div>
+                                </div>
+                              </a>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <AiOutlineUsergroupAdd
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname modalfacebookname">
+                                  <span>Add groups</span>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <FaDiaspora
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      // onClick={toggle}
+                    >
+                      Connect Pages
+                    </Button>{" "}
+                  </ModalFooter>
+                </Modal>
                 <div className="maincont">
                   <div className="facebookmaincardyou">
                     <BsYoutube className="bsfacebook" size={35} />
@@ -312,10 +977,11 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* tiktok card and modal */}
             <Col lg="3">
-              <Card onClick={toggle} className="cardmainwork">
+              <Card onClick={toggle} className="cardmainwork tiktok">
                 <div className="maincont">
-                  <div className="facebookmaincard">
+                  <div className="facebookmaincard tiktok">
                     <FaTiktok className="bsfacebook" size={35} />
                   </div>
                   <div className="facebookname">
@@ -330,8 +996,9 @@ function Workspacetwo(args) {
                 </div>
               </Card>
             </Col>
+            {/* generic card and modal */}
             <Col lg="3">
-              <Card onClick={toggleone} className="cardmainwork">
+              <Card onClick={toggleone} className="cardmainwork ">
                 <Modal isOpen={modalone} toggle={toggleone} {...args}>
                   <ModalHeader toggle={toggleone}>
                     <div className="modalheader">
@@ -368,12 +1035,12 @@ function Workspacetwo(args) {
                           <Row>
                             <div className="prodileupload">
                               <div className="imputfile">
-                                <AiOutlineCamera
+                                {/* <AiOutlineCamera
                                   onClick={handleClick}
                                   className="aioutlinecmera"
                                   size={30}
-                                />
-
+                                /> */}
+                                <DropZoneImage />
                                 <input
                                   type="file"
                                   ref={hiddenFileInput}
@@ -480,7 +1147,7 @@ function Workspacetwo(args) {
                   </ModalFooter> */}
                 </Modal>
                 <div className="maincont">
-                  <div className="facebookmaincard">
+                  <div className="facebookmaincard ">
                     <AiFillPlusSquare className="bsfacebook" size={35} />
                   </div>
                   <div className="facebookname">
@@ -538,7 +1205,7 @@ function Workspacetwo(args) {
           </div> */}
           <div className="inputcoc intutbtn">
             <div className="btnnextform">
-              <Link to="/workspace">
+              <Link to="/Workspace">
                 <Button className="worktwobtngo">
                   <span className="worktwobtngo1">Go Back</span>{" "}
                 </Button>

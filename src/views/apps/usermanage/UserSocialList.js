@@ -226,6 +226,9 @@ class UserSocialList extends React.Component {
                             <Button color="primary" onClick={this.toggleModal}>
                               Submit
                             </Button>{" "}
+                            <Button color="primary" onClick={this.toggleModal}>
+                              close
+                            </Button>{" "}
                           </ModalFooter>
                         </Modal>
                         {/* <DropZone /> */}
