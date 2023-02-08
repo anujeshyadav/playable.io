@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
 import { CloudLightning } from "react-feather";
 import axios from "axios";
 // import TwitterLogin from "react-twitter-login";
-import TwitterLogin from "react-twitter-auth/lib/react-twitter-auth-component.js";
+// import TwitterLogin from "react-twitter-auth/lib/react-twitter-auth-component.js";
 import LinkedInPage from "./LinkedInPage";
 // import { useLinkedIn } from "react-linkedin-login-oauth2";
 
@@ -351,7 +351,7 @@ function Workspacetwo(args) {
                                         consumerKey="PyHxgJuyORZqhDiuKAne8LcxT"
                                         consumerSecret="RBqOgWJfflgk2GLGmKtHFnHituqvf3vROPfAqzOPpfKficIrI9f"
                                       /> */}
-                                      <TwitterLogin
+                                      {/* <TwitterLogin
                                         loginUrl="https://twitter.com/home?lang=en"
                                         onFailure={onFailed}
                                         onSuccess={onSuccess}
@@ -360,7 +360,7 @@ function Workspacetwo(args) {
                                         // customHeaders={customHeader}
                                       >
                                         Twitter <i>Login</i>
-                                      </TwitterLogin>
+                                      </TwitterLogin> */}
                                     </span>
                                     {/* </a> */}
                                   </div>
