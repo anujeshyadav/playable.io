@@ -330,7 +330,7 @@ button.btnnext.btn.btn-secondary {
 }
 [dir] .twittorpage {
   margin-top: 2px;
-  margin-bottom: 47px !important;
+  margin-bottom: 49px !important;
 }
 .connect {
   display: flex;
@@ -418,4 +418,15 @@ button.my-facebook-button-class.favebook.metro {
 button.my-facebook-button-class.favebook.instalogin {
   border: none;
   background: none;
+}
+
+button.googlelogin {
+  background: none !important;
+  /* color: green !important; */
+  border: none !important;
+  background-color: none !important;
+  box-shadow: none !important;
+}
+.facebookname.modalfacebookname.googleloginheight {
+  line-height: 4.1rem !important;
 }

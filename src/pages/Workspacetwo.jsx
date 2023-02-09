@@ -23,13 +23,13 @@ import {
 // import InstagramLogin from "react-instagram-login";
 import { InstagramLogin } from "@amraneze/react-instagram-login";
 import { BsFacebook, BsInstagram, BsLinkedin, BsYoutube } from "react-icons/bs";
-
+import { GoogleLogin } from "react-google-login";
 import "./Workspacetwo.scss";
 import { Link } from "react-router-dom";
 import { CloudLightning } from "react-feather";
 import axios from "axios";
-// import TwitterLogin from "react-twitter-login";
-// import TwitterLogin from "react-twitter-auth/lib/react-twitter-auth-component.js";
+import TwitterLogin from "react-twitter-login";
+
 import LinkedInPage from "./LinkedInPage";
 // import { useLinkedIn } from "react-linkedin-login-oauth2";
 
@@ -39,6 +39,8 @@ function Workspacetwo(args) {
   };
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const [modalgl, setModalgl] = useState(false);
+  const togglegl = () => setModalgl(!modalgl);
   const [modalli, setModalli] = useState(false);
   const toggleli = () => setModalli(!modalli);
   const [modaltw, setModaltw] = useState(false);
@@ -80,6 +82,10 @@ function Workspacetwo(args) {
 
   const authHandler = (err, data) => {
     console.log(err, data);
+  };
+
+  const responseGoogle = (response) => {
+    console.log(response);
   };
 
   return (
@@ -348,19 +354,9 @@ function Workspacetwo(args) {
                                     <span className="facebooklogin">
                                       {/* <TwitterLogin
                                         authCallback={authHandler}
-                                        consumerKey="PyHxgJuyORZqhDiuKAne8LcxT"
-                                        consumerSecret="RBqOgWJfflgk2GLGmKtHFnHituqvf3vROPfAqzOPpfKficIrI9f"
+                                        consumerKey="OJW2dPMR1yUBuosKxMYfwi4pc"
+                                        consumerSecret="xosmBnv31qBe26OEpc0ePBIPQllfJiOXBDQntDMS1oLT3hTlTf"
                                       /> */}
-                                      {/* <TwitterLogin
-                                        loginUrl="https://twitter.com/home?lang=en"
-                                        onFailure={onFailed}
-                                        onSuccess={onSuccess}
-                                        // requestTokenUrl="http://localhost:3000/api/v1/auth/twitter/reverse"
-                                        showIcon={true}
-                                        // customHeaders={customHeader}
-                                      >
-                                        Twitter <i>Login</i>
-                                      </TwitterLogin> */}
                                     </span>
                                     {/* </a> */}
                                   </div>
@@ -800,7 +796,161 @@ function Workspacetwo(args) {
             </Col>
             {/* google card and modal */}
             <Col lg="3">
-              <Card onClick={toggle} className="cardmainworkgoogle">
+              <Card onClick={togglegl} className="cardmainworkgoogle">
+                <Modal isOpen={modalgl} toggle={togglegl} {...args}>
+                  <ModalHeader toggle={togglegl}>
+                    <div className="modalheader">
+                      <Row>
+                        <Col lg="1">
+                          <TbPlugConnected
+                            className="bsfacebook mt-1"
+                            color="blue"
+                            size={35}
+                          />
+                        </Col>
+                        <Col lg="10">
+                          <p className="modaltexthead">Connect Google page</p>
+                          <h2 className="modaltextheads">
+                            Select what type of pages you want to connect
+                          </h2>
+                        </Col>
+                        <Col lg="1">
+                          <AiFillCloseCircle
+                            className="aifilsclosemodal"
+                            onClick={togglegl}
+                            size={35}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </ModalHeader>
+                  <ModalBody>
+                    <div className="madalbodymain">
+                      <div className="contenthead">
+                        <Row>
+                          {/* <Col lg="4">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  <span className="connectin">Connect</span>
+                                </div>
+                              </div>
+                            </Card>
+                          </Col> */}
+                          <Col lg="4">
+                            <Card
+                              // onClick={HandleFaceLogin}
+                              className="cardmainworktwitor"
+                            >
+                              <a
+                              // href="http://13.127.168.84:3000/login/fb"
+                              >
+                                <div className="maincont">
+                                  <div className="Twittorcard">
+                                    <CiFlag1 className="bsfacebook" size={35} />
+                                  </div>
+                                  <div className="facebookname modalfacebookname googleloginheight">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin instalogin googleloginheight">
+                                      <GoogleLogin
+                                        className="googlelogin"
+                                        clientId="921296865820-drbaqfoqkftuhaicl6r38pl1lneclgtb.apps.googleusercontent.com"
+                                        buttonText="Google Login"
+                                        onSuccess={responseGoogle}
+                                        onFailure={responseGoogle}
+                                        scope="https://www.googleapis.com/auth/cloud-platform"
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                  {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                  <div className="connect">
+                                    {/* <span className="connectin">Connect</span> */}
+                                  </div>
+                                </div>
+                              </a>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <AiOutlineUsergroupAdd
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname modalfacebookname googleloginheight">
+                                  {/* <span>Add groups</span> */}
+                                  <div className="facebookname modalfacebookname googlename googleloginheight">
+                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
+                                    <span className="facebooklogin fblogiigroup">
+                                      <GoogleLogin
+                                        className="googlelogin"
+                                        clientId="921296865820-drbaqfoqkftuhaicl6r38pl1lneclgtb.apps.googleusercontent.com"
+                                        buttonText="Google Login"
+                                        onSuccess={responseGoogle}
+                                        onFailure={responseGoogle}
+                                        // cookiePolicy={"single_host_origin"}
+                                      />
+                                    </span>
+                                    {/* </a> */}
+                                  </div>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div> */}
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                          <Col lg="4">
+                            <Card className="cardmainworktwitor ">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <FaDiaspora
+                                    className="bsfacebook"
+                                    size={35}
+                                  />
+                                </div>
+                                <div className="facebookname">
+                                  <span>Add Page</span>
+                                </div>
+                                <div className="facebookpage twittorpage">
+                                  <span>Profile</span>
+                                </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
+                            </Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      // onClick={toggle}
+                    >
+                      Connect Pages
+                    </Button>{" "}
+                  </ModalFooter>
+                </Modal>
                 <div className="maincont">
                   <div className="facebookmaincardgoogle">
                     <AiFillGoogleCircle className="bsfacebook" size={40} />
