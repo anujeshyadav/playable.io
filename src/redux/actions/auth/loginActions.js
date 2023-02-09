@@ -181,7 +181,7 @@ export const loginWithGithub = () => {
 
 export const loginWithJWT = (user) => {
   return (dispatch) => {
-    console.log(user);
+    // console.log(user);
     axios
       .post("/api/authenticate/login/user", {
         email: user.email,
@@ -198,7 +198,7 @@ export const loginWithJWT = (user) => {
             payload: { loggedInUser, loggedInWith: "jwt" },
           });
 
-          history.push("/");
+          // history.push("/");
         }
       })
       .catch((err) => console.log(err));

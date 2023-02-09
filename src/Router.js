@@ -206,6 +206,9 @@ const userList = lazy(() => import("./views/apps/user/list/List"));
 const userEdit = lazy(() => import("./views/apps/user/edit/Edit"));
 const userView = lazy(() => import("./views/apps/user/view/View"));
 const Login = lazy(() => import("./views/pages/authentication/login/Login"));
+const Loginnew = lazy(() =>
+  import("./views/pages/authentication/login/SocialLogin")
+);
 const forgotPassword = lazy(() =>
   import("./views/pages/authentication/ForgotPassword")
 );
@@ -417,6 +420,7 @@ class AppRouter extends React.Component {
           />
           <AppRoute path="/misc/error/404" component={error404} fullLayout />
           <AppRoute path="/pages/login" component={Login} fullLayout />
+          <AppRoute path="/pages/loginnew" component={Loginnew} fullLayout />
           <AppRoute path="/pages/register" component={register} fullLayout />
           <AppRoute
             path="/pages/forgot-password"
