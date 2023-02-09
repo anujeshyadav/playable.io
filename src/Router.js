@@ -14,7 +14,7 @@ import Workflowthird from "./pages/Workflowthird";
 const Registration = lazy(() => import("./planable.io/Registration"));
 const login = lazy(() => import("./planable.io/login"));
 const dashboard = lazy(() => import("./pages/dashboard"));
-const Workspace = lazy(() => import("./pages/Workspace"));
+const Workspace = lazy(() => import("./pages/workspace"));
 const UserSocialList = lazy(() =>
   import("./views/apps/usermanage/UserSocialList")
 );
