@@ -143,7 +143,7 @@ class ComposeModalGrid extends React.Component {
                   title=" Add From Media Library"
                   color="#878721d9"
                   className="aifillfolderas mx-1"
-                  size={35}
+                  size={36}
                 >
                   Add From Media Library
                 </AiFillFolderAdd>
