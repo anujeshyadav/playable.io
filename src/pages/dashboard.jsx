@@ -415,116 +415,119 @@ function dashboard() {
               <div className="bottom">
                 <h6>Other workspaces</h6>
                 <hr />
-                <div className="row workddd">
-                  <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div className="card main">
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-lg-3 ">
-                            <img
-                              src={avatar}
-                              width="50px"
-                              className="comapnyimng"
-                              alt="image"
-                            />
-                          </div>
-                          <div className="col-lg-7 ">
-                            <div className="row companytitle">
-                              <p className="comapanynames">Sample workspace</p>
+                <Link to="/app/usermanage/usersociallist">
+                  <div className="row workddd">
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <div className="card main">
+                        <div className="card-body">
+                          <div className="row">
+                            <div className="col-lg-3 ">
+                              <img
+                                src={avatar}
+                                width="50px"
+                                className="comapnyimng"
+                                alt="image"
+                              />
                             </div>
-                            <div className="row companytitle">
-                              <h6 className="totalpage">7 page</h6>
+                            <div className="col-lg-7 ">
+                              <div className="row companytitle">
+                                <p className="comapanynames">
+                                  Sample workspace
+                                </p>
+                              </div>
+                              <div className="row companytitle">
+                                <h6 className="totalpage">7 page</h6>
+                              </div>
+                            </div>
+                            <div className="col-lg-2 ">
+                              <AiOutlineStar size={20} />
                             </div>
                           </div>
-                          <div className="col-lg-2 ">
-                            <AiOutlineStar size={20} />
+                          <div className="ml-2 uncontrolledimages">
+                            <ul className="list-unstyled users-list m-0 d-flex">
+                              <li className="avatar pull-up">
+                                <img
+                                  src={person1}
+                                  alt="avatar"
+                                  height="30"
+                                  width="30"
+                                  id="avatar13"
+                                />
+                                <UncontrolledTooltip
+                                  placement="bottom"
+                                  target="avatar13"
+                                >
+                                  Lai Lewandowski
+                                </UncontrolledTooltip>
+                              </li>
+                              <li className="avatar pull-up">
+                                <img
+                                  src={person2}
+                                  alt="avatar"
+                                  height="30"
+                                  width="30"
+                                  id="avatar14"
+                                />
+                                <UncontrolledTooltip
+                                  placement="bottom"
+                                  target="avatar14"
+                                >
+                                  Elicia Rieske
+                                </UncontrolledTooltip>
+                              </li>
+                              <li className="avatar pull-up">
+                                <img
+                                  src={person3}
+                                  alt="avatar"
+                                  height="30"
+                                  width="30"
+                                  id="avatar15"
+                                />
+                                <UncontrolledTooltip
+                                  placement="bottom"
+                                  target="avatar15"
+                                >
+                                  Alberto Glotzbach
+                                </UncontrolledTooltip>
+                              </li>
+                              <li className="avatar pull-up">
+                                <img
+                                  src={person4}
+                                  alt="avatar"
+                                  height="30"
+                                  width="30"
+                                  id="avatar16"
+                                />
+                                <UncontrolledTooltip
+                                  placement="bottom"
+                                  target="avatar16"
+                                >
+                                  George Nordic
+                                </UncontrolledTooltip>
+                              </li>
+                              <li className="avatar pull-up">
+                                <img
+                                  src={person5}
+                                  alt="avatar"
+                                  height="30"
+                                  width="30"
+                                  id="avatar17"
+                                />
+                                <UncontrolledTooltip
+                                  placement="bottom"
+                                  target="avatar17"
+                                >
+                                  Vinnie Mostowy
+                                </UncontrolledTooltip>
+                              </li>
+                              <li className="d-flex align-items-center pl-50">
+                                <span className="align-middle">+140 more</span>
+                              </li>
+                            </ul>
                           </div>
-                        </div>
-                        <div className="ml-2 uncontrolledimages">
-                          <ul className="list-unstyled users-list m-0 d-flex">
-                            <li className="avatar pull-up">
-                              <img
-                                src={person1}
-                                alt="avatar"
-                                height="30"
-                                width="30"
-                                id="avatar13"
-                              />
-                              <UncontrolledTooltip
-                                placement="bottom"
-                                target="avatar13"
-                              >
-                                Lai Lewandowski
-                              </UncontrolledTooltip>
-                            </li>
-                            <li className="avatar pull-up">
-                              <img
-                                src={person2}
-                                alt="avatar"
-                                height="30"
-                                width="30"
-                                id="avatar14"
-                              />
-                              <UncontrolledTooltip
-                                placement="bottom"
-                                target="avatar14"
-                              >
-                                Elicia Rieske
-                              </UncontrolledTooltip>
-                            </li>
-                            <li className="avatar pull-up">
-                              <img
-                                src={person3}
-                                alt="avatar"
-                                height="30"
-                                width="30"
-                                id="avatar15"
-                              />
-                              <UncontrolledTooltip
-                                placement="bottom"
-                                target="avatar15"
-                              >
-                                Alberto Glotzbach
-                              </UncontrolledTooltip>
-                            </li>
-                            <li className="avatar pull-up">
-                              <img
-                                src={person4}
-                                alt="avatar"
-                                height="30"
-                                width="30"
-                                id="avatar16"
-                              />
-                              <UncontrolledTooltip
-                                placement="bottom"
-                                target="avatar16"
-                              >
-                                George Nordic
-                              </UncontrolledTooltip>
-                            </li>
-                            <li className="avatar pull-up">
-                              <img
-                                src={person5}
-                                alt="avatar"
-                                height="30"
-                                width="30"
-                                id="avatar17"
-                              />
-                              <UncontrolledTooltip
-                                placement="bottom"
-                                target="avatar17"
-                              >
-                                Vinnie Mostowy
-                              </UncontrolledTooltip>
-                            </li>
-                            <li className="d-flex align-items-center pl-50">
-                              <span className="align-middle">+140 more</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="row">
-                          <div className="componlogo">
-                            {/* <img
+                          <div className="row">
+                            <div className="componlogo">
+                              {/* <img
                               className="complogonew"
                               src={dummylogo}
                               style={{ borderRadius: "50%", width: "40px" }}
@@ -534,14 +537,15 @@ function dashboard() {
                               src={dummylogo}
                               style={{ borderRadius: "50%", width: "40px" }}
                             /> */}
+                            </div>
                           </div>
-                        </div>
 
-                        <p className="totalhour"> 2 hr</p>
+                          <p className="totalhour"> 2 hr</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

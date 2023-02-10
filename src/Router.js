@@ -7,14 +7,16 @@ import Spinner from "./components/@vuexy/spinner/Loading-spinner";
 import knowledgeBaseCategory from "./views/pages/knowledge-base/Category";
 import knowledgeBaseQuestion from "./views/pages/knowledge-base/Questions";
 import { ContextLayout } from "./utility/context/Layout";
-import Workspacetwo from "./pages/Workspacetwo";
-import Workflowthird from "./pages/Workflowthird";
+// import Workspacetwo from "./pages/Workspacetwo";
+// import Workflowthird from "./pages/Workflowthird";
 
 // Route-based code splitting
 const Registration = lazy(() => import("./planable.io/Registration"));
 const login = lazy(() => import("./planable.io/login"));
 const dashboard = lazy(() => import("./pages/dashboard"));
 const Workspace = lazy(() => import("./pages/workspace"));
+const Workflowthird = lazy(() => import("./pages/Workflowthird"));
+const Workspacetwo = lazy(() => import("./pages/Workspacetwo"));
 const UserSocialList = lazy(() =>
   import("./views/apps/usermanage/UserSocialList")
 );

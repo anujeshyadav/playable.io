@@ -5,14 +5,15 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiFillCloseCircle } from "react-icons/ai";
 import TimezoneSelect from "react-timezone-select";
 import "./workshpace.css";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { history } from "../history";
 
 function Workspace() {
   const [selectedTimezone, setSelectedTimezone] = useState({});
   const [workspace, setWorkspace] = useState("");
-  console.log(selectedTimezone);
+  // console.log(selectedTimezone);
   const handlelogin = (e) => {
     e.preventDefault();
     console.log(workspace, selectedTimezone?.label);
@@ -25,7 +26,9 @@ function Workspace() {
         .then((res) => {
           console.log(res.data);
           if (res.data.message == "success") {
-            // ("/workspaceone/${res.data.data._id}");
+            history.push(`/workspaceone/${res.data.data._id}`);
+
+            // this.props.history.push(`/workspaceone/${res.data.data._id}`);
           }
         })
         .catch((err) => {
