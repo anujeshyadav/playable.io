@@ -17,6 +17,9 @@ const dashboard = lazy(() => import("./pages/dashboard"));
 const Workspace = lazy(() => import("./pages/workspace"));
 const Workflowthird = lazy(() => import("./pages/Workflowthird"));
 const Workspacetwo = lazy(() => import("./pages/Workspacetwo"));
+const SideEventSidebar = lazy(() =>
+  import("./views/apps/usermanage/sidemodal/SideEventSidebar")
+);
 const UserSocialList = lazy(() =>
   import("./views/apps/usermanage/UserSocialList")
 );
@@ -296,6 +299,10 @@ class AppRouter extends React.Component {
           <AppRoute path="/workspace" component={Workspace} />
           <AppRoute path="/workspaceone/:id" component={Workspacetwo} />
           <AppRoute path="/workspacetwo" component={Workflowthird} />
+          <AppRoute
+            path="/app/usermanage/sidemodal/sideeventsidebar"
+            component={SideEventSidebar}
+          />
           <AppRoute
             path="/app/usermanage/usersociallist"
             component={UserSocialList}
