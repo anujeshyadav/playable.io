@@ -17,6 +17,7 @@ import "../../../../assets/scss/pages/authentication.scss";
 import LoginAuth0 from "./LoginAuth0";
 import LoginFirebase from "./LoginFirebase";
 import LoginJWT from "./LoginJWT";
+import LoginNew from "./LoginNew";
 
 class SocialLogin extends React.Component {
   state = {
@@ -97,7 +98,8 @@ class SocialLogin extends React.Component {
                   </Nav>
                   <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
-                      <LoginJWT />
+                      {/* <LoginJWT /> */}
+                      <LoginNew />
                     </TabPane>
                     <TabPane tabId="2">
                       <LoginFirebase />
