@@ -5,10 +5,25 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import TimezoneSelect from "react-timezone-select";
 import "./workshpace.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Workspace() {
   const [selectedTimezone, setSelectedTimezone] = useState({});
+  const [workspace, setWorkspace] = useState("");
   // console.log(selectedTimezone);
+  const handlelogin = (e) => {
+    e.preventDefault();
+    console.log(workspace, selectedTimezone?.label);
+    axios
+      .post()
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // to="/workspaceone"
+  };
   return (
     <div>
       <div className="row cancelbtn">
@@ -37,6 +52,8 @@ function Workspace() {
               id="fname"
               placeholder="Nutella"
               className="form-control"
+              value={workspace}
+              onChange={(e) => setWorkspace(e.target.value)}
             />
           </div>
           <div className="inputcoc">
@@ -48,11 +65,13 @@ function Workspace() {
               />
             </p>
           </div>
-          <div className="inputcoc intutbtn">
-            <Link to="/workspaceone">
+          <div onClick={handlelogin} className="inputcoc intutbtn">
+            <Link
+            // to="/workspaceone"
+            >
               <div className="btnnextform">
                 <Button className="btnnext">
-                  <span className="nextvtn">
+                  <span onClick={handlelogin} className="nextvtn">
                     Next <AiOutlineArrowRight size={15} />
                   </span>
                 </Button>
