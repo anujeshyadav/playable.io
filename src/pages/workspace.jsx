@@ -1,27 +1,41 @@
 import React, { useState } from "react";
 import { Button, Label } from "reactstrap";
 import { AiOutlineArrowRight } from "react-icons/ai";
+
 import { AiFillCloseCircle } from "react-icons/ai";
 import TimezoneSelect from "react-timezone-select";
 import "./workshpace.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 function Workspace() {
   const [selectedTimezone, setSelectedTimezone] = useState({});
   const [workspace, setWorkspace] = useState("");
-  // console.log(selectedTimezone);
+  console.log(selectedTimezone);
   const handlelogin = (e) => {
     e.preventDefault();
     console.log(workspace, selectedTimezone?.label);
-    axios
-      .post()
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (workspace !== "" && selectedTimezone !== undefined) {
+      axios
+        .post(`http://13.127.168.84:3000/user/createWorkSpace`, {
+          workspacename: workspace,
+          timezone: selectedTimezone?.label,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.message == "success") {
+            // ("/workspaceone/${res.data.data._id}");
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+          if (err.response.data.message == "already exists") {
+            swal("Workspace already exist with This Name");
+          }
+        });
+    } else swal("Enter Details First");
+
     // to="/workspaceone"
   };
   return (
@@ -48,6 +62,7 @@ function Workspace() {
           <div className="inputcoc">
             <Label className="labelnew">Workspace name</Label>
             <input
+              required
               type="text"
               id="fname"
               placeholder="Nutella"
@@ -60,6 +75,8 @@ function Workspace() {
             <Label className="labelnew">Workspace timezone (optional)</Label>
             <p>
               <TimezoneSelect
+                required
+                defaultInputValue="(GMT-7:00) Mountain Time"
                 value={selectedTimezone}
                 onChange={setSelectedTimezone}
               />
@@ -71,7 +88,7 @@ function Workspace() {
             >
               <div className="btnnextform">
                 <Button className="btnnext">
-                  <span onClick={handlelogin} className="nextvtn">
+                  <span className="nextvtn">
                     Next <AiOutlineArrowRight size={15} />
                   </span>
                 </Button>

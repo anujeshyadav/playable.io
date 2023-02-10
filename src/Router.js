@@ -292,7 +292,7 @@ class AppRouter extends React.Component {
           <AppRoute path="/todo/:filter" component={todo} />
           <AppRoute path="/dashboard" component={dashboard} />
           <AppRoute path="/workspace" component={Workspace} />
-          <AppRoute path="/workspaceone" component={Workspacetwo} />
+          <AppRoute path="/workspaceone/:id" component={Workspacetwo} />
           <AppRoute path="/workspacetwo" component={Workflowthird} />
           <AppRoute
             path="/app/usermanage/usersociallist"
