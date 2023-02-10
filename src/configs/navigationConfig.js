@@ -54,8 +54,8 @@ const navigationConfig = [
     // navLink: "/ecommerce/product-detail",
   },
   {
-    id: "schedule",
-    title: "schedule",
+    id: "Schedule",
+    title: "Schedule",
     type: "item",
     icon: <MdOutlineSchedule size={25} color="red" />,
     permissions: ["admin", "editor"],

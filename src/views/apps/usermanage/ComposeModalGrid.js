@@ -35,6 +35,7 @@ import avatar from "../../images/avatar.jpg";
 import Dropzonecompose from "./Dropzonecompose";
 import url from "availity-reactstrap-validation/lib/AvValidator/url";
 import "../../../assets/scss/pages/usersocial.scss";
+import Select from "react-select";
 const collapseItems = [
   {
     id: 1,
@@ -42,6 +43,16 @@ const collapseItems = [
     content:
       "Pie dragée muffin. Donut cake liquorice marzipan carrot cake topping powder candy. Sugar plum brownie brownie cotton candy.",
   },
+];
+
+const colourOptions = [
+  { value: "Tomorrow", label: "Tomorrow" },
+  { value: "Day After Tomorrow", label: "Day After Tomorrow" },
+  {
+    value: "Select a custom date & Time",
+    label: "Select a custom date & Time",
+  },
+  { value: "Change Workspace Time", label: "Change Workspace Time" },
 ];
 
 class ComposeModalGrid extends React.Component {
@@ -90,7 +101,7 @@ class ComposeModalGrid extends React.Component {
                   placeholder="write something..."
                   className="textaeraofcompose form-control"
                   id=""
-                  cols="70"
+                  cols="90"
                   rows="6"
                 ></textarea>
               </div>
@@ -176,23 +187,15 @@ class ComposeModalGrid extends React.Component {
           <div className="modalfootercompse">
             <Row className="rowofmodalfooter">
               <Col lg="6">
-                <select className="custom-select ">
-                  <option className="firstitme mt-2 mb-2">
-                    Select Date and time
-                  </option>
+                <Select
+                  className="React"
+                  classNamePrefix="select"
+                  defaultValue={colourOptions[0]}
+                  name="color"
+                  options={colourOptions}
+                />
 
-                  <option value="fa fa-bell" class="fa">
-                    &#xf0f3; bell
-                  </option>
-                  <option value="fa fa-bookmark" class="fa">
-                    &#xf02e; bookmark
-                  </option>
-                  <option value="fa fa-building" class="fa">
-                    &#xf1ad; building
-                  </option>
-                </select>
-
-                <span>
+                {/* <span>
                   <div className="dt12">
                     <Dropdown className="dropdownbtn">
                       <Dropdown.Toggle
@@ -234,8 +237,9 @@ class ComposeModalGrid extends React.Component {
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                </span>
+                </span> */}
               </Col>
+              <Col lg="1"></Col>
               <Col lg="2">
                 <Button color="primary" onClick={this.toggleModal}>
                   Accept
