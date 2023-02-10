@@ -90,7 +90,8 @@ const UserDropdown = (props) => {
                 return props.logoutWithFirebase();
               }
             } else {
-              history.push("/pages/login");
+              // history.push("/pages/login");
+              history.push("/pages/loginnew");
             }
           }
         }}

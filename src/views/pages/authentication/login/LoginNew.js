@@ -7,6 +7,7 @@ import { loginWithJWT } from "../../../../redux/actions/auth/loginActions";
 import { connect } from "react-redux";
 import { history } from "../../../../history";
 import axios from "axios";
+import swal from "sweetalert";
 
 class LoginJWT extends React.Component {
   state = {
@@ -24,7 +25,11 @@ class LoginJWT extends React.Component {
         password: this.state.password,
       })
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data);
+        if (res.data.msg == "success") {
+          swal("Sucessful", "Successfully Login");
+          history.push("/dashboard");
+        }
       })
       .catch((err) => {
         console.log(err);
