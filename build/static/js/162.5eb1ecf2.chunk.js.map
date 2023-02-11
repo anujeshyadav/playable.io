@@ -1,1 +1,0 @@
-{"version":3,"sources":["planable.io/Registration.jsx"],"names":["Registration"],"mappings":"qJAAA,2BAMeA,UAJf,WACE,OAAO","file":"static/js/162.5eb1ecf2.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nfunction Registration() {\r\n  return <div>Registration</div>;\r\n}\r\n\r\nexport default Registration;\r\n"],"sourceRoot":""}

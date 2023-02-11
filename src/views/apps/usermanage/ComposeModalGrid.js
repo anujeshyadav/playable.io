@@ -144,7 +144,7 @@ class ComposeModalGrid extends React.Component {
               <Col className="colicon">
                 <span>
                   <DropzoneProgrammatically textchange={this.state.comment} />
-                  <Dropzonecompose textchange={this.state.comment} />
+                  {/* <Dropzonecompose textchange={this.state.comment} /> */}
                 </span>
                 <AiFillFolderAdd
                   data-placement="top"
