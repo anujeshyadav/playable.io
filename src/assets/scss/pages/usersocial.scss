@@ -320,8 +320,16 @@ svg.mr {
   border: 1px solid #eee;
   box-shadow: 3px 2px 5px #3a9c7d;
 }
-
-h2.d-flex.justify-content-center {
-  padding: 109px 145px;
-  background: #9a9a9a26;
+.maindata.metanewdata {
+  padding: 132px 152px;
+}
+.btnhandletimset.d-flex.justify-content-center {
+  margin-top: 101px;
+}
+.mainheadingmodaltime {
+  justify-content: center;
+  display: flex;
+}
+.React.customSelect.css-2b097c-container {
+  z-index: 999;
 }

@@ -62,6 +62,7 @@ const mediaOptions = [
 class UserSocialList extends React.Component {
   state = {
     active: "1",
+    selectedOption: null,
     // modal: false,
   };
 
@@ -70,7 +71,19 @@ class UserSocialList extends React.Component {
       this.setState({ active: tab });
     }
   };
-
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption }, () => {
+      if (this.state.selectedOption.value === "Feed") {
+        this.toggle("4");
+      } else if (this.state.selectedOption.value === "Calender") {
+        this.toggle("1");
+      } else if (this.state.selectedOption.value === "List") {
+        this.toggle("2");
+      } else if (this.state.selectedOption.value === "Grid") {
+        this.toggle("3");
+      }
+    });
+  };
   toggleModal = () => {
     this.setState((prevState) => ({
       modal: !prevState.modal,
@@ -88,7 +101,8 @@ class UserSocialList extends React.Component {
                   <Row>
                     <Col md="3">
                       <Select
-                        className="React"
+                        onChange={this.handleChange}
+                        className="React customSelect"
                         classNamePrefix="select"
                         defaultValue={colourOptions[0]}
                         name="color"
@@ -207,47 +221,15 @@ class UserSocialList extends React.Component {
                     </Col>
                     <Col md="3">
                       <ComposeModalGrid />
-                      {/* <NavLink>
-                        <span className="mediatag">
-                          <span>
-                            {" "}
-                            <FcGallery
-                              size={25}
-                              className="mr-i"
-                              color="blue"
-                            />
-                            Media
-                          </span>
-                        </span>
-                        <Modal
-                          isOpen={this.state.modal}
-                          toggle={this.toggleModal}
-                          className=""
-                        >
-                          <ModalHeader toggle={this.toggleModal}>
-                            Upload Media
-                          </ModalHeader>
-                          <ModalBody className="">
-                            <DropZone />
-                          </ModalBody>
-                          <ModalFooter>
-                            <Button color="primary" onClick={this.toggleModal}>
-                              Submit
-                            </Button>{" "}
-                            <Button color="primary" onClick={this.toggleModal}>
-                              close
-                            </Button>{" "}
-                          </ModalFooter>
-                        </Modal>
-                      </NavLink> */}
-                      <div className="text-right">
-                        <SideEventSidebar />
 
+                      <div className="mx-1 mr-1 sideevent">
+                        <SideEventSidebar />
+                      </div>
+                      <div className=" mx-1">
                         <Button
                           onClick={this.toggleModal}
                           className="ft-filter"
                         >
-                          {" "}
                           <FcGallery size={18} className="mr-i" color="blue" />
                           Media
                         </Button>

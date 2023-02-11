@@ -39,6 +39,7 @@ import url from "availity-reactstrap-validation/lib/AvValidator/url";
 import "../../../assets/scss/pages/usersocial.scss";
 
 import Workflowthird from "../../../pages/Workflowthird";
+import DropzoneProgrammatically from "./Dropzonecompose";
 
 // import Select from "react-select";
 // const collapseItems = [
@@ -68,6 +69,7 @@ class ComposeModalGrid extends React.Component {
     addURl: "",
     collapseID: "",
     selectchange: "",
+    comment: "",
     active: "1",
   };
   toggleCollapse = (collapseID) => {
@@ -99,7 +101,9 @@ class ComposeModalGrid extends React.Component {
     console.log(value.label);
     this.setState({ selectchange: value.label });
   };
-
+  HandleChange = (e) => {
+    this.setState({ comment: e.target.value });
+  };
   render() {
     return (
       <>
@@ -130,13 +134,17 @@ class ComposeModalGrid extends React.Component {
                   id=""
                   cols="90"
                   rows="6"
+                  value={this.state.comment}
+                  onChange={this.HandleChange}
+                  // onChange={(e) => this.setState({ comment: e.target.value })}
                 ></textarea>
               </div>
             </Row>
             <Row className="iconuploads">
               <Col className="colicon">
                 <span>
-                  <Dropzonecompose />
+                  <DropzoneProgrammatically textchange={this.state.comment} />
+                  <Dropzonecompose textchange={this.state.comment} />
                 </span>
                 <AiFillFolderAdd
                   data-placement="top"

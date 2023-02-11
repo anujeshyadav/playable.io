@@ -1,0 +1,70 @@
+.dashboard-sectionss {
+  padding-top: 20px !important;
+  max-width: 830px;
+  margin: 0 auto;
+}
+.centrr {
+  justify-content: center;
+  padding: 0px 12%;
+  margin-bottom: 42px;
+  // padding: 0px 25%;
+}
+option.valuesofsle {
+  font-size: 13px;
+}
+
+.btnnextform {
+  /* align-items: center; */
+  justify-content: center;
+  display: flex;
+}
+.workspace {
+  display: flex;
+  justify-content: center;
+}
+p.parawork {
+  font-size: 11px;
+  padding: 0px 18%;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.inputcoc {
+  padding-top: 36px;
+}
+label.labelnew.form-label {
+  font-size: 10px;
+  margin-bottom: 1px;
+}
+.btnnext {
+  color: #100d0d45;
+  background-color: #148ffb12 !important;
+  border-color: #6c757d;
+}
+button.btnnext.btn.btn-secondary:hover {
+  background: #0f69f6a6 !important;
+  color: #000000 !important;
+}
+button.btnnext.btn.btn-secondary {
+  background: #d5c3e480 !important;
+}
+button.btnnext.btn.btn-secondary {
+  border: none;
+  color: rgb(6, 6, 255);
+  background: #1890ff;
+  padding: 11px 37%;
+}
+.row.cancelbtn {
+  margin-right: 75px;
+  display: flex;
+
+  justify-content: right;
+  margin-top: 12px;
+}
+.row.cancelbtn:hover {
+  color: #0d37bfc5;
+}
+/* button.btnnext.btn.btn-secondary:hover {
+  background: #214ff9de !important;
+} */

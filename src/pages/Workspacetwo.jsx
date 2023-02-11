@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Col, Label, Row, Card } from "reactstrap";
 import {
@@ -54,8 +54,22 @@ function Workspacetwo(args) {
   const toggleyt = () => setModalyt(!modalyt);
 
   const [first, setfirst] = useState("");
-
+  const [allData,setAllData] =useState("")
   const hiddenFileInput = React.useRef(null);
+
+  useEffect(() => {
+    console.log("ids",args.match.params.id)
+   const id= args.match.params.id;
+  axios.get(`http://13.127.168.84:3000/user/viewone_workspace/${id}`)
+    .then(resp=>{
+      console.log(resp.data.data)
+      setAllData(resp.data.data)
+
+    })
+    .catch((err)=>{
+      console.log("Error",err)
+    })
+  }, [])
 
   const handleClick = (event) => {
     console.log(hiddenFileInput);
@@ -100,7 +114,7 @@ function Workspacetwo(args) {
       <div className="dashboard-sectionss dashboard-main">
         <div className="container">
           <div className="workspace">
-            <h3>Connect user's pages</h3>
+            <h3>Connect {allData.workspacename}  pages</h3>
           </div>
 
           <p className="parawork">

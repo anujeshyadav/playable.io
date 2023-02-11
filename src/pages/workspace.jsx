@@ -79,7 +79,7 @@ function Workspace() {
             <p>
               <TimezoneSelect
                 required
-                defaultInputValue="(GMT-7:00) Mountain Time"
+                // defaultInputValue="(GMT-7:00) Mountain Time"
                 value={selectedTimezone}
                 onChange={setSelectedTimezone}
               />

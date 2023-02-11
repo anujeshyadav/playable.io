@@ -34,7 +34,6 @@ function ProgrammaticallyDropzone(props) {
 
   useEffect(
     () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
       files.forEach((file) => URL.revokeObjectURL(file.preview));
     },
     [files]
@@ -54,23 +53,8 @@ function ProgrammaticallyDropzone(props) {
         Add Images & video
       </FcAddImage>
 
-      {/* <Button.Ripple color="primary" outline className="my-1 mb-2">
-        Images
-      </Button.Ripple> */}
-      {/* <div {...getRootProps({ className: "dropzone" })}> */}
       <input {...getInputProps()} />
       {console.log(files)}
-      {/* <div className="imageupload">
-          <p className="mx-1">
-            <BsUpload size={25} /> Drop files here Upload videos, images or GIFs
-            for later use in your posts
-          </p>
-        </div> */}
-      {/* </div> */}
-
-      {/* <aside  size="25px" className="thumb-container">
-        {thumbs}
-      </aside> */}
     </span>
   );
 }
