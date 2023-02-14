@@ -59,6 +59,7 @@ export default class MediaSidebar extends Component {
         console.log(err);
       });
   };
+  data = new FormData();
 
   onDrop = (acceptedFiles) => {
     console.log(acceptedFiles);
@@ -71,6 +72,20 @@ export default class MediaSidebar extends Component {
         ),
       });
     }
+    console.log(this.state.uploadfile);
+    const data = new FormData();
+    data.append("media_img", acceptedFiles[0]);
+    if (acceptedFiles.length > 1) {
+    }
+
+    axios
+      .post(`http://13.127.168.84:3000/user/upload_media`, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   render() {
     // const maxSize = 4 * 1024 * 1024;
@@ -113,7 +128,7 @@ export default class MediaSidebar extends Component {
                     <Dropzone
                       className="dropzonenew"
                       onDrop={this.onDrop}
-                      accept="image/png,image/jpeg,image/gif,image/jpg"
+                      accept="image/png,image/jpeg,image/gif,image/jpg,video/*"
                       minSize={1}
                       // maxSize={maxSize}
                     >
