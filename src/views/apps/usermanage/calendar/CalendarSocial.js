@@ -6,6 +6,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import moment from "moment";
 import { connect } from "react-redux";
+import axios from "axios";
 import {
   fetchEvents,
   handleSidebar,
@@ -264,6 +265,7 @@ class CalendarSocial extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     app: state.calendar,
   };

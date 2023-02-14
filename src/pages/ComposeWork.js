@@ -340,7 +340,7 @@ const ComposeWork = () => {
           <div className="inputcoc intutbtn">
             <div className="btnnextform">
               <Button className="worktwobtng0o">
-                <Link to="/dashboard">
+                <Link>
                   <span className="worktwobtngo12 mx-2"> Success</span>{" "}
                 </Link>
               </Button>

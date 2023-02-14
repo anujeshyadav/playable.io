@@ -37,6 +37,8 @@ import "../../../../assets/scss/pages/users.scss";
 class UserListView extends React.Component {
   state = {
     rowData: null,
+    post: [],
+
     pageSize: 20,
     isVisible: true,
     reload: false,
@@ -61,22 +63,26 @@ class UserListView extends React.Component {
         headerCheckboxSelection: true,
       },
       {
-        headerName: "Username",
-        field: "username",
+        headerName: "Image",
+        field: "mediaUrls",
         filter: true,
-        width: 250,
+        width: 120,
         cellRendererFramework: (params) => {
+          {
+            console.log(params);
+          }
           return (
             <div
               className="d-flex align-items-center cursor-pointer"
-              onClick={() => history.push("/app/user/edit")}
+              // onClick={() => history.push("/app/user/edit")}
             >
               <img
-                className="rounded-circle mr-50"
-                src={params.data.avatar}
+                className="rounded-circle mr-50 mt-1"
+                src={params.data?.mediaUrls[0]}
+                // src={params.data.avatar}
                 alt="user avatar"
-                height="30"
-                width="30"
+                height="35"
+                width="35"
               />
               <span>{params.data.name}</span>
             </div>
@@ -84,8 +90,8 @@ class UserListView extends React.Component {
         },
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "Post",
+        field: "post",
         filter: true,
         width: 250,
       },
@@ -96,8 +102,8 @@ class UserListView extends React.Component {
         width: 200,
       },
       {
-        headerName: "Country",
-        field: "country",
+        headerName: "Schedule",
+        field: "scheduleDate.utc",
         filter: true,
         width: 200,
       },
@@ -173,11 +179,22 @@ class UserListView extends React.Component {
     ],
   };
 
+  componentDidMount() {}
   async componentDidMount() {
     await axios.get("api/users/list").then((response) => {
       let rowData = response.data;
+      console.log(rowData);
       this.setState({ rowData });
     });
+    await axios
+      .get(`http://13.127.168.84:3000/user/history`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ post: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   onGridReady = (params) => {
@@ -250,7 +267,7 @@ class UserListView extends React.Component {
   };
 
   render() {
-    const { rowData, columnDefs, defaultColDef, pageSize } = this.state;
+    const { post, rowData, columnDefs, defaultColDef, pageSize } = this.state;
     return (
       <Row className="app-user-list">
         {/* <Col sm="12">
@@ -487,7 +504,7 @@ class UserListView extends React.Component {
                     </div>
                   </div>
                 </div>
-                {this.state.rowData !== null ? (
+                {this.state.post !== null ? (
                   <ContextLayout.Consumer>
                     {(context) => (
                       <AgGridReact
@@ -495,7 +512,7 @@ class UserListView extends React.Component {
                         rowSelection="multiple"
                         defaultColDef={defaultColDef}
                         columnDefs={columnDefs}
-                        rowData={rowData}
+                        rowData={post}
                         onGridReady={this.onGridReady}
                         colResizeDefault={"shift"}
                         animateRows={true}

@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Col, Label, Row, Card } from "reactstrap";
 import {
@@ -54,22 +54,22 @@ function Workspacetwo(args) {
   const toggleyt = () => setModalyt(!modalyt);
 
   const [first, setfirst] = useState("");
-  const [allData,setAllData] =useState("")
+  const [allData, setAllData] = useState("");
   const hiddenFileInput = React.useRef(null);
 
   useEffect(() => {
-    console.log("ids",args.match.params.id)
-   const id= args.match.params.id;
-  axios.get(`http://13.127.168.84:3000/user/viewone_workspace/${id}`)
-    .then(resp=>{
-      console.log(resp.data.data)
-      setAllData(resp.data.data)
-
-    })
-    .catch((err)=>{
-      console.log("Error",err)
-    })
-  }, [])
+    console.log("ids", args.match.params.id);
+    const id = args.match.params.id;
+    axios
+      .get(`http://13.127.168.84:3000/user/viewone_workspace/${id}`)
+      .then((resp) => {
+        console.log(resp.data.data);
+        setAllData(resp.data.data);
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  }, []);
 
   const handleClick = (event) => {
     console.log(hiddenFileInput);
@@ -114,7 +114,7 @@ function Workspacetwo(args) {
       <div className="dashboard-sectionss dashboard-main">
         <div className="container">
           <div className="workspace">
-            <h3>Connect {allData.workspacename}  pages</h3>
+            <h3>Connect {allData.workspacename} pages</h3>
           </div>
 
           <p className="parawork">
@@ -181,36 +181,28 @@ function Workspacetwo(args) {
                               // onClick={HandleFaceLogin}
                               className="cardmainworktwitor"
                             >
-                              <a
-                              // href="http://13.127.168.84:3000/login/fb"
-                              >
-                                <div className="maincont">
-                                  <div className="Twittorcard">
-                                    <CiFlag1 className="bsfacebook" size={35} />
-                                  </div>
-                                  <div className="facebookname modalfacebookname">
-                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
-                                    <span className="facebooklogin">
-                                      <FacebookLogin
-                                        returnScopes="true"
-                                        appId="2149160251958615"
-                                        fields="name,email,picture"
-                                        scope="public_profile,user_friends,user_actions.books"
-                                        onClick={componentClicked}
-                                        cssClass="my-facebook-button-class favebook"
-                                        callback={responseFacebook}
-                                      />
-                                    </span>
-                                    {/* </a> */}
-                                  </div>
-                                  {/* <div className="facebookpage twittorpage">
-                                  <span>Profile</span>
-                                </div> */}
-                                  <div className="connect">
-                                    {/* <span className="connectin">Connect</span> */}
-                                  </div>
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
                                 </div>
-                              </a>
+                                <div className="facebookname modalfacebookname">
+                                  <span className="facebooklogin">
+                                    <FacebookLogin
+                                      returnScopes="true"
+                                      appId="2149160251958615"
+                                      fields="name,email,picture"
+                                      scope="public_profile,user_friends,user_actions.books"
+                                      onClick={componentClicked}
+                                      cssClass="my-facebook-button-class favebook"
+                                      callback={responseFacebook}
+                                    />
+                                  </span>
+                                </div>
+
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
+                                </div>
+                              </div>
                             </Card>
                           </Col>
                           <Col lg="4">
@@ -223,9 +215,7 @@ function Workspacetwo(args) {
                                   />
                                 </div>
                                 <div className="facebookname modalfacebookname">
-                                  {/* <span>Add groups</span> */}
                                   <div className="facebookname modalfacebookname">
-                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin fblogiigroup">
                                       <FacebookLogin
                                         returnScopes="true"
@@ -237,7 +227,6 @@ function Workspacetwo(args) {
                                         callback={responseFacebook}
                                       />
                                     </span>
-                                    {/* </a> */}
                                   </div>
                                 </div>
                                 {/* <div className="facebookpage twittorpage">
@@ -525,15 +514,6 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin instalogin">
-                                      {/* <FacebookLogin
-                                        returnScopes="true"
-                                        appId="2149160251958615"
-                                        fields="name,email,picture"
-                                        scope="public_profile,user_friends,user_actions.books"
-                                        onClick={componentClicked}
-                                        cssClass="my-facebook-button-class favebook"
-                                        callback={responseFacebook}
-                                      /> */}
                                       <InstagramLogin
                                         clientId="5fd2f11482844c5eba963747a5f34556"
                                         buttonText="Insta-Login"
@@ -707,15 +687,6 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin instalogin">
-                                      {/* <FacebookLogin
-                                        returnScopes="true"
-                                        appId="2149160251958615"
-                                        fields="name,email,picture"
-                                        scope="public_profile,user_friends,user_actions.books"
-                                        onClick={componentClicked}
-                                        cssClass="my-facebook-button-class favebook"
-                                        callback={responseFacebook}
-                                      /> */}
                                       <LinkedInPage className="linkedinpage" />
                                     </span>
                                     {/* </a> */}
@@ -1034,40 +1005,31 @@ function Workspacetwo(args) {
                             </Card>
                           </Col> */}
                           <Col lg="4">
-                            <Card
-                              // onClick={HandleFaceLogin}
-                              className="cardmainworktwitor"
-                            >
-                              <a
-                              // href="http://13.127.168.84:3000/login/fb"
-                              >
-                                <div className="maincont">
-                                  <div className="Twittorcard">
-                                    <CiFlag1 className="bsfacebook" size={35} />
-                                  </div>
-                                  <div className="facebookname modalfacebookname">
-                                    {/* <a href="http://13.127.168.84:3000/login/fb"> */}
-                                    <span className="facebooklogin">
-                                      <FacebookLogin
-                                        returnScopes="true"
-                                        appId="2149160251958615"
-                                        fields="name,email,picture"
-                                        scope="public_profile,user_friends,user_actions.books"
-                                        onClick={componentClicked}
-                                        cssClass="my-facebook-button-class favebook"
-                                        callback={responseFacebook}
-                                      />
-                                    </span>
-                                    {/* </a> */}
-                                  </div>
-                                  {/* <div className="facebookpage twittorpage">
+                            <Card className="cardmainworktwitor">
+                              <div className="maincont">
+                                <div className="Twittorcard">
+                                  <CiFlag1 className="bsfacebook" size={35} />
+                                </div>
+                                <div className="facebookname modalfacebookname">
+                                  <span className="facebooklogin">
+                                    <FacebookLogin
+                                      returnScopes="true"
+                                      appId="2149160251958615"
+                                      fields="name,email,picture"
+                                      scope="public_profile,user_friends,user_actions.books"
+                                      onClick={componentClicked}
+                                      cssClass="my-facebook-button-class favebook"
+                                      callback={responseFacebook}
+                                    />
+                                  </span>
+                                </div>
+                                {/* <div className="facebookpage twittorpage">
                                     <span>Profile</span>
                                   </div> */}
-                                  <div className="connect">
-                                    {/* <span className="connectin">Connect</span> */}
-                                  </div>
+                                <div className="connect">
+                                  {/* <span className="connectin">Connect</span> */}
                                 </div>
-                              </a>
+                              </div>
                             </Card>
                           </Col>
                           <Col lg="4">

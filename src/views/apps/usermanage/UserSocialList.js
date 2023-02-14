@@ -3,6 +3,7 @@ import React from "react";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/usersocial.scss";
 
+import { FacebookEmbed } from "react-social-media-embed";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import {
   Button,
@@ -45,6 +46,7 @@ import ProfileFeed from "./profilesocial/ProfileFeed";
 import ComposeModalGrid from "./ComposeModalGrid";
 import DropZone from "./DropZone";
 import SideEventSidebar from "./sidemodal/SideEventSidebar";
+import MediaSidebar from "./sidemodal/MediaSidebar";
 // import UserListView from "./user-list/UserListView";
 
 const colourOptions = [
@@ -226,13 +228,14 @@ class UserSocialList extends React.Component {
                         <SideEventSidebar />
                       </div>
                       <div className=" mx-1">
-                        <Button
-                          onClick={this.toggleModal}
+                        {/* <Button
+                          // onClick={this.toggleModal}
                           className="ft-filter"
                         >
                           <FcGallery size={18} className="mr-i" color="blue" />
                           Media
-                        </Button>
+                        </Button> */}
+                        <MediaSidebar /> <span>Media</span>
                       </div>
                     </Col>
 
@@ -240,6 +243,25 @@ class UserSocialList extends React.Component {
                       <TabContent activeTab={this.state.active}>
                         <TabPane tabId="1">
                           <CalendarSocial />
+                          {/* {this.state.active == null &&
+                          this.state.active == "" ? null : this.state.active ==
+                            "1" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : this.state.active == "2" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : this.state.active == "3" ? (
+                            <>
+                              <FileGrid />
+
+                              <UserListView />
+                            </>
+                          ) : (
+                            <></>
+                          )} */}
                         </TabPane>
                         <TabPane tabId="2">
                           <UserListView />
@@ -258,13 +280,15 @@ class UserSocialList extends React.Component {
             </CardBody>
           </Card>
         </Col>
-        <Modal
+        {/* <Row></Row> */}
+        {/* <Modal
           isOpen={this.state.modal}
           toggle={this.toggleModal}
           className=" modal-dialog-centered modal-lg"
         >
           <ModalHeader toggle={this.toggleModal}>Upload Media</ModalHeader>
           <ModalBody className="">
+            <MediaSidebar />
             <DropZone className="" />
             <div className="main-text">
               <Row>
@@ -513,7 +537,7 @@ class UserSocialList extends React.Component {
               close
             </Button>{" "}
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </Row>
     );
   }

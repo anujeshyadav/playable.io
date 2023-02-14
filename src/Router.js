@@ -17,6 +17,9 @@ const dashboard = lazy(() => import("./pages/dashboard"));
 const Workspace = lazy(() => import("./pages/workspace"));
 const Workflowthird = lazy(() => import("./pages/Workflowthird"));
 const Workspacetwo = lazy(() => import("./pages/Workspacetwo"));
+const MediaSidebar = lazy(() =>
+  import("./views/apps/usermanage/sidemodal/MediaSidebar")
+);
 const SideEventSidebar = lazy(() =>
   import("./views/apps/usermanage/sidemodal/SideEventSidebar")
 );
@@ -302,6 +305,10 @@ class AppRouter extends React.Component {
           <AppRoute
             path="/app/usermanage/sidemodal/sideeventsidebar"
             component={SideEventSidebar}
+          />
+          <AppRoute
+            path="/app/usermanage/sidemodal/mediasidebar"
+            component={MediaSidebar}
           />
           <AppRoute
             path="/app/usermanage/usersociallist"
