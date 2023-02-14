@@ -73,7 +73,7 @@ export default class MediaSidebar extends Component {
     }
   };
   render() {
-    const maxSize = 4 * 1024 * 1024;
+    // const maxSize = 4 * 1024 * 1024;
 
     return (
       <OffCanvas
@@ -115,7 +115,7 @@ export default class MediaSidebar extends Component {
                       onDrop={this.onDrop}
                       accept="image/png,image/jpeg,image/gif,image/jpg"
                       minSize={1}
-                      maxSize={maxSize}
+                      // maxSize={maxSize}
                     >
                       {({ getRootProps, getInputProps, open }) => (
                         <div {...getRootProps()}>
