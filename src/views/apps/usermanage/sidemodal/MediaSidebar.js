@@ -24,9 +24,10 @@ import Select from "react-select";
 import Accordion from "react-bootstrap/Accordion";
 import { FcGallery } from "react-icons/fc";
 import axios from "axios";
-
+import axiosConfig from "../../.././../configs/axiosConfig";
 // import Button from "react-bootstrap/Button";
 import DropZone from "../DropZone";
+import swal from "sweetalert";
 
 const mediaOptions = [
   { value: "First scheduled date", label: "First scheduled date" },
@@ -36,13 +37,37 @@ const mediaOptions = [
 
 export default class MediaSidebar extends Component {
   state = {
-    uploadfile: "",
+    uploadfile: [],
+    getallimg: [],
   };
   componentWillMount() {
     // sets the initial state
     this.setState({
       isMenuOpened: false,
     });
+    axios
+      .get(`http://13.127.168.84:3000/user/get_media`)
+      .then((res) => {
+        // console.log(res.data.data);
+        this.setState({ getallimg: res.data.data });
+        console.log(this.state.getallimg);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  componentDidMount() {
+    axios
+      .get(`http://13.127.168.84:3000/user/get_media`)
+      .then((res) => {
+        // console.log(res.data.data);
+        this.setState({ getallimg: res.data.data });
+        console.log(this.state.getallimg);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   handleok = () => {
     // this.setState({ status: "ok" });
@@ -81,14 +106,15 @@ export default class MediaSidebar extends Component {
     axios
       .post(`http://13.127.168.84:3000/user/upload_media`, data)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.message == "success");
+        swal("image Uploaded Successfully");
       })
       .catch((err) => {
         console.log(err);
       });
   };
   render() {
-    // const maxSize = 4 * 1024 * 1024;
+    const maxSize = 1 * 1024 * 1024;
 
     return (
       <OffCanvas
@@ -130,7 +156,7 @@ export default class MediaSidebar extends Component {
                       onDrop={this.onDrop}
                       accept="image/png,image/jpeg,image/gif,image/jpg,video/*"
                       minSize={1}
-                      // maxSize={maxSize}
+                      maxSize={maxSize}
                     >
                       {({ getRootProps, getInputProps, open }) => (
                         <div {...getRootProps()}>
@@ -147,7 +173,7 @@ export default class MediaSidebar extends Component {
                             size={45}
                           >
                             {" "}
-                            Add Images & video
+                            Add Image & video
                           </FcAddImage>
                           <hr />
 
@@ -182,216 +208,62 @@ export default class MediaSidebar extends Component {
 
                 <Col md="12">
                   <Row>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="6" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
+                    {this.state.getallimg.length > 0 ? (
+                      <>
+                        {this.state.getallimg?.map((value) => (
+                          <Col md="6" className="mb-2">
+                            <NavLink to="/">
+                              <div className="img-bg" key={value?._id}>
+                                {/* {value?.media_img?.length > 1 ? (
+                                  <>
+                                    {value?.media_img?.map((data) => (
+                                      <>
+                                        <NavLink to="/">
+                                          <img
+                                            src={data}
+                                            alt=""
+                                            className="mt-2"
+                                            height="120px"
+                                            width="100%"
+                                          />
+                                        </NavLink>
+                                      </>
+                                    ))}
+                                  </>
+                                ) : (
+                                  <img
+                                    src={value?.media_img[0]}
+                                    alt=""
+                                    height="120px"
+                                    width="100%"
+                                  />
+                                )} */}
+                                <img
+                                  src={value?.media_img[0]}
+                                  alt=""
+                                  height="120px"
+                                  width="100%"
+                                />
+                                <div className="bg-ligt">
+                                  <div className="text-right">
+                                    <span>
+                                      <p className="tag"> 2 post</p>
+                                      <form>
+                                        <input
+                                          type="checkbox"
+                                          className="chk-p"
+                                        ></input>
+                                      </form>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <small className="file-text">fb Content</small>
+                            </NavLink>
+                          </Col>
+                        ))}
+                      </>
+                    ) : null}
                   </Row>
                 </Col>
               </Row>

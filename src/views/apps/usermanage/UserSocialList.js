@@ -123,8 +123,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("1");
                               }}
                             >
-                              <Facebook size={20} />
-                              <p className="mb-0">Jusco</p>
+                              <Facebook
+                                size={20}
+                                color="#0165E1"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -136,8 +139,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("2");
                               }}
                             >
-                              <Twitter size={20} />
-                              <p>Jusco</p>
+                              <Twitter
+                                size={20}
+                                color="#00acee"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -149,8 +155,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("3");
                               }}
                             >
-                              <Linkedin size={20} />
-                              <p>Jusco</p>
+                              <Linkedin
+                                size={20}
+                                color="#0A66C2"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -162,8 +171,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("4");
                               }}
                             >
-                              <Instagram size={20} />
-                              <p>Jusco</p>
+                              <Instagram
+                                size={20}
+                                color="#e95950"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -175,8 +187,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("5");
                               }}
                             >
-                              <BsGoogle size={20} />
-                              <p>Jusco</p>
+                              <BsGoogle
+                                size={20}
+                                color="#EA4335"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -188,8 +203,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("6");
                               }}
                             >
-                              <Youtube size={20} />
-                              <p>Jusco</p>
+                              <Youtube
+                                size={20}
+                                color="#c4302b"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -201,8 +219,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("7");
                               }}
                             >
-                              <FaTiktok size={20} />
-                              <p>Jusco</p>
+                              <FaTiktok
+                                size={20}
+                                color="#FE2C55"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -214,8 +235,11 @@ class UserSocialList extends React.Component {
                                 this.toggle("8");
                               }}
                             >
-                              <PlusSquare size={20} />
-                              <p className="mb-0">Jusco</p>
+                              <PlusSquare
+                                size={20}
+                                color="#28c76f"
+                                className="ut"
+                              />
                             </NavLink>
                           </NavItem>
                         </Nav>
