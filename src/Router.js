@@ -338,7 +338,6 @@ class AppRouter extends React.Component {
             path="/app/usermanage/calendersocial"
             component={CalendarSocial}
           />
-          d
           <AppRoute
             path="/app/usermanage/profilesocial/profilegrid"
             component={ProfileGrid}
