@@ -88,7 +88,9 @@ class PostsFeed extends React.Component {
                       <p className="font-small-2">
                         <Moment format="DD/MM/YYYY">{value?.createdAt}</Moment>
                       </p>
-                      <a href={value?.url}> {value?.url}</a>
+                      <span>
+                        <a href={value?.url}> {value?.url}</a>
+                      </span>
                     </div>
                   </div>
                   <p>{value?.desc}</p>
@@ -184,10 +186,10 @@ class PostsFeed extends React.Component {
                         </li>
                       </ul>
                     </div>
-                    <p className="ml-auto">
+                    {/* <p className="ml-auto">
                       <MessageSquare size={16} className="mr-50" />
                       77
-                    </p>
+                    </p> */}
                   </div>
 
                   <div className="d-flex justify-content-start align-items-center mb-2">
@@ -200,10 +202,10 @@ class PostsFeed extends React.Component {
                         blockiness pandemy metaxylene speckle coppy
                       </span>
                     </div>
-                    <div className="ml-auto cursor-pointer">
+                    {/* <div className="ml-auto cursor-pointer">
                       <Heart className="mr-50" size={15} />
                       <MessageSquare className="mr-50" size={15} />
-                    </div>
+                    </div> */}
                   </div>
                   <fieldset className="form-label-group mb-50">
                     <Input
