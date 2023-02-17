@@ -5,6 +5,7 @@ import { Button, Col, NavLink, Row } from "reactstrap";
 import "../../../../assets/scss/pages/usersocial.scss";
 import Dropzone from "react-dropzone";
 import { FcAddImage } from "react-icons/fc";
+import { FaImages } from "react-icons/fa";
 
 import { AiOutlineClose } from "react-icons/ai";
 import imgdemo from "../../../../assets/img/pages/graphic-2.png";
@@ -133,34 +134,33 @@ export default class MediaSidebar extends Component {
             <Filter size={18} /> Filter
           </Button> */}
           <Button onClick={this.handleClick.bind(this)} className="ft-filter">
-            <FcGallery
+            <FaImages
               data-placement="top"
               title="Add Media "
               size={25}
               className="mr-i"
-              color="blue"
+              color="#7367f0"
             >
               {" "}
               Add Media
-            </FcGallery>
+            </FaImages>
           </Button>
         </div>
-        <OffCanvasBody
+        {/* <OffCanvasBody
           className=""
           // className={styles.bodyClass}
           style={{ fontSize: "30px" }}
-        ></OffCanvasBody>
+        ></OffCanvasBody> */}
         <OffCanvasMenu className="side-off">
           <div className="text-right">
             <Button onClick={this.handleClick.bind(this)} className="bt-cls">
               {" "}
-              <AiOutlineClose size={25} />
+              <AiOutlineClose size={22} />
             </Button>
           </div>
           <div className="sidenav-content text-left">
             <div className="main-text ">
               <Row>
-                <h4 className="mx-4">Upload Your Media</h4>
                 <Col md="12">
                   <div className="mt-4">
                     <Dropzone

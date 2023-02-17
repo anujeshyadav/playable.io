@@ -40,7 +40,12 @@ import CalendarSocial from "./calendar/CalendarSocial";
 import ListView from "../../ui-elements/data-list/ListView";
 import UserListView from "./user-list/UserListView";
 import imgdemo from "../../../assets/img/pages/graphic-2.png";
-
+import { AiFillFacebook } from "react-icons/ai";
+import { FaTwitterSquare } from "react-icons/fa";
+import { AiFillLinkedin } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { BsYoutube } from "react-icons/bs";
+import instaimg from "../../../../src/assets/img/logo/insta.png";
 import FileGrid from "./filegridview/FileGrid";
 import ProfileFeed from "./profilesocial/ProfileFeed";
 import ComposeModalGrid from "./ComposeModalGrid";
@@ -123,10 +128,10 @@ class UserSocialList extends React.Component {
                                 this.toggle("1");
                               }}
                             >
-                              <Facebook
-                                size={20}
-                                color="#0165E1"
-                                className="ut"
+                              <AiFillFacebook
+                                size={25}
+                                color="##4267B2"
+                                fill="#4267B2"
                               />
                             </NavLink>
                           </NavItem>
@@ -139,10 +144,10 @@ class UserSocialList extends React.Component {
                                 this.toggle("2");
                               }}
                             >
-                              <Twitter
-                                size={20}
-                                color="#00acee"
-                                className="ut"
+                              <FaTwitterSquare
+                                size={25}
+                                fill="#1DA1F2"
+                                color="#1DA1F2"
                               />
                             </NavLink>
                           </NavItem>
@@ -155,11 +160,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("3");
                               }}
                             >
-                              <Linkedin
-                                size={20}
-                                color="#0A66C2"
-                                className="ut"
-                              />
+                              <AiFillLinkedin size={25} color="#0A66C2" />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -171,11 +172,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("4");
                               }}
                             >
-                              <Instagram
-                                size={20}
-                                color="#e95950"
-                                className="ut"
-                              />
+                              <img src={instaimg} slt="" width={22} />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -187,10 +184,9 @@ class UserSocialList extends React.Component {
                                 this.toggle("5");
                               }}
                             >
-                              <BsGoogle
-                                size={20}
-                                color="#EA4335"
-                                className="ut"
+                              <FcGoogle
+                                size={25}
+                                // color="#EA4335"
                               />
                             </NavLink>
                           </NavItem>
@@ -203,11 +199,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("6");
                               }}
                             >
-                              <Youtube
-                                size={20}
-                                color="#c4302b"
-                                className="ut"
-                              />
+                              <BsYoutube size={25} color="#FF0000" />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -219,11 +211,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("7");
                               }}
                             >
-                              <FaTiktok
-                                size={20}
-                                color="#FE2C55"
-                                className="ut"
-                              />
+                              <FaTiktok size={25} color="#FE2C55" />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -235,11 +223,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("8");
                               }}
                             >
-                              <PlusSquare
-                                size={20}
-                                color="#28c76f"
-                                className="ut"
-                              />
+                              <PlusSquare size={25} color="#28c76f" />
                             </NavLink>
                           </NavItem>
                         </Nav>

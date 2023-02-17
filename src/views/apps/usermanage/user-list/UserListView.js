@@ -64,7 +64,7 @@ class UserListView extends React.Component {
         headerCheckboxSelection: true,
       },
       {
-        headerName: "Username",
+        headerName: "Image",
         field: "media_img",
         filter: true,
         width: 250,
@@ -81,25 +81,25 @@ class UserListView extends React.Component {
                 height="30"
                 width="30"
               />
-              <span>{params.data.date}</span>
+              {/* <span>{params.data.date}</span> */}
             </div>
           );
         },
       },
       {
-        headerName: "desc",
+        headerName: "Description",
         field: "desc",
         filter: true,
         width: 250,
       },
       {
-        headerName: "url",
+        headerName: "URL",
         field: "url",
         filter: true,
         width: 200,
       },
       {
-        headerName: "label",
+        headerName: "Label",
         field: "label",
         filter: true,
         width: 200,
@@ -512,7 +512,7 @@ class UserListView extends React.Component {
                         onGridReady={this.onGridReady}
                         colResizeDefault={"shift"}
                         animateRows={true}
-                        floatingFilter={true}
+                        // floatingFilter={true}
                         pagination={true}
                         pivotPanelShow="always"
                         paginationPageSize={pageSize}

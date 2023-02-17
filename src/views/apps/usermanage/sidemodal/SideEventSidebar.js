@@ -44,15 +44,15 @@ export default class SideEventSidebar extends Component {
       >
         {/* <Button> Click here</Button> */}
         <div className="kt">
-          <Button className="ft-media" onClick={this.handleClick.bind(this)}>
+          {/* filter button is commented */}
+          {/* <Button className="ft-media" onClick={this.handleClick.bind(this)}>
             <Filter size={18} /> Filter
-          </Button>
+          </Button> */}
         </div>
-        <OffCanvasBody
+        {/* <OffCanvasBody
           className=""
-          // className={styles.bodyClass}
           style={{ fontSize: "30px" }}
-        ></OffCanvasBody>
+        ></OffCanvasBody> */}
         <OffCanvasMenu className="side-off">
           <div className="text-right">
             <Button onClick={this.handleClick.bind(this)} className="bt-cls">

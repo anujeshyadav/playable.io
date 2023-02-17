@@ -1,13 +1,11 @@
 import React from "react";
 import { Row, Col, Button, Spinner } from "reactstrap";
-import TwitterFeed from "./TwitterFeeds";
+
 import Posts from "./PostsFeed";
 import "../../../../assets/scss/pages/users-profile.scss";
 import ProfileHeaderFeed from "./ProfileHeaderFeed";
 import AboutCardFeed from "./AboutCardFeed";
-import SuggestedPagesFeed from "./SuggestedPagesFeed";
-import LatestPhotosFeed from "./LatestPhotosFeed";
-import SuggestionsFeed from "./SuggestionsFeed";
+
 import axiosConfig from "../../../../configs/axiosConfig";
 // import PollsFeed from "./PollsFeed"
 
@@ -53,17 +51,11 @@ class ProfileFeed extends React.Component {
             <Row>
               <Col lg="3" md="12">
                 <AboutCardFeed className="mt-2" />
-                <TwitterFeed className="mt-2" />
-                <SuggestedPagesFeed className="mt-2" />
               </Col>
               <Col lg="6" md="12">
                 <Posts />
               </Col>
-              <Col lg="3" md="12">
-                <LatestPhotosFeed />
-                <SuggestionsFeed />
-                {/* <PollsFeed /> */}
-              </Col>
+              <Col lg="3" md="12"></Col>
             </Row>
             <Row>
               <Col sm="12" className="text-center">

@@ -41,12 +41,14 @@ class FileGrid extends React.Component {
                               src={value?.media_img[0]}
                               alt=""
                               style={{ borderRadius: "10px" }}
-                              height="250px"
+                              height="230px"
                               width="100%"
                             />
                             <div className="content-details fadeIn-bottom">
                               <div className="text-left">
                                 <img
+                                  height="230px"
+                                  width="100%"
                                   src={value?.media_img[0]}
                                   alt=""
                                   className="img-round"
@@ -62,7 +64,7 @@ class FileGrid extends React.Component {
                                 </Link>
                                 <Link>
                                   <BiComment size={25} className="gt-1" />
-                                  <span className="">5</span>
+                                  <span className="op-1">5</span>
                                 </Link>
                               </div>
                             </div>

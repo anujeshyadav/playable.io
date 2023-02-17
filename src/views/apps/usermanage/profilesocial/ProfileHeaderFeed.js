@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Button,
   Navbar,
@@ -6,11 +6,11 @@ import {
   Collapse,
   Nav,
   NavItem,
-  NavLink
-} from "reactstrap"
-import { Edit2, Settings, Menu, X } from "react-feather"
-import coverImg from "../../../../assets/img/profile/user-uploads/cover.jpg"
-import profileImg from "../../../../assets/img/profile/user-uploads/user-13.jpg"
+  NavLink,
+} from "reactstrap";
+import { Edit2, Settings, Menu, X } from "react-feather";
+import coverImg from "../../../../assets/img/profile/user-uploads/cover.jpg";
+import profileImg from "../../../../assets/img/profile/user-uploads/user-13.jpg";
 import "../../../../assets/scss/pages/usersocial.scss";
 
 class ProfileHeaderFeed extends React.Component {

@@ -1,13 +1,11 @@
 .mt-10.col-md-12 {
   margin-top: 25px;
 }
-button.btn.btn-success.ft-1.btn.btn-secondary {
-  font-size: 14px;
-}
+
 [dir] button.btn.btn-success.ft-1.btn.btn-secondary {
-  padding: 8px 6px;
+  padding: 11px 21px;
   float: right;
-  font-size: 11px;
+  font-size: 10px;
 }
 svg.mr-i {
   margin-right: 3px;
@@ -26,7 +24,7 @@ svg.mr-i {
   max-width: 100%;
   margin: auto;
   overflow: hidden;
-  margin-bottom: 10px !important;
+  margin-bottom: 25px !important;
 }
 
 .contentimg .content-overlay {
@@ -104,6 +102,7 @@ svg.mr-i {
   left: 80%;
 }
 [dir] .content-details.fadeIn-bottom {
+  border-radius: 10px;
   background: #00000096;
   height: 100% !important;
   padding: 5px;
@@ -161,8 +160,17 @@ button.linksubmitbtn.btnsdanger.btn.btn-danger.btn-sm {
 }
 .modalfootercompse {
   margin-top: 6px;
-  margin-bottom: 17px;
+  // margin-bottom: 17px;
   margin-left: 25px;
+}
+label.labelurls {
+  margin-left: 11px;
+  margin-right: -7px;
+}
+[dir="ltr"] .modalfootercompse {
+  margin-bottom: 29px;
+  margin-left: 11px;
+  margin-right: 11px;
 }
 
 .select-box {
@@ -278,11 +286,11 @@ small.file-text {
 }
 button.bt-cls.btn.btn-secondary {
   background-color: #fff !important;
-  color: #ed0c0c;
+  color: #6e6b7b;
 }
 button.bt-cls.btn.btn-secondary:hover {
   background-color: #fff !important;
-  color: #ed0c0c;
+  color: #6e6b7b;
 }
 [dir] button.bt-cls.btn.btn-secondary:hover {
   background-color: #fff !important;
@@ -377,4 +385,10 @@ svg.ut {
   border-radius: 1.428rem;
   padding: 0 10px;
   margin-bottom: 5px;
+}
+
+span.op-1 {
+  color: #fff;
+  font-weight: 600;
+  margin-right: 10px;
 }

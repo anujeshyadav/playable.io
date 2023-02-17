@@ -58,7 +58,7 @@ import TimezoneSelect from "react-timezone-select";
 import Workflowthird from "../../../pages/Workflowthird";
 import ComposeWork from "../../../pages/ComposeWork";
 import DropzoneProgrammatically from "./Dropzonecompose";
-import axios from "axios";
+import Axios from "axios";
 import MediaSidebar from "./sidemodal/MediaSidebar";
 import swal from "sweetalert";
 
@@ -100,13 +100,13 @@ class ComposeModalGrid extends React.Component {
     addLabel: "",
     addLabelurl: "",
     SelectedTimezone: {},
-    acceptedfilupload: null,
+    acceptedfilupload: {},
     Text: "",
     status: "",
     uploadfile: "",
     datetime: "",
     futuretime: "",
-    selectedOption: [],
+    selectedOption: null,
     imageuploadedUrl: "",
 
     options: [
@@ -136,6 +136,7 @@ class ComposeModalGrid extends React.Component {
   }
 
   onRemove(selectedList, removedItem) {}
+
   handleChange = (selectedOption) => {
     console.log(selectedOption);
     this.setState({ selectedOption }, () =>
@@ -187,7 +188,7 @@ class ComposeModalGrid extends React.Component {
       this.state.acceptedfilupload,
       "url",
       this.state.addLabelurl,
-      "media_img",
+      "uploaded images id",
       this.state.imageuploadedUrl,
       "label",
       this.state.Addlabeltext,
@@ -199,29 +200,39 @@ class ComposeModalGrid extends React.Component {
       "selectedOption",
       this.state.selectedOption
     );
-    const data = new FormData();
-    data.append("media_img", this.state.acceptedfilupload);
-    data.append("url", this.state.addLabelurl);
-    data.append("uploaded_img", this.state.imageuploadedUrl);
+    const alldata = new FormData();
+    alldata.append("media_img", this.state.acceptedfilupload);
 
-    data.append("desc", this.state.Text);
+    alldata.append("url", this.state.addLabelurl);
+    alldata.append("uploaded_img", this.state.imageuploadedUrl);
+    alldata.append("desc", this.state.Text);
+    alldata.append("date", this.state.datetime.split("T")[0]);
+    alldata.append("time", this.state.datetime.split("T")[1]);
+    alldata.append("label", "63ee0b8e64e3d694a6ec401e");
+    // alldata.append("label", this.state.Addlabeltext);
+    alldata.append("platform", this.state.selectedOption);
 
-    data.append("date", this.state.datetime.split("T")[0]);
-    data.append("time", this.state.datetime.split("T")[1]);
-    data.append("label", this.state.Addlabeltext);
-    // data.append("platform", this.state.selectedOption);
-    axiosConfig
-      .post(`/user/add_compose`, { data })
+    Axios.post(`http://13.127.168.84:3000/user/add_compose`, alldata)
       .then((res) => {
         console.log(res.data);
       })
       .catch((err) => {
         console.log(err.response);
+        if (err.response.data.message == "success") {
+          swal("Post Created Sucessfully");
+          this.setState({ acceptedfilupload: "" });
+          this.setState({ addLabelurl: "" });
+          this.setState({ imageuploadedUrl: "" });
+          this.setState({ Text: "" });
+          this.setState({ datetime: "" });
+          this.setState({ Addlabeltext: "" });
+          this.setState({ selectedOption: "" });
+        }
       });
   };
   onDrop = (acceptedFiles) => {
     this.setState({ acceptedfilupload: acceptedFiles[0] });
-    console.log(acceptedFiles);
+    console.log(acceptedFiles[0]);
     if (acceptedFiles.length > 0) {
       this.setState({
         uploadfile: acceptedFiles.map((file) =>
@@ -234,8 +245,7 @@ class ComposeModalGrid extends React.Component {
     const data = new FormData();
     data.append("media_img", acceptedFiles[0]);
 
-    axios
-      .post(`http://13.127.168.84:3000/user/upload_media`, data)
+    Axios.post(`http://13.127.168.84:3000/user/upload_media`, data)
       .then((res) => {
         console.log(res.data.data.media_img[0]);
         // this.setState({ imageuploadedUrl: res.data.data.media_img[0] });
@@ -249,7 +259,10 @@ class ComposeModalGrid extends React.Component {
     const maxSize = 1 * 1024 * 1024;
     return (
       <>
-        <Button className="btn btn-success ft-1" onClick={this.toggleModal}>
+        <Button
+          className="btn btn-success ft-1 colotbtn"
+          onClick={this.toggleModal}
+        >
           <Edit size={16} className="mr-i" />
           COMPOSE
         </Button>
@@ -265,11 +278,19 @@ class ComposeModalGrid extends React.Component {
             <Row>
               <Col lg="2">
                 <div className=" componylog">
-                  <img src={avatar} width="60px" height="68px" alt="image" />
+                  <img
+                    src={avatar}
+                    width="60px"
+                    style={{ borderRadius: "10px" }}
+                    height="68px"
+                    alt="image"
+                  />
                 </div>
               </Col>
               <Col lg="10">
-                <p>Select Social Media to Upload Post</p>
+                <p className="selectSocial">
+                  Select Social Media to Upload Post
+                </p>
 
                 {/* <Multiselect
                   options={this.state.options} // Options to display in the dropdown
@@ -299,12 +320,12 @@ class ComposeModalGrid extends React.Component {
                   value={this.state.Text}
                   onChange={(e) => this.setState({ Text: e.target.value })}
                   cols="90"
-                  rows="6"
+                  rows="3"
                 ></textarea>
               </div>
             </Row>
             <Row className="iconuploads">
-              <Col className="colicon">
+              <Col className="colicon" lg="4">
                 <span className="d-flex ">
                   {/* <MediaSidebar /> */}
                   <Dropzone
@@ -345,7 +366,7 @@ class ComposeModalGrid extends React.Component {
                       data-toggle="tooltip"
                       data-placement="top"
                       title="Add URL"
-                      color="blue"
+                      color="#7367f0"
                       className="cgcarousel mx-1"
                       size={18}
                       onClick={() => this.setState({ addURl: "url" })}
@@ -353,11 +374,20 @@ class ComposeModalGrid extends React.Component {
                       Add URL
                     </ImLink>
                   </span>
-                  {/* <Dropzonecompose
-                    text={this.state.Text}
-                    status={this.state.status}
-                  /> */}
                 </span>
+              </Col>
+              <Col lg="8">
+                <small className="labelurl">Add Date and time Here</small>
+
+                <input
+                  type="datetime-local"
+                  id="Posttime"
+                  name="settime"
+                  className="form-control"
+                  onChange={(e) => {
+                    this.setState({ datetime: e.target.value });
+                  }}
+                />
               </Col>
             </Row>
             <Row className="d-flex ">
@@ -367,7 +397,7 @@ class ComposeModalGrid extends React.Component {
                     <div className="controlinput">
                       <Row>
                         <Col lg="3">
-                          <Label className="labelurl">Enter URL here</Label>
+                          <Label className="labelurls ">Enter URL here</Label>
                         </Col>
                         <Col lg="4">
                           <input
@@ -378,7 +408,7 @@ class ComposeModalGrid extends React.Component {
                             }
                             placeholder="https://www.myweb.com"
                             type="url"
-                            className="inputurlinput form-control"
+                            className=" form-control input-sm"
                           />
                         </Col>
                         <Col lg="2">
@@ -414,12 +444,11 @@ class ComposeModalGrid extends React.Component {
             </Row>
           </ModalBody>
 
-          <hr />
           <div className="modalfootercompse">
             <Row className="rowofmodalfooter">
               <Col lg="6">
                 <span>
-                  <div className="dt12">
+                  {/* <div className="dt12">
                     <Dropdown className="dropdownbtn">
                       <Dropdown.Toggle
                         variant="success"
@@ -457,8 +486,6 @@ class ComposeModalGrid extends React.Component {
                                     this.setState({ datetime: e.target.value });
                                   }}
                                 />
-                                {/* {this.state.datetime}
-                                {console.log(this.state.datetime)} */}
                               </div>
                             </ModalBody>
                             <ModalFooter>
@@ -704,8 +731,6 @@ class ComposeModalGrid extends React.Component {
                                           id="fname"
                                           placeholder="Nutella"
                                           className="form-control"
-                                          //   value={workspace}
-                                          //   onChange={(e) => setWorkspace(e.target.value)}
                                         />
                                       </div>
                                       <div className="inputcoc">
@@ -715,7 +740,6 @@ class ComposeModalGrid extends React.Component {
                                         <p>
                                           <TimezoneSelect
                                             value={this.state.SelectedTimezone}
-                                            //   onChange={setSelectedTimezone}
                                             onChange={
                                               this.setState.SelectedTimezone
                                             }
@@ -749,11 +773,8 @@ class ComposeModalGrid extends React.Component {
                                           <a href="">Remove It</a>
                                         </div>
                                       </Row>
-                                      {/* <div onClick={handlelogin} className="inputcoc intutbtn"></div> */}
                                     </div>
                                   </div>
-                                  {/* <Composeworkclass /> */}
-                                  {/* <ComposeWorkspace /> */}
                                 </TabPane>
                                 <TabPane tabId="4">
                                   <ComposeWork />
@@ -766,321 +787,28 @@ class ComposeModalGrid extends React.Component {
                             Set a Preffered Time
                           </span>{" "}
                         </Dropdown.Item>
-
-                        {/* <Dropdown.Item className="dropmenuitemss">
-                          <BsPeople size={20} />
-                          Change Workspace time Zone
-                        </Dropdown.Item> */}
                       </Dropdown.Menu>
                     </Dropdown>
-                  </div>
+                  </div> */}
                 </span>
-                {/* <Row>
-                  {this.state.selectchange == "Select a custom date & Time" ? (
-                    <>
-                      <div className="datetime mx-2 mt-1">
-                        <input
-                          type="datetime-local"
-                          id="Posttime"
-                          name="settime"
-                        />
-                      </div>
-                    </>
-                  ) : null}
-                </Row> */}
               </Col>
-              <Col lg="1"></Col>
-              <Col lg="2">
+              <Col lg="6" className="text-right  mt-3">
                 <Button
                   color="primary"
                   size="sm"
                   onClick={this.handleUploadmedia}
+                  className="mr-1"
                 >
                   Upload
                 </Button>
-              </Col>
-              <Col lg="2">
+
                 <Button color="primary" size="sm" onClick={this.toggleModal}>
                   close
                 </Button>
               </Col>{" "}
             </Row>
-            {/* <Row>
-              {this.state.selectchange == "Set Preffered Time" ? (
-                <>
-                  <div
-                    className="modal show"
-                    style={{ display: "block", position: "initial" }}
-                  >
-                    <ModalHeader>Compose your post</ModalHeader>
-                    <ModalBody className="">
-                      <Row></Row>
-                      <Row>
-                        <h2></h2>
-                      </Row>
-                      <Row> Add Time</Row>
-                    </ModalBody>
-                  </div>
-                </>
-              ) : null}
-            </Row> */}
           </div>
         </Modal>
-        {/* <Modal
-          isOpen={this.state.modalmedia}
-          toggle={this.toggleModalmedia}
-          className=" modal-dialog-centered modal-lg"
-        >
-          <ModalHeader toggle={this.toggleModalmedia} className="bg-primary">
-            Upload Media
-          </ModalHeader>
-          <ModalBody className="">
-            <DropZone className="" />
-            <div className="main-text">
-              <Row>
-                <Col md="6" className="text-left mb-2">
-                  <p>
-                    <span>
-                      {" "}
-                      <input type="checkbox" className="chk-s mr-1"></input>
-                    </span>
-                    0 files selected
-                  </p>
-                </Col>
-                <Col md="6">
-                  <div className="nt-slt mb-2">
-                    <Select
-                      className="React nt-slt"
-                      classNamePrefix="select"
-                      defaultValue={mediaOptions[0]}
-                      name="color"
-                      options={mediaOptions}
-                    />
-                  </div>
-                </Col>
-                <Col md="12">
-                  <Row>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModalmedia}>
-              Accept
-            </Button>{" "}
-          </ModalFooter>
-        </Modal> */}
       </>
     );
   }
