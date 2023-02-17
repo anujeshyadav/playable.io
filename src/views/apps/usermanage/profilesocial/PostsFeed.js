@@ -21,6 +21,7 @@ import person5 from "../../../../assets/img/portrait/small/avatar-s-5.jpg";
 import person6 from "../../../../assets/img/portrait/small/avatar-s-6.jpg";
 import person7 from "../../../../assets/img/portrait/small/avatar-s-7.jpg";
 import axiosConfig from "../../../../configs/axiosConfig";
+import swal from "sweetalert";
 
 class PostsFeed extends React.Component {
   state = {
@@ -37,8 +38,32 @@ class PostsFeed extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+    axiosConfig
+      .get(`/del_comment/63ef7627349b6f38fa5d8e35`)
+      .then((res) => {
+        this.setState({ post: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   handlePost = (id) => {
+    axiosConfig
+      .post(`/user/add_comment`, {
+        post: id,
+        userid: "63e3a492f49ead238773ef08",
+        comment: this.state.Posttext,
+      })
+      .then((res) => {
+        console.log(res.data.message == "success");
+        if (res.data.message == "success") {
+          swal("Post Submitted Succesffuly");
+        }
+        this.setState({ Posttext: "" });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
     console.log(id);
   };
   render() {
@@ -73,10 +98,10 @@ class PostsFeed extends React.Component {
                     className="img-fluid rounded-sm mb-2"
                   />
                   <div className="d-flex justify-content-start align-items-center mb-1">
-                    <div className="d-flex align-items-center">
+                    {/* <div className="d-flex align-items-center">
                       <Heart size={16} className="mr-50" />
                       145
-                    </div>
+                    </div> */}
                     <div className="ml-2">
                       <ul className="list-unstyled users-list m-0 d-flex">
                         <li className="avatar pull-up">
