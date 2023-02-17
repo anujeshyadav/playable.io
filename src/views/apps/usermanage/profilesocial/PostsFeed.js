@@ -26,6 +26,7 @@ class PostsFeed extends React.Component {
   state = {
     // isLoading: false,
     post: [],
+    Posttext: "",
   };
   componentDidMount() {
     axiosConfig
@@ -37,13 +38,16 @@ class PostsFeed extends React.Component {
         console.log(err);
       });
   }
+  handlePost = (id) => {
+    console.log(id);
+  };
   render() {
     return (
       <React.Fragment>
         {this.state.post !== "" ? (
           <>
             {this.state.post?.map((value) => (
-              <Card key={value._id}>
+              <Card key={value?._id}>
                 <CardBody>
                   <div className="d-flex justify-content-start align-items-center mb-1">
                     <div className="avatar mr-1">
@@ -182,12 +186,20 @@ class PostsFeed extends React.Component {
                       rows="3"
                       placeholder="Add Comment"
                       id="add-comment"
+                      value={this.state.Posttext}
+                      onChange={(e) => {
+                        this.setState({ Posttext: e.target.value });
+                      }}
                     />
                     <Label for="add-comment">Add Comment</Label>
                   </fieldset>
-                  <Button.Ripple size="sm" color="primary">
+                  <Button
+                    onClick={() => this.handlePost(value?._id)}
+                    size="sm"
+                    color="primary"
+                  >
                     Post Comment
-                  </Button.Ripple>
+                  </Button>
                 </CardBody>
               </Card>
             ))}
