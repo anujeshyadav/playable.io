@@ -40,6 +40,7 @@ export default class MediaSidebar extends Component {
     uploadfile: [],
     getallimg: [],
   };
+
   componentWillMount() {
     // sets the initial state
     this.setState({
@@ -48,7 +49,7 @@ export default class MediaSidebar extends Component {
     axios
       .get(`http://13.127.168.84:3000/user/get_media`)
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         this.setState({ getallimg: res.data.data });
         console.log(this.state.getallimg);
       })
@@ -56,7 +57,11 @@ export default class MediaSidebar extends Component {
         console.log(err);
       });
   }
-
+  onTrigger = (event) => {
+    // event.preventDefault();
+    // console.log(event);
+    this.props.parentCallback(event);
+  };
   componentDidMount() {
     axios
       .get(`http://13.127.168.84:3000/user/get_media`)
@@ -100,8 +105,6 @@ export default class MediaSidebar extends Component {
     console.log(this.state.uploadfile);
     const data = new FormData();
     data.append("media_img", acceptedFiles[0]);
-    if (acceptedFiles.length > 1) {
-    }
 
     axios
       .post(`http://13.127.168.84:3000/user/upload_media`, data)
@@ -130,7 +133,16 @@ export default class MediaSidebar extends Component {
             <Filter size={18} /> Filter
           </Button> */}
           <Button onClick={this.handleClick.bind(this)} className="ft-filter">
-            <FcGallery size={25} className="mr-i" color="blue" />
+            <FcGallery
+              data-placement="top"
+              title="Add Media "
+              size={25}
+              className="mr-i"
+              color="blue"
+            >
+              {" "}
+              Add Media
+            </FcGallery>
           </Button>
         </div>
         <OffCanvasBody
@@ -212,7 +224,10 @@ export default class MediaSidebar extends Component {
                       <>
                         {this.state.getallimg?.map((value) => (
                           <Col md="6" className="mb-2">
-                            <NavLink to="/">
+                            <NavLink
+                              onClick={() => this.onTrigger(value?._id)}
+                              to="#"
+                            >
                               <div className="img-bg" key={value?._id}>
                                 {/* {value?.media_img?.length > 1 ? (
                                   <>

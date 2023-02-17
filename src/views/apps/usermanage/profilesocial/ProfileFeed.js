@@ -8,11 +8,13 @@ import AboutCardFeed from "./AboutCardFeed";
 import SuggestedPagesFeed from "./SuggestedPagesFeed";
 import LatestPhotosFeed from "./LatestPhotosFeed";
 import SuggestionsFeed from "./SuggestionsFeed";
+import axiosConfig from "../../../../configs/axiosConfig";
 // import PollsFeed from "./PollsFeed"
 
 class ProfileFeed extends React.Component {
   state = {
     isLoading: false,
+    post: [],
   };
 
   toggleLoading = () => {
@@ -26,6 +28,17 @@ class ProfileFeed extends React.Component {
       });
     }, 2000);
   };
+  componentDidMount() {
+    axiosConfig
+      .get(`/user/get_compose`)
+      .then((res) => {
+        console.log(res.data.data);
+        this.setState({ post: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     return (

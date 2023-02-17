@@ -1,9 +1,14 @@
-import React from "react"
-import { Card, CardHeader, CardTitle, CardBody, Badge } from "reactstrap"
-import { Check } from "react-feather"
-import img1 from "../../../../assets/img/portrait/small/avatar-s-12.jpg"
+import React from "react";
+import { Card, CardHeader, CardTitle, CardBody, Badge } from "reactstrap";
+import { Check } from "react-feather";
+import img1 from "../../../../assets/img/portrait/small/avatar-s-12.jpg";
 
 class TwitterFeeds extends React.Component {
+  state = {
+    isLoading: false,
+    post: "",
+  };
+
   render() {
     return (
       <Card>
@@ -108,7 +113,7 @@ class TwitterFeeds extends React.Component {
           </div>
         </CardBody>
       </Card>
-    )
+    );
   }
 }
-export default TwitterFeeds
+export default TwitterFeeds;

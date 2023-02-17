@@ -18,8 +18,25 @@ import person4 from "../../../assets/img/portrait/small/avatar-s-4.jpg";
 import person5 from "../../../assets/img/portrait/small/avatar-s-5.jpg";
 import person6 from "../../../assets/img/portrait/small/avatar-s-6.jpg";
 import person7 from "../../../assets/img/portrait/small/avatar-s-7.jpg";
+import axiosConfig from "../../../configs/axiosConfig";
 
 class Posts extends React.Component {
+  state = {
+    // isLoading: false,
+    post: [],
+  };
+  componentDidMount() {
+    axiosConfig
+      .get(`/user/get_compose`)
+      .then((res) => {
+        console.log(res.data.data);
+        this.setState({ post: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <React.Fragment>

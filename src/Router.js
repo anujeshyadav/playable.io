@@ -17,6 +17,16 @@ const dashboard = lazy(() => import("./pages/dashboard"));
 const Workspace = lazy(() => import("./pages/workspace"));
 const Workflowthird = lazy(() => import("./pages/Workflowthird"));
 const Workspacetwo = lazy(() => import("./pages/Workspacetwo"));
+
+// clinton pages add here
+const AddEmpolye = lazy(() => import("../src/reputation/schedule/AddEmpolye"));
+const WeekCalender = lazy(() =>
+  import("../src/reputation/schedule/WeekCalender")
+);
+// const googleFb = lazy(() => import("../src/reputation/googleFb.js"));
+
+//  pages end here
+
 const MediaSidebar = lazy(() =>
   import("./views/apps/usermanage/sidemodal/MediaSidebar")
 );
@@ -298,6 +308,11 @@ class AppRouter extends React.Component {
             component={() => <Redirect to="/todo/all" />}
           />
           <AppRoute path="/todo/:filter" component={todo} />
+          {/* route added here of clinton sir */}
+          <AppRoute path="/addempolye" component={AddEmpolye} />
+          <AppRoute path="/weekcalender" component={WeekCalender} />
+          {/* route added here of clinton sir */}
+          <AppRoute path="/dashboard" component={dashboard} />
           <AppRoute path="/dashboard" component={dashboard} />
           <AppRoute path="/workspace" component={Workspace} />
           <AppRoute path="/workspaceone/:id" component={Workspacetwo} />

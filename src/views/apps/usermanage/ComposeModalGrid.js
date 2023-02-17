@@ -7,12 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "reactstrap";
+import axiosConfig from "../../../configs/axiosConfig";
 import Select from "react-select";
 import Dropzone from "react-dropzone";
 import Dropdown from "react-bootstrap/Dropdown";
 import classnames from "classnames";
 import { BsStopwatch } from "react-icons/bs";
 import imgdemo from "../../../assets/img/pages/graphic-2.png";
+import Multiselect from "multiselect-react-dropdown";
 
 import {
   TabContent,
@@ -48,6 +50,7 @@ import { CgCarousel } from "react-icons/cg";
 import avatar from "../../images/avatar.jpg";
 import DropZone from "../usermanage/DropZone.jsx";
 import Dropzonecompose from "./Dropzonecompose";
+// import Select from "react-select";
 
 import url from "availity-reactstrap-validation/lib/AvValidator/url";
 import "../../../assets/scss/pages/usersocial.scss";
@@ -57,6 +60,7 @@ import ComposeWork from "../../../pages/ComposeWork";
 import DropzoneProgrammatically from "./Dropzonecompose";
 import axios from "axios";
 import MediaSidebar from "./sidemodal/MediaSidebar";
+import swal from "sweetalert";
 
 const mediaOptions = [
   { value: "all Media", label: "All Media" },
@@ -73,16 +77,14 @@ const mediaOptions = [
 //   },
 // ];
 
-// const colourOptions = [
-//   { value: "Set Preffered Time", label: "Set Preffered Time" },
-//   { value: "Day After Tomorrow", label: "Day After Tomorrow" },
-//   {
-//     value: "Select a custom date & Time",
-//     label: "Select a custom date & Time",
-//   },
-//   { value: "Change Workspace Time", label: "Change Workspace Time" },
-// ];
-
+const colourOptions = [
+  { value: "facebook", label: "facebook" },
+  { value: "Twittor", label: "Twittor" },
+  { value: "LinkedIn", label: "LinkedIn" },
+  { value: "InstaGram", label: "InstaGram" },
+  { value: "Google", label: "Google" },
+  { value: "Youtube", label: "Youtube" },
+];
 class ComposeModalGrid extends React.Component {
   state = {
     modal: false,
@@ -94,12 +96,52 @@ class ComposeModalGrid extends React.Component {
     selectchange: "",
     active: "1",
     addTime: "",
+    Addlabeltext: "",
     addLabel: "",
+    addLabelurl: "",
     SelectedTimezone: {},
+    acceptedfilupload: null,
     Text: "",
     status: "",
     uploadfile: "",
     datetime: "",
+    futuretime: "",
+    selectedOption: [],
+    imageuploadedUrl: "",
+
+    options: [
+      { value: "facebook", label: "facebook" },
+      { value: "Twittor", label: "Twittor" },
+      { value: "LinkedIn", label: "LinkedIn" },
+      { value: "InstaGram", label: "InstaGram" },
+      { value: "Google", label: "Google" },
+      { value: "Youtube", label: "Youtube" },
+    ],
+  };
+
+  handleCallback = (childData) => {
+    console.log(childData);
+    this.setState({ imageuploadedUrl: childData });
+  };
+  onSelect(selectedList, selectedItem) {
+    console.log(selectedList);
+    const selectItem1 = [];
+
+    for (let i = 0; i < selectedList.length; i++) {
+      selectItem1.push(selectedList[i].label);
+    }
+    console.log("aaaa", selectItem1);
+
+    // this.setState({ selectedOption: selectItem1 });
+  }
+
+  onRemove(selectedList, removedItem) {}
+  handleChange = (selectedOption) => {
+    console.log(selectedOption);
+    this.setState({ selectedOption }, () =>
+      console.log(`Option selected:`, this.state.selectedOption)
+    );
+    console.log(this.state.selectedOption);
   };
   toggleCollapse = (collapseID) => {
     this.setState((prevState) => ({
@@ -137,22 +179,48 @@ class ComposeModalGrid extends React.Component {
     this.setState({ selectchange: value.label });
   };
 
-  handleok = () => {
-    // this.setState({ status: "ok" });
-    console.log(this.state.Text, this.state.uploadfile);
-    axios
-      .post(`http://13.127.168.84:3000/user/add_fb_post`, {
-        post: this.state.Text,
-        mediaUrls: this.state.uploadfile,
-      })
+  handleUploadmedia = () => {
+    console.log(
+      "desc",
+      this.state.Text,
+      "file",
+      this.state.acceptedfilupload,
+      "url",
+      this.state.addLabelurl,
+      "media_img",
+      this.state.imageuploadedUrl,
+      "label",
+      this.state.Addlabeltext,
+      "datetime",
+      this.state.datetime,
+      "futuretime",
+      this.state.futuretime,
+
+      "selectedOption",
+      this.state.selectedOption
+    );
+    const data = new FormData();
+    data.append("media_img", this.state.acceptedfilupload);
+    data.append("url", this.state.addLabelurl);
+    data.append("uploaded_img", this.state.imageuploadedUrl);
+
+    data.append("desc", this.state.Text);
+
+    data.append("date", this.state.datetime.split("T")[0]);
+    data.append("time", this.state.datetime.split("T")[1]);
+    data.append("label", this.state.Addlabeltext);
+    // data.append("platform", this.state.selectedOption);
+    axiosConfig
+      .post(`/user/add_compose`, { data })
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
   onDrop = (acceptedFiles) => {
+    this.setState({ acceptedfilupload: acceptedFiles[0] });
     console.log(acceptedFiles);
     if (acceptedFiles.length > 0) {
       this.setState({
@@ -163,10 +231,22 @@ class ComposeModalGrid extends React.Component {
         ),
       });
     }
+    const data = new FormData();
+    data.append("media_img", acceptedFiles[0]);
+
+    axios
+      .post(`http://13.127.168.84:3000/user/upload_media`, data)
+      .then((res) => {
+        console.log(res.data.data.media_img[0]);
+        // this.setState({ imageuploadedUrl: res.data.data.media_img[0] });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
-    const maxSize = 4 * 1024 * 1024;
+    const maxSize = 1 * 1024 * 1024;
     return (
       <>
         <Button className="btn btn-success ft-1" onClick={this.toggleModal}>
@@ -183,9 +263,32 @@ class ComposeModalGrid extends React.Component {
           <ModalHeader toggle={this.toggleModal}>Compose your post</ModalHeader>
           <ModalBody className="">
             <Row>
-              <div className="mx-1 componylog">
-                <img src={avatar} width="35px" alt="image" />
-              </div>
+              <Col lg="2">
+                <div className=" componylog">
+                  <img src={avatar} width="60px" height="68px" alt="image" />
+                </div>
+              </Col>
+              <Col lg="10">
+                <p>Select Social Media to Upload Post</p>
+
+                {/* <Multiselect
+                  options={this.state.options} // Options to display in the dropdown
+                  selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                  onSelect={this.onSelect} // Function will trigger on select event
+                  className="React"
+                  onRemove={this.onRemove} // Function will trigger on remove event
+                  displayValue="label" // Property name to display in the dropdown options
+                /> */}
+                <Select
+                  defaultValue={[colourOptions[2], colourOptions[3]]}
+                  isMulti
+                  value={this.state.selectedOption}
+                  name="social Media"
+                  onChange={this.handleChange}
+                  options={colourOptions}
+                  classNamePrefix="select "
+                />
+              </Col>
             </Row>
             <Row className="inputfileds mt-1 mb-2">
               <div className="mx-1 componylog">
@@ -203,7 +306,9 @@ class ComposeModalGrid extends React.Component {
             <Row className="iconuploads">
               <Col className="colicon">
                 <span className="d-flex ">
+                  {/* <MediaSidebar /> */}
                   <Dropzone
+                    title="Add from Media"
                     className="dropzonenew"
                     onDrop={this.onDrop}
                     accept="image/png,image/jpeg,image/gif,image/jpg"
@@ -233,17 +338,7 @@ class ComposeModalGrid extends React.Component {
                     )}
                   </Dropzone>
                   <span className="mx-1">
-                    {/* <AiFillFolderAdd
-                      data-placement="top"
-                      title=" Add From Media Library"
-                      color="#878721d9"
-                      className="aifillfolderas mx-1"
-                      size={36}
-                      // onClick={this.toggleModalmedia}
-                    >
-                      Add From Media Library
-                    </AiFillFolderAdd> */}
-                    <MediaSidebar />
+                    <MediaSidebar parentCallback={this.handleCallback} />
                   </span>
                   <span className="mtsspan">
                     <ImLink
@@ -277,6 +372,10 @@ class ComposeModalGrid extends React.Component {
                         <Col lg="4">
                           <input
                             size="sm"
+                            value={this.state.addLabelurl}
+                            onChange={(e) =>
+                              this.setState({ addLabelurl: e.target.value })
+                            }
                             placeholder="https://www.myweb.com"
                             type="url"
                             className="inputurlinput form-control"
@@ -286,6 +385,7 @@ class ComposeModalGrid extends React.Component {
                           <div className="btncssadd dfdf">
                             <Button
                               size="sm"
+                              onClick={() => this.setState({ addURl: "" })}
                               className="linksubmitbtn"
                               color="success"
                             >
@@ -357,8 +457,8 @@ class ComposeModalGrid extends React.Component {
                                     this.setState({ datetime: e.target.value });
                                   }}
                                 />
-                                {this.state.datetime}
-                                {console.log(this.state.datetime)}
+                                {/* {this.state.datetime}
+                                {console.log(this.state.datetime)} */}
                               </div>
                             </ModalBody>
                             <ModalFooter>
@@ -491,6 +591,12 @@ class ComposeModalGrid extends React.Component {
                                                 type="datetime-local"
                                                 id="Posttime"
                                                 name="settime"
+                                                value={this.state.futuretime}
+                                                onChange={(e) =>
+                                                  this.setState({
+                                                    futuretime: e.target.value,
+                                                  })
+                                                }
                                               />
                                               <Button
                                                 size="sm"
@@ -555,6 +661,15 @@ class ComposeModalGrid extends React.Component {
                                                     name="text"
                                                     id="exampleEmail"
                                                     placeholder="with a placeholder"
+                                                    value={
+                                                      this.state.Addlabeltext
+                                                    }
+                                                    onChange={(e) =>
+                                                      this.setState({
+                                                        Addlabeltext:
+                                                          e.target.value,
+                                                      })
+                                                    }
                                                   />
                                                 </div>
                                               </Col>
@@ -676,7 +791,11 @@ class ComposeModalGrid extends React.Component {
               </Col>
               <Col lg="1"></Col>
               <Col lg="2">
-                <Button color="primary" size="sm" onClick={this.handleok}>
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={this.handleUploadmedia}
+                >
                   Upload
                 </Button>
               </Col>

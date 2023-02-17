@@ -20,6 +20,8 @@ import {
 import axios from "axios";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
+import axiosConfig from "../../../../configs/axiosConfig";
+
 import {
   Edit,
   Trash2,
@@ -46,6 +48,7 @@ class UserListView extends React.Component {
     selectStatus: "All",
     verified: "All",
     department: "All",
+    post: [],
     defaultColDef: {
       sortable: true,
     },
@@ -62,7 +65,7 @@ class UserListView extends React.Component {
       },
       {
         headerName: "Username",
-        field: "username",
+        field: "media_img",
         filter: true,
         width: 250,
         cellRendererFramework: (params) => {
@@ -73,31 +76,31 @@ class UserListView extends React.Component {
             >
               <img
                 className="rounded-circle mr-50"
-                src={params.data.avatar}
+                src={params.data?.media_img}
                 alt="user avatar"
                 height="30"
                 width="30"
               />
-              <span>{params.data.name}</span>
+              <span>{params.data.date}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "desc",
+        field: "desc",
         filter: true,
         width: 250,
       },
       {
-        headerName: "Name",
-        field: "name",
+        headerName: "url",
+        field: "url",
         filter: true,
         width: 200,
       },
       {
-        headerName: "Country",
-        field: "country",
+        headerName: "label",
+        field: "label",
         filter: true,
         width: 200,
       },
@@ -178,6 +181,16 @@ class UserListView extends React.Component {
       let rowData = response.data;
       this.setState({ rowData });
     });
+
+    axiosConfig
+      .get(`/user/get_compose`)
+      .then((res) => {
+        console.log(res.data.data);
+        this.setState({ post: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   onGridReady = (params) => {
@@ -250,7 +263,7 @@ class UserListView extends React.Component {
   };
 
   render() {
-    const { rowData, columnDefs, defaultColDef, pageSize } = this.state;
+    const { post, rowData, columnDefs, defaultColDef, pageSize } = this.state;
     return (
       <Row className="app-user-list">
         {/* <Col sm="12">
@@ -487,7 +500,7 @@ class UserListView extends React.Component {
                     </div>
                   </div>
                 </div>
-                {this.state.rowData !== null ? (
+                {this.state.post !== null ? (
                   <ContextLayout.Consumer>
                     {(context) => (
                       <AgGridReact
@@ -495,7 +508,7 @@ class UserListView extends React.Component {
                         rowSelection="multiple"
                         defaultColDef={defaultColDef}
                         columnDefs={columnDefs}
-                        rowData={rowData}
+                        rowData={post}
                         onGridReady={this.onGridReady}
                         colResizeDefault={"shift"}
                         animateRows={true}

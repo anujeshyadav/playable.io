@@ -18,11 +18,194 @@ import person4 from "../../../../assets/img/portrait/small/avatar-s-4.jpg";
 import person5 from "../../../../assets/img/portrait/small/avatar-s-5.jpg";
 import person6 from "../../../../assets/img/portrait/small/avatar-s-6.jpg";
 import person7 from "../../../../assets/img/portrait/small/avatar-s-7.jpg";
+import axiosConfig from "../../../../configs/axiosConfig";
 
 class PostsFeed extends React.Component {
+  state = {
+    // isLoading: false,
+    post: [],
+  };
+  componentDidMount() {
+    axiosConfig
+      .get(`/user/get_compose`)
+      .then((res) => {
+        this.setState({ post: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   render() {
     return (
       <React.Fragment>
+        {this.state.post !== "" ? (
+          <>
+            {this.state.post?.map((value) => (
+              <Card key={value._id}>
+                <CardBody>
+                  <div className="d-flex justify-content-start align-items-center mb-1">
+                    <div className="avatar mr-1">
+                      <img
+                        src={value?.media_img[0]}
+                        alt="avtar img holder"
+                        height="45"
+                        width="45"
+                      />
+                    </div>
+                    <div className="user-page-info">
+                      <p className="mb-0">Leeanna Alvord</p>
+                      <p className="font-small-2">{value?.createdAt}</p>
+                      <a href={value?.url}> {value?.url}</a>
+                    </div>
+                    <div className="ml-auto user-like">
+                      <Heart fill="#EA5455" stroke="#EA5455" />
+                    </div>
+                  </div>
+                  <p>{value?.desc}</p>
+                  <img
+                    src={value?.media_img[0]}
+                    alt="postImg1"
+                    className="img-fluid rounded-sm mb-2"
+                  />
+                  <div className="d-flex justify-content-start align-items-center mb-1">
+                    <div className="d-flex align-items-center">
+                      <Heart size={16} className="mr-50" />
+                      145
+                    </div>
+                    <div className="ml-2">
+                      <ul className="list-unstyled users-list m-0 d-flex">
+                        <li className="avatar pull-up">
+                          <img
+                            src={person1}
+                            alt="avatar"
+                            height="30"
+                            width="30"
+                            id="avatar13"
+                          />
+                          <UncontrolledTooltip
+                            placement="bottom"
+                            target="avatar13"
+                          >
+                            Lai Lewandowski
+                          </UncontrolledTooltip>
+                        </li>
+                        <li className="avatar pull-up">
+                          <img
+                            src={person2}
+                            alt="avatar"
+                            height="30"
+                            width="30"
+                            id="avatar14"
+                          />
+                          <UncontrolledTooltip
+                            placement="bottom"
+                            target="avatar14"
+                          >
+                            Elicia Rieske
+                          </UncontrolledTooltip>
+                        </li>
+                        <li className="avatar pull-up">
+                          <img
+                            src={person3}
+                            alt="avatar"
+                            height="30"
+                            width="30"
+                            id="avatar15"
+                          />
+                          <UncontrolledTooltip
+                            placement="bottom"
+                            target="avatar15"
+                          >
+                            Alberto Glotzbach
+                          </UncontrolledTooltip>
+                        </li>
+                        <li className="avatar pull-up">
+                          <img
+                            src={person4}
+                            alt="avatar"
+                            height="30"
+                            width="30"
+                            id="avatar16"
+                          />
+                          <UncontrolledTooltip
+                            placement="bottom"
+                            target="avatar16"
+                          >
+                            George Nordic
+                          </UncontrolledTooltip>
+                        </li>
+                        <li className="avatar pull-up">
+                          <img
+                            src={person5}
+                            alt="avatar"
+                            height="30"
+                            width="30"
+                            id="avatar17"
+                          />
+                          <UncontrolledTooltip
+                            placement="bottom"
+                            target="avatar17"
+                          >
+                            Vinnie Mostowy
+                          </UncontrolledTooltip>
+                        </li>
+                        <li className="d-flex align-items-center pl-50">
+                          <span className="align-middle">+140 more</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <p className="ml-auto">
+                      <MessageSquare size={16} className="mr-50" />
+                      77
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-start align-items-center mb-1">
+                    <div className="avatar mr-50">
+                      <img src={person6} alt="Avatar" height="30" width="30" />
+                    </div>
+                    <div className="user-page-info">
+                      <h6 className="mb-0">Kitty Allanson</h6>
+                      <span className="font-small-2">
+                        orthoplumbate morningtide naphthaline exarteritis
+                      </span>
+                    </div>
+                    <div className="ml-auto cursor-pointer">
+                      <Heart className="mr-50" size={15} />
+                      <MessageSquare className="mr-50" size={15} />
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-start align-items-center mb-2">
+                    <div className="avatar mr-50">
+                      <img src={person7} alt="Avatar" height="30" width="30" />
+                    </div>
+                    <div className="user-page-info">
+                      <h6 className="mb-0">Jeanie Bulgrin</h6>
+                      <span className="font-small-2">
+                        blockiness pandemy metaxylene speckle coppy
+                      </span>
+                    </div>
+                    <div className="ml-auto cursor-pointer">
+                      <Heart className="mr-50" size={15} />
+                      <MessageSquare className="mr-50" size={15} />
+                    </div>
+                  </div>
+                  <fieldset className="form-label-group mb-50">
+                    <Input
+                      type="textarea"
+                      rows="3"
+                      placeholder="Add Comment"
+                      id="add-comment"
+                    />
+                    <Label for="add-comment">Add Comment</Label>
+                  </fieldset>
+                  <Button.Ripple size="sm" color="primary">
+                    Post Comment
+                  </Button.Ripple>
+                </CardBody>
+              </Card>
+            ))}
+          </>
+        ) : null}
         <Card>
           <CardBody>
             <div className="d-flex justify-content-start align-items-center mb-1">
