@@ -68,6 +68,7 @@ class PostsFeed extends React.Component {
         if (res.data.message == "success") {
           swal("Post Submitted Succesffuly");
         }
+        this.handlecomment();
         this.setState({ Posttext: "" });
       })
       .catch((err) => {
