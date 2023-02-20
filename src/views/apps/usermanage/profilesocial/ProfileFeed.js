@@ -30,7 +30,7 @@ class ProfileFeed extends React.Component {
     axiosConfig
       .get(`/user/get_compose`)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.setState({ post: res.data.data });
       })
       .catch((err) => {

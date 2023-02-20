@@ -84,7 +84,10 @@ const Dashboard = () => {
                   >
                     <div className="card main">
                       <div className="card-body">
-                        <Link to="/app/usermanage/usersociallist">
+                        <Link
+                          // onClick={()=> }
+                          to={`/app/usermanage/usersociallist/${value?._id}`}
+                        >
                           <div className="row">
                             <div className="col-lg-3 ">
                               <img

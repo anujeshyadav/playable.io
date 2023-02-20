@@ -326,7 +326,7 @@ class AppRouter extends React.Component {
             component={MediaSidebar}
           />
           <AppRoute
-            path="/app/usermanage/usersociallist"
+            path="/app/usermanage/usersociallist/:id"
             component={UserSocialList}
           />
           <AppRoute path="/app/usermanage/fileGrid" component={FileGrid} />

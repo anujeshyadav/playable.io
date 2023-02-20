@@ -28,25 +28,34 @@ class PostsFeed extends React.Component {
     // isLoading: false,
     post: [],
     Posttext: "",
+    Individualpost: [],
   };
+
+  handlecomment(id) {
+    localStorage.setItem("commentId", id);
+    console.log(id);
+    axiosConfig
+      .get(`/user/comment_by_post/${id}`)
+      .then((res) => {
+        console.log(res.data.data);
+        this.setState({ Individualpost: res.data.data });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
   componentDidMount() {
     axiosConfig
       .get(`/user/get_compose`)
       .then((res) => {
-        this.setState({ post: res.data.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axiosConfig
-      .get(`/del_comment/63ef7627349b6f38fa5d8e35`)
-      .then((res) => {
+        console.log(res.data.data);
         this.setState({ post: res.data.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
+
   handlePost = (id) => {
     axiosConfig
       .post(`/user/add_comment`, {
@@ -186,27 +195,55 @@ class PostsFeed extends React.Component {
                         </li>
                       </ul>
                     </div>
-                    {/* <p className="ml-auto">
-                      <MessageSquare size={16} className="mr-50" />
-                      77
-                    </p> */}
+                    <a
+                      onClick={() => this.handlecomment(value?._id)}
+                      className="ml-auto"
+                    >
+                      Comments
+                    </a>
                   </div>
+                  {}
+                  {this.state.Individualpost !== "" &&
+                  this.state.Individualpost !== null ? (
+                    <>
+                      {this.state.Individualpost?.map((data) => (
+                        <>
+                          <div
+                            key={data?._id}
+                            className="d-flex justify-content-start align-items-center mb-2 mt-1"
+                          >
+                            <div className="avatar mr-50">
+                              <img
+                                src={person7}
+                                alt="Avatar"
+                                height="30"
+                                width="30"
+                              />
+                            </div>
+                            <div className="user-page-info">
+                              <h6 className="mb-0">Jeanie Bulgrin</h6>
+                              <span className="font-small-2">
+                                {data?.comment}
+                              </span>
+                            </div>
 
-                  <div className="d-flex justify-content-start align-items-center mb-2">
-                    <div className="avatar mr-50">
-                      <img src={person7} alt="Avatar" height="30" width="30" />
-                    </div>
-                    <div className="user-page-info">
-                      <h6 className="mb-0">Jeanie Bulgrin</h6>
-                      <span className="font-small-2">
-                        blockiness pandemy metaxylene speckle coppy
-                      </span>
-                    </div>
-                    {/* <div className="ml-auto cursor-pointer">
-                      <Heart className="mr-50" size={15} />
-                      <MessageSquare className="mr-50" size={15} />
-                    </div> */}
-                  </div>
+                            <div className="ml-auto cursor-pointer">
+                              <div>
+                                <span className="postcratedat">
+                                  <Moment
+                                    className="postcreateddata"
+                                    format="DD/MM/YYYY"
+                                  >
+                                    {data?.createdAt}
+                                  </Moment>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ))}
+                    </>
+                  ) : null}
                   <fieldset className="form-label-group mb-50">
                     <Input
                       type="textarea"

@@ -50,9 +50,9 @@ export default class MediaSidebar extends Component {
     axios
       .get(`http://13.127.168.84:3000/user/get_media`)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.setState({ getallimg: res.data.data });
-        console.log(this.state.getallimg);
+        // console.log(this.state.getallimg);
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +69,7 @@ export default class MediaSidebar extends Component {
       .then((res) => {
         // console.log(res.data.data);
         this.setState({ getallimg: res.data.data });
-        console.log(this.state.getallimg);
+        // console.log(this.state.getallimg);
       })
       .catch((err) => {
         console.log(err);

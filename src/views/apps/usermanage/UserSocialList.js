@@ -1,8 +1,6 @@
 import React from "react";
-
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/usersocial.scss";
-
 import { FacebookEmbed } from "react-social-media-embed";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import {
@@ -97,6 +95,10 @@ class UserSocialList extends React.Component {
     }));
   };
 
+  componentDidMount() {
+    let { id } = this.props.match.params;
+    console.log(id);
+  }
   render() {
     return (
       <Row className="app-user-list">
