@@ -50,7 +50,7 @@ export default class MediaSidebar extends Component {
     axios
       .get(`http://13.127.168.84:3000/user/get_media`)
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         this.setState({ getallimg: res.data.data });
         // console.log(this.state.getallimg);
       })
@@ -58,10 +58,14 @@ export default class MediaSidebar extends Component {
         console.log(err);
       });
   }
-  onTrigger = (event) => {
+  onTrigger = (event, image) => {
+    console.log(image);
+    const data = [];
+
+    data.push(event);
     // event.preventDefault();
     // console.log(event);
-    this.props.parentCallback(event);
+    this.props.parentCallback(event, image);
   };
   componentDidMount() {
     axios
@@ -198,15 +202,15 @@ export default class MediaSidebar extends Component {
                   </div>
                 </Col>
                 <Col md="6" className="text-left mb-2">
-                  <p>
+                  {/* <p>
                     <span>
                       {" "}
                       <input type="checkbox" className="chk-s mr-1"></input>
                     </span>
                     0 files selected
-                  </p>
+                  </p> */}
                 </Col>
-                <Col md="6">
+                {/* <Col md="6">
                   <div className="nt-slt mb-2">
                     <Select
                       className="React nt-slt"
@@ -216,7 +220,7 @@ export default class MediaSidebar extends Component {
                       options={mediaOptions}
                     />
                   </div>
-                </Col>
+                </Col> */}
 
                 <Col md="12">
                   <Row>
@@ -225,7 +229,9 @@ export default class MediaSidebar extends Component {
                         {this.state.getallimg?.map((value) => (
                           <Col md="6" className="mb-2">
                             <NavLink
-                              onClick={() => this.onTrigger(value?._id)}
+                              onClick={() =>
+                                this.onTrigger(value?._id, value?.media_img[0])
+                              }
                               to="#"
                             >
                               <div className="img-bg" key={value?._id}>
@@ -262,13 +268,13 @@ export default class MediaSidebar extends Component {
                                 <div className="bg-ligt">
                                   <div className="text-right">
                                     <span>
-                                      <p className="tag"> 2 post</p>
-                                      <form>
+                                      {/* <p className="tag"> 2 post</p> */}
+                                      {/* <form>
                                         <input
                                           type="checkbox"
                                           className="chk-p"
                                         ></input>
-                                      </form>
+                                      </form> */}
                                     </span>
                                   </div>
                                 </div>

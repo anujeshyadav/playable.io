@@ -227,7 +227,10 @@ const Dashboard = () => {
               <div className="bottom">
                 <h6>Other workspaces</h6>
                 <hr />
-                <Link to="/app/usermanage/usersociallist">
+                {/* this id is statice because no other workspace we have */}
+                <Link
+                  to={`/app/usermanage/usersociallist/63eca19d06c31e6403f218b7`}
+                >
                   <div className="row workddd">
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                       <div className="card main">

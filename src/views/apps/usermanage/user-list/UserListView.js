@@ -238,7 +238,7 @@ class UserListView extends React.Component {
       });
   };
   onGridReady = (params) => {
-    console.log(params);
+    // console.log(params);
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   };

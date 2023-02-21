@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "reactstrap";
 import axiosConfig from "../../../configs/axiosConfig";
+import { ColorRing } from "react-loader-spinner";
 import Select from "react-select";
 import Dropzone from "react-dropzone";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -108,6 +109,8 @@ class ComposeModalGrid extends React.Component {
     futuretime: "",
     selectedOption: null,
     imageuploadedUrl: "",
+    loader: false,
+    imageUrl: "",
 
     options: [
       { value: "facebook", label: "facebook" },
@@ -119,9 +122,10 @@ class ComposeModalGrid extends React.Component {
     ],
   };
 
-  handleCallback = (childData) => {
-    console.log(childData);
+  handleCallback = (childData, image) => {
+    console.log(childData, image);
     this.setState({ imageuploadedUrl: childData });
+    this.setState({ imageUrl: image });
   };
   onSelect(selectedList, selectedItem) {
     console.log(selectedList);
@@ -181,6 +185,7 @@ class ComposeModalGrid extends React.Component {
   };
 
   handleUploadmedia = () => {
+    this.setState({ loader: true });
     console.log(
       "desc",
       this.state.Text,
@@ -215,10 +220,9 @@ class ComposeModalGrid extends React.Component {
     Axios.post(`http://13.127.168.84:3000/user/add_compose`, alldata)
       .then((res) => {
         console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        if (err.response.data.message == "success") {
+        if (res.data.message == "success") {
+          this.setState({ loader: false });
+
           swal("Post Created Sucessfully");
           this.setState({ acceptedfilupload: "" });
           this.setState({ addLabelurl: "" });
@@ -228,11 +232,14 @@ class ComposeModalGrid extends React.Component {
           this.setState({ Addlabeltext: "" });
           this.setState({ selectedOption: "" });
         }
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
   };
   onDrop = (acceptedFiles) => {
     this.setState({ acceptedfilupload: acceptedFiles[0] });
-    console.log(acceptedFiles[0]);
+    // console.log(acceptedFiles[0]);
     if (acceptedFiles.length > 0) {
       this.setState({
         uploadfile: acceptedFiles.map((file) =>
@@ -247,7 +254,8 @@ class ComposeModalGrid extends React.Component {
 
     Axios.post(`http://13.127.168.84:3000/user/upload_media`, data)
       .then((res) => {
-        console.log(res.data.data.media_img[0]);
+        // console.log(res.data.data.media_img[0]);
+        this.setState({ imageUrl: res.data.data.media_img[0] });
         // this.setState({ imageuploadedUrl: res.data.data.media_img[0] });
       })
       .catch((err) => {
@@ -439,6 +447,20 @@ class ComposeModalGrid extends React.Component {
                       </Row>
                     </div>
                   </div>
+                </>
+              ) : null}
+            </Row>
+            <Row>
+              {this.state.imageUrl !== "" ? (
+                <>
+                  <img
+                    className="ml-2"
+                    style={{ borderRadius: "12px" }}
+                    width={45}
+                    height={45}
+                    src={this.state.imageUrl}
+                    alt="image"
+                  />
                 </>
               ) : null}
             </Row>
@@ -793,18 +815,44 @@ class ComposeModalGrid extends React.Component {
                 </span>
               </Col>
               <Col lg="6" className="text-right  mt-3">
-                <Button
-                  color="primary"
-                  size="sm"
-                  onClick={this.handleUploadmedia}
-                  className="mr-1"
-                >
-                  Upload
-                </Button>
-
-                <Button color="primary" size="sm" onClick={this.toggleModal}>
-                  close
-                </Button>
+                {this.state.loader == false ? (
+                  <>
+                    {" "}
+                    <Button
+                      color="primary"
+                      size="sm"
+                      onClick={this.handleUploadmedia}
+                      className="mr-1"
+                    >
+                      Upload
+                    </Button>
+                    <Button
+                      color="primary"
+                      size="sm"
+                      onClick={this.toggleModal}
+                    >
+                      close
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <ColorRing
+                      visible={this.state.loader}
+                      height="80"
+                      width="80"
+                      ariaLabel="blocks-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="blocks-wrapper"
+                      colors={[
+                        "#4fa94d",
+                        "#4fa94d",
+                        "#4fa94d",
+                        "#4fa94d",
+                        "#4fa94d",
+                      ]}
+                    />
+                  </>
+                )}
               </Col>{" "}
             </Row>
           </div>

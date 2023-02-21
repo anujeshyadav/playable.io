@@ -13,7 +13,7 @@ import { history } from "../history";
 function Workspace() {
   const [selectedTimezone, setSelectedTimezone] = useState({});
   const [workspace, setWorkspace] = useState("");
-  // console.log(selectedTimezone);
+
   const handlelogin = (e) => {
     e.preventDefault();
     console.log(workspace, selectedTimezone?.label);
@@ -27,19 +27,14 @@ function Workspace() {
           console.log(res.data);
           if (res.data.message == "success") {
             history.push(`/workspaceone/${res.data.data._id}`);
-
-            // this.props.history.push(`/workspaceone/${res.data.data._id}`);
           }
         })
         .catch((err) => {
-          console.log(err.response);
           if (err.response.data.message == "already exists") {
             swal("Workspace already exist with This Name");
           }
         });
     } else swal("Enter Details First");
-
-    // to="/workspaceone"
   };
   return (
     <div>

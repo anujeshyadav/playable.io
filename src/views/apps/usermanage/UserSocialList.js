@@ -213,7 +213,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("7");
                               }}
                             >
-                              <FaTiktok size={25} color="#FE2C55" />
+                              <FaTiktok size={22} color="black" />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -245,7 +245,7 @@ class UserSocialList extends React.Component {
                           <FcGallery size={18} className="mr-i" color="blue" />
                           Media
                         </Button> */}
-                        <MediaSidebar /> <span>Media</span>
+                        {/* <MediaSidebar /> <span>Media</span> */}
                       </div>
                     </Col>
 

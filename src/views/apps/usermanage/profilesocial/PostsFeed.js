@@ -47,7 +47,7 @@ class PostsFeed extends React.Component {
     axiosConfig
       .get(`/user/get_compose`)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.setState({ post: res.data.data });
       })
       .catch((err) => {
@@ -61,7 +61,7 @@ class PostsFeed extends React.Component {
       .then((res) => {
         console.log(res.data);
         if (res.data.message == "deleted") {
-          this.handlecomment();
+          this.handlecomment(id);
           swal("Comment Deleted");
         }
       })
@@ -71,6 +71,7 @@ class PostsFeed extends React.Component {
   };
 
   handlePost = (id) => {
+    console.log(id);
     axiosConfig
       .post(`/user/add_comment`, {
         post: id,
@@ -80,8 +81,9 @@ class PostsFeed extends React.Component {
       .then((res) => {
         console.log(res.data.message == "success");
         if (res.data.message == "success") {
+          this.handlecomment(id);
+
           swal("Post Submitted Succesffuly");
-          this.handlecomment();
         }
 
         this.setState({ Posttext: "" });

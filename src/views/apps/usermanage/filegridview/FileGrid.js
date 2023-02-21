@@ -62,10 +62,10 @@ class FileGrid extends React.Component {
                                 <Link>
                                   <Clock size={25} className="gt-1" />
                                 </Link>
-                                <Link>
+                                {/* <Link>
                                   <BiComment size={25} className="gt-1" />
                                   <span className="op-1">5</span>
-                                </Link>
+                                </Link> */}
                               </div>
                             </div>
                           </Link>

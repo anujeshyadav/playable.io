@@ -196,6 +196,27 @@ function Workspacetwo(args) {
                                       cssClass="my-facebook-button-class favebook"
                                       callback={responseFacebook}
                                     />
+                                    {/* <FacebookLogin
+                                      useRedirect
+                                      loginOptions={{
+                                        return_scopes: true,
+                                      }}
+                                      scope="public_profile, email"
+                                      fields='name,email,picture'
+                                      appId="1088597931155576"
+                                      onSuccess={(response) => {
+                                        console.log("Login Success!", response);
+                                      }}
+                                      onFail={(error) => {
+                                        console.log("Login Failed!", error);
+                                      }}
+                                      onProfileSuccess={(response) => {
+                                        console.log(
+                                          "Get Profile Success!",
+                                          response
+                                        );
+                                      }}
+                                    /> */}
                                   </span>
                                 </div>
 
