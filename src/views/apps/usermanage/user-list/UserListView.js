@@ -36,6 +36,7 @@ import classnames from "classnames";
 import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
+import swal from "sweetalert";
 class UserListView extends React.Component {
   state = {
     rowData: null,
@@ -57,17 +58,42 @@ class UserListView extends React.Component {
       {
         headerName: "ID",
         field: "id",
-        width: 150,
+        width: 100,
         filter: true,
         checkboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         headerCheckboxSelection: true,
       },
       {
+        headerName: "Actions",
+        field: "transactions",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="actions cursor-pointer">
+              {/* <Edit
+                className="mr-50"
+                size={20}
+                // onClick={() => history.push("/app/user/edit")}
+              /> */}
+              <Trash2
+                color="red"
+                size={20}
+                onClick={() => this.handleDelete(params?.data?._id)}
+                // onClick={() => {
+                //   let selectedData = this.gridApi.getSelectedRows();
+                //   this.gridApi.updateRowData({ remove: selectedData });
+                // }}
+              />
+            </div>
+          );
+        },
+      },
+      {
         headerName: "Image",
         field: "media_img",
         filter: true,
-        width: 250,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div
@@ -176,12 +202,7 @@ class UserListView extends React.Component {
     ],
   };
 
-  async componentDidMount() {
-    await axios.get("api/users/list").then((response) => {
-      let rowData = response.data;
-      this.setState({ rowData });
-    });
-
+  getAllCompose = () => {
     axiosConfig
       .get(`/user/get_compose`)
       .then((res) => {
@@ -191,9 +212,33 @@ class UserListView extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  };
+  async componentDidMount() {
+    await axios.get("api/users/list").then((response) => {
+      let rowData = response.data;
+      this.setState({ rowData });
+    });
+    this.getAllCompose();
   }
-
+  handleDelete = (id) => {
+    console.log(id);
+    // api need to change with post delete api
+    axiosConfig
+      .get(`http://13.127.168.84:3000/user/del_comment/${id}`) // his api need to change with delete post
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message == "deleted") {
+          swal("Comment Deleted");
+          // window.location.reload(false);
+          this.getAllCompose();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   onGridReady = (params) => {
+    console.log(params);
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   };
@@ -481,12 +526,17 @@ class UserListView extends React.Component {
                         <DropdownMenu right>
                           <DropdownItem tag="a">
                             <Trash2 size={15} />
-                            <span className="align-middle ml-50">Delete</span>
+                            <span
+                              // onClick={this.handleDelete}
+                              className="align-middle ml-50"
+                            >
+                              Delete
+                            </span>
                           </DropdownItem>
-                          <DropdownItem tag="a">
+                          {/* <DropdownItem tag="a">
                             <Clipboard size={15} />
                             <span className="align-middle ml-50">Archive</span>
-                          </DropdownItem>
+                          </DropdownItem> */}
                           <DropdownItem tag="a">
                             <Printer size={15} />
                             <span className="align-middle ml-50">Print</span>

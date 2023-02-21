@@ -33,7 +33,6 @@ class PostsFeed extends React.Component {
 
   handlecomment(id) {
     localStorage.setItem("commentId", id);
-    console.log(id);
     axiosConfig
       .get(`/user/comment_by_post/${id}`)
       .then((res) => {
@@ -55,6 +54,21 @@ class PostsFeed extends React.Component {
         console.log(err);
       });
   }
+  handleDelete = (id) => {
+    console.log(id);
+    axiosConfig
+      .get(`http://13.127.168.84:3000/user/del_comment/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message == "deleted") {
+          this.handlecomment();
+          swal("Comment Deleted");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   handlePost = (id) => {
     axiosConfig
@@ -67,8 +81,9 @@ class PostsFeed extends React.Component {
         console.log(res.data.message == "success");
         if (res.data.message == "success") {
           swal("Post Submitted Succesffuly");
+          this.handlecomment();
         }
-        this.handlecomment();
+
         this.setState({ Posttext: "" });
       })
       .catch((err) => {
@@ -89,8 +104,8 @@ class PostsFeed extends React.Component {
                       <img
                         src={value?.media_img[0]}
                         alt="avtar img holder"
-                        height="45"
-                        width="45"
+                        height="50"
+                        width="50"
                       />
                     </div>
                     <div className="user-page-info">
@@ -98,12 +113,12 @@ class PostsFeed extends React.Component {
                       <p className="font-small-2">
                         <Moment format="DD/MM/YYYY">{value?.createdAt}</Moment>
                       </p>
-                      <span>
+                      <h6 className="urlvalue">
                         <a href={value?.url}> {value?.url}</a>
-                      </span>
+                      </h6>
                     </div>
                   </div>
-                  <p>{value?.desc}</p>
+                  <p className="mb-1">{value?.desc}</p>
                   <img
                     src={value?.media_img[0]}
                     alt="postImg1"
@@ -198,7 +213,7 @@ class PostsFeed extends React.Component {
                     </div>
                     <a
                       onClick={() => this.handlecomment(value?._id)}
-                      className="ml-auto"
+                      className="ml-auto commentsclick"
                     >
                       Comments
                     </a>
@@ -239,6 +254,13 @@ class PostsFeed extends React.Component {
                                   </Moment>
                                 </span>
                               </div>
+
+                              <span
+                                style={{ color: "blue" }}
+                                onClick={() => this.handleDelete(data?._id)}
+                              >
+                                Delete
+                              </span>
                             </div>
                           </div>
                         </>
