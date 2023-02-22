@@ -54,9 +54,9 @@ import MediaSidebar from "./sidemodal/MediaSidebar";
 
 const colourOptions = [
   { value: "Feed", label: "Feed" },
-  { value: "Calender", label: "Calender" },
   { value: "Grid", label: "Grid" },
   { value: "List", label: "List" },
+  { value: "Calender", label: "Calender" },
 ];
 const mediaOptions = [
   { value: "all Media", label: "All Media" },
@@ -67,7 +67,7 @@ const mediaOptions = [
 class UserSocialList extends React.Component {
   state = {
     active: "1",
-    selectedOption: null,
+    selectedOptions: "Feed",
     // modal: false,
   };
 
@@ -77,17 +77,7 @@ class UserSocialList extends React.Component {
     }
   };
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () => {
-      if (this.state.selectedOption.value === "Feed") {
-        this.toggle("4");
-      } else if (this.state.selectedOption.value === "Calender") {
-        this.toggle("1");
-      } else if (this.state.selectedOption.value === "List") {
-        this.toggle("2");
-      } else if (this.state.selectedOption.value === "Grid") {
-        this.toggle("3");
-      }
-    });
+    this.setState({ selectedOptions: selectedOption.value });
   };
   toggleModal = () => {
     this.setState((prevState) => ({
@@ -186,10 +176,7 @@ class UserSocialList extends React.Component {
                                 this.toggle("5");
                               }}
                             >
-                              <FcGoogle
-                                size={25}
-                                // color="#EA4335"
-                              />
+                              <FcGoogle size={25} />
                             </NavLink>
                           </NavItem>
                           <NavItem className="text-center">
@@ -252,7 +239,19 @@ class UserSocialList extends React.Component {
                     <Col md="12" className="mt-10">
                       <TabContent activeTab={this.state.active}>
                         <TabPane tabId="1">
-                          <CalendarSocial />
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
+
                           {/* {this.state.active == null &&
                           this.state.active == "" ? null : this.state.active ==
                             "1" ? (
@@ -274,13 +273,88 @@ class UserSocialList extends React.Component {
                           )} */}
                         </TabPane>
                         <TabPane tabId="2">
-                          <UserListView />
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
                         </TabPane>
                         <TabPane tabId="3">
-                          <FileGrid />
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
                         </TabPane>
                         <TabPane tabId="4">
-                          <ProfileFeed />
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
+                        </TabPane>
+                        <TabPane tabId="5">
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
+                        </TabPane>
+                        <TabPane tabId="6">
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
+                        </TabPane>
+                        <TabPane tabId="7">
+                          {this.state.selectedOptions === "Feed" && (
+                            <ProfileFeed />
+                          )}
+                          {this.state.selectedOptions === "Calender" && (
+                            <CalendarSocial />
+                          )}
+                          {this.state.selectedOptions === "Grid" && (
+                            <UserListView />
+                          )}
+                          {this.state.selectedOptions === "List" && (
+                            <FileGrid />
+                          )}
                         </TabPane>
                       </TabContent>
                     </Col>
