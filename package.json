@@ -6,6 +6,7 @@
     "@amraneze/react-instagram-login": "^3.0.3",
     "@auth0/auth0-spa-js": "^1.6.3",
     "@greatsumini/react-facebook-login": "^3.3.2",
+    "@react-oauth/google": "^0.7.1",
     "ag-grid-community": "^22.1.1",
     "ag-grid-react": "^22.1.1",
     "apexcharts": "^3.15.3",

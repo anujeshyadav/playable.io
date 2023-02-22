@@ -7,6 +7,7 @@ import Spinner from "./components/@vuexy/spinner/Loading-spinner";
 import knowledgeBaseCategory from "./views/pages/knowledge-base/Category";
 import knowledgeBaseQuestion from "./views/pages/knowledge-base/Questions";
 import { ContextLayout } from "./utility/context/Layout";
+import facebok from "./views/apps/usermanage/user-list/facebok";
 // import Workspacetwo from "./pages/Workspacetwo";
 // import Workflowthird from "./pages/Workflowthird";
 
@@ -329,6 +330,7 @@ class AppRouter extends React.Component {
             path="/app/usermanage/usersociallist/:id"
             component={UserSocialList}
           />
+          <AppRoute path="/facebook" component={facebok} />
           <AppRoute path="/app/usermanage/fileGrid" component={FileGrid} />
           <AppRoute
             path="/app/usermanage/userListView"

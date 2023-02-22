@@ -224,6 +224,17 @@ const Dashboard = () => {
             </section>
 
             <div className="bottomspace">
+              <div>
+                <div
+                  class="fb-login-button"
+                  data-width="480px"
+                  data-size=""
+                  data-button-type=""
+                  data-layout=""
+                  data-auto-logout-link="false"
+                  data-use-continue-as="false"
+                ></div>
+              </div>
               <div className="bottom">
                 <h6>Other workspaces</h6>
                 <hr />

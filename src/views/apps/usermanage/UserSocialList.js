@@ -3,6 +3,9 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/usersocial.scss";
 import { FacebookEmbed } from "react-social-media-embed";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import axiosConfig from "../../../configs/axiosConfig";
+import { Oval } from "react-loader-spinner";
+
 import {
   Button,
   Card,
@@ -15,6 +18,15 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
+import { BiBarChart } from "react-icons/bi";
+import { BsPeople } from "react-icons/bs";
+import { MdSpaceDashboard } from "react-icons/md";
+import { AiOutlineSetting, AiFillDelete, AiOutlineDown } from "react-icons/ai";
+import { FcApproval } from "react-icons/fc";
+
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
+
+import Dropdown from "react-bootstrap/Dropdown";
 import classnames from "classnames";
 import {
   Code,
@@ -22,14 +34,13 @@ import {
   Eye,
   Facebook,
   Instagram,
-  Link,
   Linkedin,
   PlusSquare,
   Twitter,
   Youtube,
 } from "react-feather";
 import { BsGoogle } from "react-icons/bs";
-import { FaTiktok } from "react-icons/fa";
+import { FaHourglassEnd, FaTiktok } from "react-icons/fa";
 import Select from "react-select";
 import Gallery from "../../../extensions/swiper/Gallery";
 import { FcGallery } from "react-icons/fc";
@@ -50,6 +61,7 @@ import ComposeModalGrid from "./ComposeModalGrid";
 import DropZone from "./DropZone";
 import SideEventSidebar from "./sidemodal/SideEventSidebar";
 import MediaSidebar from "./sidemodal/MediaSidebar";
+import { Link } from "react-router-dom";
 // import UserListView from "./user-list/UserListView";
 
 const colourOptions = [
@@ -68,6 +80,9 @@ class UserSocialList extends React.Component {
   state = {
     active: "1",
     selectedOptions: "Feed",
+    workspace: [],
+    workspacename: "",
+    loader: false,
     // modal: false,
   };
 
@@ -84,16 +99,75 @@ class UserSocialList extends React.Component {
       modal: !prevState.modal,
     }));
   };
+  componentDidUpdate(prevProps, prevState) {
+    let { id } = this.props.match.params;
+
+    axiosConfig
+      .get(`user/viewone_workspace/${id}`)
+      .then((resp) => {
+        if (resp.data.data.workspacename !== this.state.workspacename) {
+          this.setState({ workspacename: resp?.data?.data?.workspacename });
+        }
+        //  this.setState({ loader: false });
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+
+    // console.log(id);
+
+    // this.setState({ loader: true });
+  }
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    console.log(id);
+
+    axiosConfig
+      .get(`/user/workSpace_list`)
+      .then((resp) => {
+        console.log(resp.data.data);
+        this.setState({ workspace: resp?.data?.data });
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+    axiosConfig
+      .get(`user/viewone_workspace/${id}`)
+      .then((resp) => {
+        this.setState({ workspacename: resp?.data?.data?.workspacename });
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   }
   render() {
     return (
       <Row className="app-user-list">
         <Col sm="12">
           <Card>
+            <Row className="d-flex justify-content-center mt-2">
+              {/* {this.state.loader == false ? (
+                <>
+                  <p>WorkSpace Name:- {this.state.workspacename}</p>
+                </>
+              ) : (
+                <>
+                  <Oval
+                    height={80}
+                    width={80}
+                    color="#4fa94d"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={this.state.loader}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#4fa94d"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                  />
+                </>
+              )} */}
+              <h5>WorkSpace Name:- {this.state.workspacename}</h5>
+            </Row>
             <CardBody>
               <Row>
                 <Col md="12">
@@ -108,7 +182,7 @@ class UserSocialList extends React.Component {
                         options={colourOptions}
                       />
                     </Col>
-                    <Col md="6">
+                    <Col md="5">
                       <div className="views">
                         <Nav tabs className="justify-content-center">
                           <NavItem className="text-center">
@@ -218,143 +292,264 @@ class UserSocialList extends React.Component {
                         </Nav>
                       </div>
                     </Col>
-                    <Col md="3">
+                    <Col lg="2">
+                      <span className="togledropdownnew">
+                        <div className="dt12 dtaa">
+                          <Dropdown className="dropdownbtn newbtndropdown">
+                            <Dropdown.Toggle
+                              size="sm"
+                              // variant="success"
+                              className="combtn dropdown-basic newbtn"
+                            >
+                              Workspaces <AiOutlineDown size="14" />
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu className="dropmenitms">
+                              {this.state.workspace !== "" ? (
+                                <>
+                                  {this.state.workspace?.map((value) => (
+                                    <Dropdown.Item
+                                      key={value?._id}
+                                      className="dropmenuitemss"
+                                      href="#"
+                                    >
+                                      <Link
+                                        className="workspacenametext"
+                                        to={`/app/usermanage/usersociallist/${value?._id}`}
+                                      >
+                                        <MdSpaceDashboard
+                                          size={18}
+                                          className="mr-1"
+                                          color="#3e2dea"
+                                        />
+
+                                        <span className="workspacetext">
+                                          {value?.workspacename}
+                                        </span>
+                                      </Link>
+                                    </Dropdown.Item>
+                                  ))}
+                                </>
+                              ) : null}
+
+                              {/* <Dropdown.Item
+                                className="dropmenuitemss"
+                                href="#/action-3"
+                              >
+                                <BiBarChart size={20} /> Manage Label
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                className="dropmenuitemss"
+                                href="#/action-3"
+                              >
+                                <BsPeople size={20} />
+                                Manage People
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                className="dropmenuitemss"
+                                href="#/action-3"
+                              >
+                                <AiOutlineSetting size={20} />
+                                Setting
+                              </Dropdown.Item>
+                              <hr />
+                              <Dropdown.Item
+                                className="dropmenuitemss"
+                                href="#/action-3"
+                              >
+                                <FcApproval size={20} />
+                                Approval setting
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                className="dropmenuitemss"
+                                href="#/action-3"
+                              >
+                                <AiFillDelete
+                                  // key={value._id}
+                                  fill="red"
+                                  className="redfah"
+                                  size={20}
+                                />
+                                Delete
+                              </Dropdown.Item> */}
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </div>
+                      </span>
+                    </Col>
+                    <Col md="2">
                       <ComposeModalGrid />
 
                       <div className="mx-1 mr-1 sideevent">
                         <SideEventSidebar />
                       </div>
-                      <div className=" mx-1">
-                        {/* <Button
+                      {/* <div className=" mx-1"> */}
+                      {/* <Button
                           // onClick={this.toggleModal}
                           className="ft-filter"
                         >
                           <FcGallery size={18} className="mr-i" color="blue" />
                           Media
                         </Button> */}
-                        {/* <MediaSidebar /> <span>Media</span> */}
-                      </div>
+                      {/* <MediaSidebar /> <span>Media</span> */}
+                      {/* </div> */}
                     </Col>
 
                     <Col md="12" className="mt-10">
                       <TabContent activeTab={this.state.active}>
                         <TabPane tabId="1">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
-
-                          {/* {this.state.active == null &&
-                          this.state.active == "" ? null : this.state.active ==
-                            "1" ? (
+                          {this.state.selectedOptions === "Feed" ? (
                             <>
                               <ProfileFeed />
                             </>
-                          ) : this.state.active == "2" ? (
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
                             <>
                               <CalendarSocial />
                             </>
-                          ) : this.state.active == "3" ? (
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
                             <>
                               <FileGrid />
-
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
                               <UserListView />
                             </>
-                          ) : (
-                            <></>
-                          )} */}
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="2">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="3">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="4">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="5">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="6">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                         <TabPane tabId="7">
-                          {this.state.selectedOptions === "Feed" && (
-                            <ProfileFeed />
-                          )}
-                          {this.state.selectedOptions === "Calender" && (
-                            <CalendarSocial />
-                          )}
-                          {this.state.selectedOptions === "Grid" && (
-                            <UserListView />
-                          )}
-                          {this.state.selectedOptions === "List" && (
-                            <FileGrid />
-                          )}
+                          {this.state.selectedOptions === "Feed" ? (
+                            <>
+                              <ProfileFeed />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Calender" ? (
+                            <>
+                              <CalendarSocial />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "Grid" ? (
+                            <>
+                              <FileGrid />
+                            </>
+                          ) : null}
+                          {this.state.selectedOptions === "List" ? (
+                            <>
+                              <UserListView />
+                            </>
+                          ) : null}
                         </TabPane>
                       </TabContent>
                     </Col>
@@ -364,264 +559,6 @@ class UserSocialList extends React.Component {
             </CardBody>
           </Card>
         </Col>
-        {/* <Row></Row> */}
-        {/* <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggleModal}
-          className=" modal-dialog-centered modal-lg"
-        >
-          <ModalHeader toggle={this.toggleModal}>Upload Media</ModalHeader>
-          <ModalBody className="">
-            <MediaSidebar />
-            <DropZone className="" />
-            <div className="main-text">
-              <Row>
-                <Col md="6" className="text-left mb-2">
-                  <p>
-                    <span>
-                      {" "}
-                      <input type="checkbox" className="chk-s mr-1"></input>
-                    </span>
-                    0 files selected
-                  </p>
-                </Col>
-                <Col md="6">
-                  <div className="nt-slt mb-2">
-                    <Select
-                      className="React nt-slt"
-                      classNamePrefix="select"
-                      defaultValue={mediaOptions[0]}
-                      name="color"
-                      options={mediaOptions}
-                    />
-                  </div>
-                </Col>
-                <Col md="12">
-                  <Row>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                    <Col md="3" className="mb-2">
-                      <NavLink to="/">
-                        <div className="img-bg">
-                          <img src={imgdemo} alt="" width="100%" />
-                          <div className="bg-ligt">
-                            <div className="text-right">
-                              <span>
-                                <p className="tag"> 2 post</p>
-                                <form>
-                                  <input
-                                    type="checkbox"
-                                    className="chk-p"
-                                  ></input>
-                                </form>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </NavLink>
-                      <small className="file-text">fb Content</small>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>
-              Submit
-            </Button>{" "}
-            <Button color="primary" onClick={this.toggleModal}>
-              close
-            </Button>{" "}
-          </ModalFooter>
-        </Modal> */}
       </Row>
     );
   }

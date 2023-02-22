@@ -124,12 +124,12 @@ class UserListView extends React.Component {
         filter: true,
         width: 200,
       },
-      {
-        headerName: "Label",
-        field: "label",
-        filter: true,
-        width: 200,
-      },
+      // {
+      //   headerName: "Label",
+      //   field: "label",
+      //   filter: true,
+      //   width: 200,
+      // },
       {
         headerName: "Role",
         field: "role",

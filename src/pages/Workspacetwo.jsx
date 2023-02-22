@@ -55,6 +55,7 @@ function Workspacetwo(args) {
 
   const [first, setfirst] = useState("");
   const [allData, setAllData] = useState("");
+  const [userData, setUserData] = useState(null);
   const hiddenFileInput = React.useRef(null);
 
   useEffect(() => {
@@ -70,6 +71,13 @@ function Workspacetwo(args) {
         console.log("Error", err);
       });
   }, []);
+
+  const responseMessage = (response) => {
+    console.log(response);
+  };
+  const errorMessage = (error) => {
+    console.log(error);
+  };
 
   const handleClick = (event) => {
     console.log(hiddenFileInput);
@@ -97,7 +105,19 @@ function Workspacetwo(args) {
   const authHandler = (err, data) => {
     console.log(err, data);
   };
-
+  const handleTwitterLogin = () => {
+    window.open("/auth/twitter", "_self");
+  };
+  const handleFetchUserData = () => {
+    axios
+      .get("/auth/twitter/user")
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const responseGoogle = (response) => {
     console.log(response);
   };
@@ -196,6 +216,7 @@ function Workspacetwo(args) {
                                       cssClass="my-facebook-button-class favebook"
                                       callback={responseFacebook}
                                     />
+
                                     {/* <FacebookLogin
                                       useRedirect
                                       loginOptions={{
@@ -247,6 +268,15 @@ function Workspacetwo(args) {
                                         cssClass="my-facebook-button-class favebook sosst"
                                         callback={responseFacebook}
                                       />
+                                      {/* <div
+                                        class="fb-login-button"
+                                        data-width=""
+                                        data-size=""
+                                        data-button-type=""
+                                        data-layout=""
+                                        data-auto-logout-link="false"
+                                        data-use-continue-as="false"
+                                      ></div> */}
                                     </span>
                                   </div>
                                 </div>
@@ -376,6 +406,22 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin">
+                                      <div>
+                                        <button onClick={handleTwitterLogin}>
+                                          Login with Twitter
+                                        </button>
+                                        {userData && (
+                                          <div>
+                                            <h2>{userData.name}</h2>
+                                            <p>{userData.location}</p>
+                                            <button
+                                              onClick={handleFetchUserData}
+                                            >
+                                              Fetch User Data
+                                            </button>
+                                          </div>
+                                        )}
+                                      </div>
                                       {/* <TwitterLogin
                                         authCallback={authHandler}
                                         consumerKey="OJW2dPMR1yUBuosKxMYfwi4pc"
@@ -867,13 +913,18 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname googleloginheight">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin instalogin googleloginheight">
-                                      <GoogleLogin
+                                      {/* <GoogleLogin
                                         className="googlelogin"
-                                        clientId="921296865820-drbaqfoqkftuhaicl6r38pl1lneclgtb.apps.googleusercontent.com"
+                                        clientId="109381462500-8lja66d0g6srr34sgng051hjnnbmb9cv.apps.googleusercontent.com"
                                         buttonText="Google Login"
                                         onSuccess={responseGoogle}
                                         onFailure={responseGoogle}
-                                        scope="https://www.googleapis.com/auth/cloud-platform"
+                                        redirectUri="http://localhost:3000"
+                                        scope="profile email"
+                                      /> */}
+                                      <GoogleLogin
+                                        onSuccess={responseMessage}
+                                        onError={errorMessage}
                                       />
                                     </span>
                                     {/* </a> */}
@@ -902,13 +953,18 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname googlename googleloginheight">
                                     {/* <a href="http://13.127.168.84:3000/login/fb"> */}
                                     <span className="facebooklogin fblogiigroup">
-                                      <GoogleLogin
+                                      {/* <GoogleLogin
                                         className="googlelogin"
-                                        clientId="921296865820-drbaqfoqkftuhaicl6r38pl1lneclgtb.apps.googleusercontent.com"
+                                        clientId="109381462500-8lja66d0g6srr34sgng051hjnnbmb9cv.apps.googleusercontent.com"
                                         buttonText="Google Login"
                                         onSuccess={responseGoogle}
                                         onFailure={responseGoogle}
-                                        // cookiePolicy={"single_host_origin"}
+                                        redirectUri="http://localhost:3000"
+                                        scope="profile email"
+                                      /> */}
+                                      <GoogleLogin
+                                        onSuccess={responseMessage}
+                                        onError={errorMessage}
                                       />
                                     </span>
                                     {/* </a> */}

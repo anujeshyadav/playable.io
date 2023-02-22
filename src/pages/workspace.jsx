@@ -38,6 +38,15 @@ function Workspace() {
   };
   return (
     <div>
+      <div
+        class="fb-login-button"
+        data-width="860"
+        data-size=""
+        data-button-type=""
+        data-layout=""
+        data-auto-logout-link="true"
+        data-use-continue-as="true"
+      ></div>
       <div className="row cancelbtn">
         <span>
           <Link to="/dashboard">
