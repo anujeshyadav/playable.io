@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Col, Label, Row, Card } from "reactstrap";
+// import { signInWithGoogle } from "../../src/Firebase.js";
 import {
   AiOutlineArrowRight,
   AiFillPlusSquare,
@@ -8,7 +9,7 @@ import {
   AiOutlineAppstoreAdd,
   AiOutlineCamera,
 } from "react-icons/ai";
-// import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+
 import FacebookLogin from "react-facebook-login";
 
 import { CiFlag1 } from "react-icons/ci";
@@ -34,9 +35,6 @@ import LinkedInPage from "./LinkedInPage";
 // import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 function Workspacetwo(args) {
-  const componentClicked = (e) => {
-    console.log(e);
-  };
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [modalgl, setModalgl] = useState(false);
@@ -59,7 +57,7 @@ function Workspacetwo(args) {
   const hiddenFileInput = React.useRef(null);
 
   useEffect(() => {
-    console.log("ids", args.match.params.id);
+    // console.log("ids", args.match.params.id);
     const id = args.match.params.id;
     axios
       .get(`http://13.127.168.84:3000/user/viewone_workspace/${id}`)
@@ -78,15 +76,9 @@ function Workspacetwo(args) {
   const errorMessage = (error) => {
     console.log(error);
   };
-
-  const handleClick = (event) => {
-    console.log(hiddenFileInput);
-    hiddenFileInput.current.click();
+  const componentClicked = (e) => {
+    console.log(e);
   };
-  const onSuccess = (response) => {
-    console.log(response);
-  };
-
   const onFailed = (error) => {
     console.log(error);
   };
@@ -197,10 +189,7 @@ function Workspacetwo(args) {
                             </Card>
                           </Col> */}
                           <Col lg="4">
-                            <Card
-                              // onClick={HandleFaceLogin}
-                              className="cardmainworktwitor"
-                            >
+                            <Card className="cardmainworktwitor">
                               <div className="maincont">
                                 <div className="Twittorcard">
                                   <CiFlag1 className="bsfacebook" size={35} />
@@ -208,36 +197,16 @@ function Workspacetwo(args) {
                                 <div className="facebookname modalfacebookname">
                                   <span className="facebooklogin">
                                     <FacebookLogin
-                                      returnScopes="true"
-                                      appId="2149160251958615"
+                                      // returnScopes="true"
+                                      // autoLoad={true}
+                                      // reauthenticate={true}
+                                      appId="569258551927541"
                                       fields="name,email,picture"
-                                      scope="public_profile,user_friends,user_actions.books"
-                                      onClick={componentClicked}
+                                      // scope="public_profile,user_friends,user_actions.books"
+                                      onClick={() => componentClicked}
                                       cssClass="my-facebook-button-class favebook"
-                                      callback={responseFacebook}
+                                      callback={() => responseFacebook}
                                     />
-
-                                    {/* <FacebookLogin
-                                      useRedirect
-                                      loginOptions={{
-                                        return_scopes: true,
-                                      }}
-                                      scope="public_profile, email"
-                                      fields='name,email,picture'
-                                      appId="1088597931155576"
-                                      onSuccess={(response) => {
-                                        console.log("Login Success!", response);
-                                      }}
-                                      onFail={(error) => {
-                                        console.log("Login Failed!", error);
-                                      }}
-                                      onProfileSuccess={(response) => {
-                                        console.log(
-                                          "Get Profile Success!",
-                                          response
-                                        );
-                                      }}
-                                    /> */}
                                   </span>
                                 </div>
 
@@ -260,23 +229,15 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname">
                                     <span className="facebooklogin fblogiigroup">
                                       <FacebookLogin
-                                        returnScopes="true"
-                                        appId="2149160251958615"
+                                        // returnScopes="true"
+                                        // autoLoad={true}
+                                        // reauthenticate={true}
+                                        appId="569258551927541"
                                         fields="name,email,picture"
-                                        scope="public_profile,user_friends,user_actions.books"
-                                        onClick={componentClicked}
-                                        cssClass="my-facebook-button-class favebook sosst"
-                                        callback={responseFacebook}
+                                        onClick={() => componentClicked}
+                                        cssClass="my-facebook-button-class favebook"
+                                        callback={() => responseFacebook}
                                       />
-                                      {/* <div
-                                        class="fb-login-button"
-                                        data-width=""
-                                        data-size=""
-                                        data-button-type=""
-                                        data-layout=""
-                                        data-auto-logout-link="false"
-                                        data-use-continue-as="false"
-                                      ></div> */}
                                     </span>
                                   </div>
                                 </div>
@@ -1090,13 +1051,15 @@ function Workspacetwo(args) {
                                 <div className="facebookname modalfacebookname">
                                   <span className="facebooklogin">
                                     <FacebookLogin
-                                      returnScopes="true"
-                                      appId="2149160251958615"
+                                      // returnScopes="true"
+                                      // autoLoad={true}
+                                      // reauthenticate={true}
+                                      appId="569258551927541"
                                       fields="name,email,picture"
-                                      scope="public_profile,user_friends,user_actions.books"
-                                      onClick={componentClicked}
+                                      // scope="public_profile,user_friends,user_actions.books"
+                                      onClick={() => componentClicked}
                                       cssClass="my-facebook-button-class favebook"
-                                      callback={responseFacebook}
+                                      callback={() => responseFacebook}
                                     />
                                   </span>
                                 </div>

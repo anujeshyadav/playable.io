@@ -44,6 +44,16 @@ const Dashboard = () => {
 
   const [datadelete, setDatadelete] = useState(false);
   const [data, setData] = useState([]);
+
+  const login = (response) => {
+    console.log(response);
+    if (response.status === "connected") {
+      // Logged into your webpage and Facebook.
+    } else {
+      // The person is not logged into your webpage or we are unable to tell.
+    }
+  };
+
   useEffect(() => {
     axios
       .get("http://13.127.168.84:3000/user/workSpace_list")
@@ -226,6 +236,7 @@ const Dashboard = () => {
             <div className="bottomspace">
               <div>
                 <div
+                  onclick={login}
                   class="fb-login-button"
                   data-width="480px"
                   data-size=""
