@@ -116,7 +116,10 @@ class PostsFeed extends React.Component {
                         <Moment format="DD/MM/YYYY">{value?.createdAt}</Moment>
                       </p>
                       <h6 className="urlvalue">
-                        <a href={value?.url}> {value?.url}</a>
+                        <a target="_blank" href={value?.url}>
+                          {" "}
+                          {value?.url}
+                        </a>
                       </h6>
                     </div>
                   </div>

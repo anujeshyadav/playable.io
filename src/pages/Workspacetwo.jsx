@@ -32,6 +32,7 @@ import axios from "axios";
 import TwitterLogin from "react-twitter-login";
 
 import LinkedInPage from "./LinkedInPage";
+import FacebookLoginComponent from "./FacebookLoginComponent";
 // import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 function Workspacetwo(args) {
@@ -197,16 +198,21 @@ function Workspacetwo(args) {
                                 <div className="facebookname modalfacebookname">
                                   <span className="facebooklogin">
                                     <FacebookLogin
-                                      // returnScopes="true"
-                                      // autoLoad={true}
-                                      // reauthenticate={true}
-                                      appId="569258551927541"
+                                      returnScopes="true"
+                                      reauthenticate={true}
+                                      appId="5897811026940152"
+                                      autoLoad={false}
                                       fields="name,email,picture"
-                                      // scope="public_profile,user_friends,user_actions.books"
-                                      onClick={() => componentClicked}
-                                      cssClass="my-facebook-button-class favebook"
-                                      callback={() => responseFacebook}
+                                      scope="public_profile,email,user_friends"
+                                      callback={responseFacebook}
+                                      icon="fa-facebook"
+                                      // fields="name,email,picture"
+                                      // scope="public_profile,user_friends,,email,user_actions.books"
+                                      // onClick={() => componentClicked}
+                                      // cssClass="my-facebook-button-class favebook"
+                                      // callback={() => responseFacebook}
                                     />
+                                    {/* <FacebookLoginComponent /> */}
                                   </span>
                                 </div>
 
@@ -229,15 +235,16 @@ function Workspacetwo(args) {
                                   <div className="facebookname modalfacebookname">
                                     <span className="facebooklogin fblogiigroup">
                                       <FacebookLogin
-                                        // returnScopes="true"
-                                        // autoLoad={true}
-                                        // reauthenticate={true}
-                                        appId="569258551927541"
+                                        returnScopes="true"
+                                        reauthenticate={true}
+                                        appId="5897811026940152"
                                         fields="name,email,picture"
+                                        scope="public_profile,user_friends,,email,user_actions.books"
                                         onClick={() => componentClicked}
                                         cssClass="my-facebook-button-class favebook"
                                         callback={() => responseFacebook}
                                       />
+                                      {/* <FacebookLoginComponent /> */}
                                     </span>
                                   </div>
                                 </div>
@@ -1050,17 +1057,17 @@ function Workspacetwo(args) {
                                 </div>
                                 <div className="facebookname modalfacebookname">
                                   <span className="facebooklogin">
-                                    <FacebookLogin
-                                      // returnScopes="true"
-                                      // autoLoad={true}
-                                      // reauthenticate={true}
-                                      appId="569258551927541"
+                                    {/* <FacebookLogin
+                                      returnScopes="true"
+                                      reauthenticate={true}
+                                      appId="5897811026940152"
                                       fields="name,email,picture"
-                                      // scope="public_profile,user_friends,user_actions.books"
+                                      scope="public_profile,user_friends,,email,user_actions.books"
                                       onClick={() => componentClicked}
                                       cssClass="my-facebook-button-class favebook"
                                       callback={() => responseFacebook}
-                                    />
+                                    /> */}
+                                    <FacebookLoginComponent />
                                   </span>
                                 </div>
                                 {/* <div className="facebookpage twittorpage">

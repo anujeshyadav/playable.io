@@ -235,7 +235,7 @@ const Dashboard = () => {
 
             <div className="bottomspace">
               <div>
-                <div
+                {/* <div
                   onclick={login}
                   class="fb-login-button"
                   data-width="480px"
@@ -244,7 +244,7 @@ const Dashboard = () => {
                   data-layout=""
                   data-auto-logout-link="false"
                   data-use-continue-as="false"
-                ></div>
+                ></div> */}
               </div>
               <div className="bottom">
                 <h6>Other workspaces</h6>
