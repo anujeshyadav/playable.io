@@ -97,6 +97,7 @@ const Dashboard = () => {
                         <Link
                           // onClick={()=> }
                           to={`/app/usermanage/usersociallist/${value?._id}`}
+                          // to={`/app/usermanage/usersociallist/${value?._id}`}
                         >
                           <div className="row">
                             <div className="col-lg-3 ">

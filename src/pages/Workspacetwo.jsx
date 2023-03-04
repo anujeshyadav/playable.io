@@ -54,8 +54,8 @@ function Workspacetwo(args) {
 
   const [first, setfirst] = useState("");
   const [allData, setAllData] = useState("");
-  const [userData, setUserData] = useState(null);
   const hiddenFileInput = React.useRef(null);
+  const [Fbdata, setfbdata] = useState({});
 
   useEffect(() => {
     // console.log("ids", args.match.params.id);
@@ -93,6 +93,16 @@ function Workspacetwo(args) {
 
   const responseFacebook = (response) => {
     console.log(response);
+    if (response.status === "unknown") {
+      alert("Login failed!");
+      // setLogin(false);
+      return false;
+    }
+    // setfbdata(response);
+    localStorage.setItem("fbimage", response.picture.data.url);
+    localStorage.setItem("name", response.name);
+    localStorage.setItem("email", response.email);
+    localStorage.setItem("fbid", response.id);
   };
 
   const authHandler = (err, data) => {
@@ -101,16 +111,16 @@ function Workspacetwo(args) {
   const handleTwitterLogin = () => {
     window.open("/auth/twitter", "_self");
   };
-  const handleFetchUserData = () => {
-    axios
-      .get("/auth/twitter/user")
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const handleFetchUserData = () => {
+  //   axios
+  //     .get("/auth/twitter/user")
+  //     .then((response) => {
+  //       setUserData(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
   const responseGoogle = (response) => {
     console.log(response);
   };
@@ -200,17 +210,13 @@ function Workspacetwo(args) {
                                     <FacebookLogin
                                       returnScopes="true"
                                       reauthenticate={true}
-                                      appId="5897811026940152"
+                                      appId="310109620967829"
                                       autoLoad={false}
                                       fields="name,email,picture"
                                       scope="public_profile,email,user_friends"
                                       callback={responseFacebook}
-                                      icon="fa-facebook"
-                                      // fields="name,email,picture"
-                                      // scope="public_profile,user_friends,,email,user_actions.books"
-                                      // onClick={() => componentClicked}
-                                      // cssClass="my-facebook-button-class favebook"
-                                      // callback={() => responseFacebook}
+                                      // icon="fa-facebook"
+                                      cssClass="my-facebook-button-class favebook"
                                     />
                                     {/* <FacebookLoginComponent /> */}
                                   </span>
@@ -237,7 +243,7 @@ function Workspacetwo(args) {
                                       <FacebookLogin
                                         returnScopes="true"
                                         reauthenticate={true}
-                                        appId="5897811026940152"
+                                        appId="310109620967829"
                                         fields="name,email,picture"
                                         scope="public_profile,user_friends,,email,user_actions.books"
                                         onClick={() => componentClicked}
@@ -378,7 +384,7 @@ function Workspacetwo(args) {
                                         <button onClick={handleTwitterLogin}>
                                           Login with Twitter
                                         </button>
-                                        {userData && (
+                                        {/* {userData && (
                                           <div>
                                             <h2>{userData.name}</h2>
                                             <p>{userData.location}</p>
@@ -388,7 +394,7 @@ function Workspacetwo(args) {
                                               Fetch User Data
                                             </button>
                                           </div>
-                                        )}
+                                        )} */}
                                       </div>
                                       {/* <TwitterLogin
                                         authCallback={authHandler}
@@ -1060,7 +1066,7 @@ function Workspacetwo(args) {
                                     {/* <FacebookLogin
                                       returnScopes="true"
                                       reauthenticate={true}
-                                      appId="5897811026940152"
+                                      appId="310109620967829"
                                       fields="name,email,picture"
                                       scope="public_profile,user_friends,,email,user_actions.books"
                                       onClick={() => componentClicked}

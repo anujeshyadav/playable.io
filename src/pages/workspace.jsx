@@ -26,7 +26,7 @@ function Workspace() {
         .then((res) => {
           console.log(res.data);
           if (res.data.message == "success") {
-            history.push(`/workspaceone/${res.data.data._id}`);
+            // history.push(`/workspaceone/${res.data.data._id}`);
           }
         })
         .catch((err) => {
